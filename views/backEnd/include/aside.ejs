@@ -1,0 +1,60 @@
+			
+			<!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+						<ul>
+							<li class="menu-title"> 
+								<span>Main</span>
+							</li>
+							<li class="<%= URL == "/dashpord" ? "active" : "" %>"> 
+								<a href="/dashpord"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+							</li>
+							<li class="<%= URL == "/appointment" ? "active" : "" %>"> 
+								<a href="/appointment"><i class="fe fe-layout"></i> <span>Appointments</span></a>
+							</li>
+							<li class="<%= URL == "/AllSpecialities" ? "active" : "" %>"> 
+								<a href="/specialities/AllSpecialities"><i class="fe fe-users"></i> <span>Specialities</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-document"></i> <span> Doctors </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a class="<%= URL == "/showAll_doctors" ? "active" : "" %>" href="/doctors/showAll_doctors"> All Doctors </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-document"></i> <span> Pationt </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a class="<%= URL == "/showAll_pationt" ? "active" : "" %>" href="/pationt/showAll_pationt"> All Pationt </a></li>
+								</ul>
+							</li>
+							<li class="<%= URL == "/reviews" ? "active" : "" %>"> 
+								<a href="reviews.html"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
+							</li>
+							<li class="<%= URL == "/transactions" ? "active" : "" %>"> 
+								<a href="transactions-list.html"><i class="fe fe-activity"></i> <span>Transactions</span></a>
+							</li>
+					
+							<li class="submenu">
+								<a href="#"><i class="fe fe-document"></i> <span> Pharmacy </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a class="<%= URL == "/AllPharmacy" ? "active" : "" %>" href="/pharmacy/AllPharmacy"> All Pharmacy </a></li>
+									<li><a class="<%= URL == "/AddPharmacy" ? "active" : "" %>" href="/pharmacy/AddPharmacy"> Add Pharmacy </a></li>
+									<li><a class="<%= URL == "/allOrders" ? "active" : "" %>" href="/pharmacy/allOrders"> All Orders </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-document"></i> <span> Labs </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a class="<%= URL == "/AllLabs" ? "active" : "" %>" href="/Labs/AllLabs"> All Labs </a></li>
+									<li><a class="<%= URL == "/AddLabs" ? "active" : "" %>" href="/Labs/AddLabs"> Add Labs </a></li>
+								</ul>
+							</li>		
+							<li class="<%= URL == "/settings" ? "active" : "" %>"> 
+								<a href="settings.html"><i class="fe fe-vector"></i> <span>Settings</span></a>
+							</li>				
+						</ul>
+					</div>
+                </div>
+            </div>
+			<!-- /Sidebar -->

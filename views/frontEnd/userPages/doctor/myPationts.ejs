@@ -1,0 +1,87 @@
+		
+<%- include("../../include/head.ejs")  %> 
+<body>
+    <head>
+        <!-- Main Wrapper -->
+		<div class="main-wrapper">
+            <%- include("../../include/naveBare.ejs")  %> 
+			<!-- Page Content -->
+						
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-md-12 col-12">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">My Patients</li>
+								</ol>
+							</nav>
+							<h2 class="breadcrumb-title">My Patients</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+			<div class="content">
+				<div class="container-fluid">
+
+					<div class="row">
+						<%- include("../../include/doctorProfileAside.ejs")  %> 		
+							<div class="col-md-7 col-lg-8 col-xl-9">
+						
+							<div class="row row-grid">
+								<% doctorClientData.forEach(element => { %>
+								 <div class="col-md-6 col-lg-4 col-xl-3">
+									<div class="card widget-profile pat-widget-profile">
+										<div class="card-body">
+											<div class="pro-widget-content">
+												<div class="profile-info-widget">
+													<a href="/userProfile/<%= element.id %>" class="booking-doc-img">
+														<img src="/backEnd/assets/img/patients/<%= element.image.split("--")[0] %>" alt="User Image">
+													</a>
+													<div class="profile-det-info">
+														<h3><a href="/userProfile/<%= element.id %>"><%= element.fName + " " + element.lName %></a></h3>
+														
+														<div class="patient-details">
+															<h5><b>Patient ID :</b> <%= element.id %></h5>
+															<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> <%= element.addres %></h5>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="patient-info">
+												<ul>
+													<li>Phone <span><%= element.mobile %></span></li>
+													<li>Age <span><%= element.age %> Years, Male</span></li>
+													<li>Blood Group <span><%= element.bloodType %></span></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								<% }) %>
+								
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>		
+			<!-- /Page Content -->	
+		</div>
+		<!-- /Main Wrapper -->
+        <%- include("../../include/footer.ejs")  %> 
+        <%- include("../../include/footer_script.ejs")  %> 
+		<!-- Custom JS -->
+		<!-- Sticky Sidebar JS -->
+		<script src="/frontEnd/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+		<script src="/frontEnd/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+		<script src="/frontEnd/assets/js/circle-progress.min.js"></script>
+
+		<script src="/frontEnd/assets/js/script.js"></script>
+    </body>
+</head>

@@ -1,0 +1,99 @@
+		
+<%- include("../../include/head.ejs")  %> 
+<body>
+    <head>
+        <!-- Main Wrapper -->
+		<div class="main-wrapper">
+            <%- include("../../include/naveBare.ejs")  %> 
+			<!-- Page Content -->
+						
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-md-12 col-12">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Reviews</li>
+								</ol>
+							</nav>
+							<h2 class="breadcrumb-title">Reviews</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+			<div class="content">
+				<div class="container-fluid">
+
+					<div class="row">
+						<%- include("../../include/doctorProfileAside.ejs")  %> 		
+						<div class="col-md-7 col-lg-8 col-xl-9">
+							<div class="doc-review review-listing">
+							
+								<!-- Review Listing -->
+								<ul class="comments-list">
+								<% doctorComments.forEach(element => { %>
+								<!-- Comment List -->
+									<li>
+										<div class="comment">
+											<img class="avatar rounded-circle" alt="User Image" src="/backEnd/assets/img/patients/<%= element.commentUser.image.split("--")[0] %>">
+											<div class="comment-body">
+												<div class="meta-data">
+													<span class="comment-author"><%= element.commentUser.fName + " " + element.commentUser.lName %></span>
+													<span class="comment-date"><%= DateFormat(element.createdAt) + " _ " + DateFormat(element.createdAt , "time") %></span>
+													<div class="review-count rating">
+														<i class="fas fa-star <%= element.Rate >= 1 ? "filled" : "" %>"></i>
+														<i class="fas fa-star <%= element.Rate >= 2 ? "filled" : "" %>"></i>
+														<i class="fas fa-star <%= element.Rate >= 3 ? "filled" : "" %>"></i>
+														<i class="fas fa-star <%= element.Rate >= 4 ? "filled" : "" %>"></i>
+														<i class="fas fa-star <%= element.Rate >= 5 ? "filled" : "" %>"></i>
+													</div>
+												</div>
+												<p class="recommended"><i class="far fa-thumbs-up"></i> I recommend the doctor</p>
+												<p class="comment-content">
+													<%= element.comment %>
+												</p>
+												<div class="comment-reply">
+												   <p class="recommend-btn">
+													<span>Recommend?</span>
+													<a class="like-btn">
+														<i class="far fa-thumbs-up"></i> 5
+													</a>
+													<a class="dislike-btn">
+														<i class="far fa-thumbs-down"></i> 10
+													</a>
+												</p>
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- /Comment List -->
+									<% }) %>
+									
+								</ul>
+								<!-- /Comment List -->
+								
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>		
+			<!-- /Page Content -->	
+		</div>
+		<!-- /Main Wrapper -->
+
+
+        <%- include("../../include/footer.ejs")  %> 
+        <%- include("../../include/footer_script.ejs")  %> 
+		<!-- Custom JS -->
+		<!-- Sticky Sidebar JS -->
+		<script src="/frontEnd/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+		<script src="/frontEnd/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+		<script src="/frontEnd/assets/js/script.js"></script>
+    </body>
+</head>

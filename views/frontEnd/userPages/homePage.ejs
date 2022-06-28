@@ -1,0 +1,395 @@
+		
+<%- include("../include/head.ejs")  %> 
+<style>
+    .formSearch {
+        position:relative;
+        width: auto;
+    }
+	.rating i.active {
+		color:rgb(224, 210, 5)
+	}
+    .dataSearch {
+        position: absolute;
+        top:100%;
+        left:0;
+        width:calc(100% - 40px);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 5px 5px 18px rgba(0,0,0,0.1);
+    }
+    .dataSearch ul {
+        margin:0;
+    }
+    .dataSearch ul li a {
+        width:100%;
+        padding:5px;
+        border-bottom: 1px solid #555;
+        display: block;
+        background:white
+    }
+    .dataSearch ul li a .online img {
+        width:30px;
+        height:30px;
+        border-radius: 50%;
+    }
+    .dataSearch ul li a p {
+        margin:0 0 0 20px
+    } 
+    .dataSearch ul li a .online{
+        position: relative;
+    }
+
+</style>
+<body>
+    <head>
+        <!-- Main Wrapper -->
+		<div class="main-wrapper">
+            <%- include("../include/naveBare.ejs")  %> 
+                <!-- Home Banner -->
+                <section class="section section-search">
+                    <div class="container-fluid">
+                        <div class="banner-wrapper">
+                            <div class="banner-header text-center">
+                                <h1>Search Doctor, Make an Appointment</h1>
+                                <p>Discover the best doctors, clinic & hospital the city nearest to you.</p>
+                            </div>
+                                
+                            <!-- Search -->
+                            <div class="search-box">
+                                <form class="formSearch" action="https://doccure-html.dreamguystech.com/template/search.html">
+                                    <div class="form-group search-location">
+                                        <input type="text" class="form-control searchForUsersLocation" placeholder="Search Location">
+                                        <span class="form-text">Based on your Location</span>
+                                    </div>
+                                   
+                                    <div class="form-group search-info">
+                                        <input type="text" class="form-control searchForUsers" placeholder="Search Doctors">
+                                    </div>
+                                    <button type="button" onclick="gotoDocotor()" class="btn btn-primary search-btn mt-0"><i class="fas fa-search"></i> <span>Search</span></button>
+                                    <div class="dataSearch">
+                                        <ul class="list-unstyled"></ul>
+                                    </div>
+                                </form>
+                               
+                            </div>
+                            <!-- /Search -->
+                            
+                        </div>
+                    </div>
+                </section>
+                <!-- /Home Banner -->
+
+                <section class="section home-tile-section">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-9 m-auto">
+                                <div class="section-header text-center">
+                                    <h2>What are you looking for?</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 mb-3">
+                                        <div class="card text-center doctor-book-card">
+                                            <img src="/frontEnd/assets/img/doctors/doctor-07.jpg" alt="" class="img-fluid">
+                                            <div class="doctor-book-card-content tile-card-content-1">
+                                                <div>
+                                                    <h3 class="card-title mb-0">Visit a Doctor</h3>
+                                                    <a href="/All_Doctors" class="btn book-btn1 px-3 py-2 mt-3" tabindex="0">Book Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mb-3">
+                                        <div class="card text-center doctor-book-card">
+                                            <img src="/frontEnd/assets/img/img-pharmacy1.jpg" alt="" class="img-fluid">
+                                            <div class="doctor-book-card-content tile-card-content-1">
+                                                <div>
+                                                    <h3 class="card-title mb-0">Find a Pharmacy</h3>
+                                                    <a href="/allPharmacy" class="btn book-btn1 px-3 py-2 mt-3" tabindex="0">Find Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mb-3">
+                                        <div class="card text-center doctor-book-card">
+                                            <img src="/frontEnd/assets/img/lab-image.jpg" alt="" class="img-fluid">
+                                            <div class="doctor-book-card-content tile-card-content-1">
+                                                <div>
+                                                <h3 class="card-title mb-0">Find a Lab</h3>
+                                                    <a href="/allLabs" class="btn book-btn1 px-3 py-2 mt-3" tabindex="0">Coming Soon</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                    
+                <!-- Clinic and Specialities -->
+                <section class="section section-specialities">
+                    <div class="container-fluid">
+                        <div class="section-header text-center">
+                            <h2>Clinic and Specialities</h2>
+                            <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-9">
+                                <!-- Slider -->
+                                <div class="specialities-slider slider">
+                                
+                                    <% allSpecialist.forEach(element => { %>
+                                    <!-- Slider Item -->
+                                    <a href="/All_Doctors?select_specialist=<%= element.id %>">
+                                    <div class="speicality-item text-center">
+                                        <div class="speicality-img">
+                                            <img src="/backEnd/assets/img/specialities/<%= element.image.split("--")[0] %>" class="img-fluid" alt="Speciality">
+                                            <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                        </div>
+                                        <p><%= element.name %></p>
+                                    </div>	
+                                    </a>
+                                    <!-- /Slider Item -->
+                                    <% }) %>
+                                    
+                                </div>
+                                <!-- /Slider -->
+                                
+                            </div>
+                        </div>
+                    </div>   
+                </section>	 
+                <!-- Clinic and Specialities -->
+                
+                <!-- Popular Section -->
+                <% if (someOfActiveDoctors.length > 2) { %>
+                                <section class="section section-doctor">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="section-header ">
+                                    <h2>Book Our Doctor</h2>
+                                    <p>Lorem Ipsum is simply dummy text </p>
+                                </div>
+                                <div class="about-content">
+                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
+                                    <p>web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes</p>					
+                                    <a href="javascript:;">Read More..</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="doctor-slider slider">
+                                    <% someOfActiveDoctors.forEach(element => { %>
+                                    <!-- Doctor Widget -->
+                                    <div class="profile-widget">
+                                        <div class="doc-img">
+                                            <a href="/userProfile/<%= element.id %>">
+                                                <img class="img-fluid" style="height:170px" alt="User Image" src="/backEnd/assets/img/doctors/<%= element.userDoctorData.doctorImage ? element.userDoctorData.doctorImage.split("--")[0] : "avatar.png" %>">
+                                            </a>
+                                            <a href="javascript:void(0)" class="fav-btn">
+                                                <i class="far fa-bookmark"></i>
+                                            </a>
+                                        </div>
+                                        <div class="pro-content">
+                                            <h3 class="title">
+                                                <a href="/userProfile/<%= element.id %>"><%= element.userDoctorData.fName + " " + element.userDoctorData.lName %></a> 
+                                                <i class="fas fa-check-circle verified"></i>
+                                            </h3>
+                                            <p class="speciality"></p>
+                                            <div class="rating">
+                                                    <i class="fas fa-star <%= Math.ceil(((getRateOp(element.userDoctorData.userRate) * 100) / (element.userDoctorData.userRate.length * 5)) /20) >= 1 ? "active" :  "" %>"></i>
+													<i class="fas fa-star <%= Math.ceil(((getRateOp(element.userDoctorData.userRate) * 100) / (element.userDoctorData.userRate.length * 5)) /20) >= 2 ? "active" :  "" %>"></i>
+													<i class="fas fa-star <%= Math.ceil(((getRateOp(element.userDoctorData.userRate) * 100) / (element.userDoctorData.userRate.length * 5)) /20) >= 3 ? "active" :  "" %>"></i>
+													<i class="fas fa-star <%= Math.ceil(((getRateOp(element.userDoctorData.userRate) * 100) / (element.userDoctorData.userRate.length * 5)) /20) >= 4 ? "active" :  "" %>"></i>
+													<i class="fas fa-star <%= Math.ceil(((getRateOp(element.userDoctorData.userRate) * 100) / (element.userDoctorData.userRate.length * 5)) /20) >= 5 ? "active" :  "" %>"></i>
+                                                <span class="d-inline-block average-rating">(<%= element.userDoctorData.rating %>)</span>
+                                            </div>
+                                            <ul class="available-info">
+                                                <li>
+                                                    <i class="fas fa-map-marker-alt"></i> <%= element.userDoctorData.Addres %>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-clock"></i> <%= formateDate(element.userDoctorData.createdAt) %>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-money-bill-alt"></i> <%= element.userDoctorData.isFree ? element.userDoctorData.price : "free" %>
+                                                </li>
+                                            </ul>
+                                            <div class="row row-sm">
+                                                <div class="col-6">
+                                                    <a href="/userProfile/<%= element.id %>" class="btn view-btn">View Profile</a>
+                                                </div>
+                                                <div class="col-6">
+                                                    <a href="/bookingDoctor/<%=element.userDoctorData.id%>" class="btn book-btn">Book Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Doctor Widget -->
+                                    <% }) %>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <% } %>
+ 
+                <!-- /Popular Section -->
+
+
+                <!-- Section Doctors With high Rate -->
+                <div class="col-12">
+                    <h2 style="color:#555;padding:30px 0 30px 20px">Doctors With High Rate</h2>
+                    <div class="doctor-rate-slider slider">
+                        <% DoctorWithHigtRate.forEach(element => { %>
+                        <!-- Doctor Widget -->
+                        <div class="profile-widget">
+                            <div class="doc-img">
+                                <a href="/userProfile/<%= element.DoctorUser.id %>">
+                                    <img class="img-fluid" style="height:170px" alt="User Image" src="/backEnd/assets/img/doctors/<%= element.doctorImage ? element.doctorImage.split("--")[0] : "avatar.png" %>">
+                                </a>
+                                <a href="javascript:void(0)" class="fav-btn">
+                                    <i class="far fa-bookmark"></i>
+                                </a>
+                            </div>
+                            <div class="pro-content">
+                                <h3 class="title">
+                                    <a href="/userProfile/<%= element.DoctorUser.id %>"><%= element.fName + " " + element.lName %></a> 
+                                    <i class="fas fa-check-circle verified"></i>
+                                </h3>
+                                <p class="speciality"></p>
+                                <div class="rating">
+                                        <i class="fas fa-star <%= Math.ceil(((getRateOp(element.userRate) * 100) / (element.userRate.length * 5)) /20) >= 1 ? "active" :  "" %>"></i>
+                                        <i class="fas fa-star <%= Math.ceil(((getRateOp(element.userRate) * 100) / (element.userRate.length * 5)) /20) >= 2 ? "active" :  "" %>"></i>
+                                        <i class="fas fa-star <%= Math.ceil(((getRateOp(element.userRate) * 100) / (element.userRate.length * 5)) /20) >= 3 ? "active" :  "" %>"></i>
+                                        <i class="fas fa-star <%= Math.ceil(((getRateOp(element.userRate) * 100) / (element.userRate.length * 5)) /20) >= 4 ? "active" :  "" %>"></i>
+                                        <i class="fas fa-star <%= Math.ceil(((getRateOp(element.userRate) * 100) / (element.userRate.length * 5)) /20) >= 5 ? "active" :  "" %>"></i>
+                                    <span class="d-inline-block average-rating">(<%= element.rating %>)</span>
+                                </div>
+                                <ul class="available-info">
+                                    <li>
+                                        <i class="fas fa-map-marker-alt"></i> <%= element.Addres %>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-clock"></i> <%= formateDate(element.createdAt) %>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-money-bill-alt"></i> <%= element.isFree ? element.price : "free" %>
+                                    </li>
+                                </ul>
+                                <div class="row row-sm">
+                                    <div class="col-6">
+                                        <a href="/userProfile/<%= element.DoctorUser.id %>" class="btn view-btn">View Profile</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="/bookingDoctor/<%=element.DoctorUser.id%>" class="btn book-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Doctor Widget -->
+                        <% }) %>
+
+                    </div>
+                </div>
+                <!-- Section Doctors With high Rate -->
+                
+                <!-- Blog Section -->
+                <section class="section section-blogs">
+                    <div class="container-fluid">
+                    
+                        <!-- Section Header -->
+                        <div class="section-header text-center">
+                            <h2>Blogs and News</h2>
+                            <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <!-- /Section Header -->
+                        
+                        <div class="row blog-grid-row">
+                            <% somePosts.forEach(element => { %>
+                            <div class="col-md-6 col-lg-3 col-sm-12">
+                                <!-- Blog Post -->
+                                <div class="blog grid-blog">
+                                    <div class="blog-image">
+                                        <a href="#"><img style="height:200px" class="img-fluid" src="/backEnd/assets/img/posts_image/<%= element.userDoctorData.doctorPosts[0].image ? element.userDoctorData.doctorPosts[0].image.split("--")[0] : "15.jpg" %>" alt="Post Image"></a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <ul class="entry-meta meta-item">
+                                            <li>
+                                                <div class="post-author">
+                                                    <a href="/userProfile/<%= element.id %>"><img src="/backEnd/assets/img/doctors/<%= element.userDoctorData.doctorImage ? element.userDoctorData.doctorImage.split("--")[0] : "avatar.png" %>" alt="Post Author"> <span>Dr. <%= element.userDoctorData.fName + " " + element.userDoctorData.lName %></span></a>
+                                                </div>
+                                            </li>
+                                            <li><i class="far fa-clock"></i> <%= formateDate(element.userDoctorData.doctorPosts.createAt , "date") %></li>
+                                        </ul>
+                                        <p class="mb-0"><%= element.userDoctorData.doctorPosts[0].post %></p>
+                                    </div>
+                                </div>
+                                <!-- /Blog Post -->
+                                
+                            </div>                           
+                            <% }) %>
+                        </div>
+                    </div>
+                </section>
+                <!-- /Blog Section -->	
+		</div>
+		<!-- /Main Wrapper -->
+        <%- include("../include/footer.ejs")  %> 
+        <%- include("../include/footer_script.ejs")  %> 
+		<script src="/frontEnd/assets/js/slick.js"></script>
+        <script>
+            var searchForUsers = document.querySelector(".searchForUsers");
+            var searchForUsersLocation = document.querySelector(".searchForUsersLocation");
+            var ul = document.querySelector(".dataSearch ul");
+            function searching () {
+                var search = this.value;
+                $.ajax({
+                type: "post",
+                url: "/getSearchDoctorData",
+                data: {
+                    search: searchForUsers.value,
+                    location: searchForUsersLocation.value,
+                },
+                success(data) {
+                    clearDataSearch();
+                    if (search != "") {
+                    data.forEach((ele) => {
+                        ul.innerHTML += `<li>
+                                <a href="/userProfile/${ele.DoctorUser.id}" class="d-flex"> 
+                                <div class="online ID${ele.id}">
+                                    <img src="/backEnd/assets/img/doctors/${
+                                    ele.doctorImage ? ele.doctorImage.split("--")[0] : "avatar.png"
+                                    }" /> 
+                                </div> 
+                                <p>${ele.fName} ${ele.lName}</p>
+                                </a>
+                            </li>`;
+                    });
+                    // sockit.emit("activeUser", { userId: "userId" });
+                    }
+                },
+                error() {
+                    console.log("error");
+                },
+                });
+            };
+            searchForUsers.oninput = searching
+            searchForUsersLocation.oninput = searching
+            
+            function clearDataSearch() {
+                ul.querySelectorAll("li").forEach((ele) => {
+                ele.remove();
+                });
+            }
+
+            function gotoDocotor() {
+                window.location = `/All_Doctors?DoctorName=${searchForUsers.value}&CountryName=${searchForUsersLocation.value}`
+            }
+
+        </script>
+		<!-- Custom JS -->
+		<script src="/frontEnd/assets/js/script.js"></script>
+    </body>
+</head>
