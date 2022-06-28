@@ -48,7 +48,6 @@ const homePage = async (req, res, next) => {
       order: [["numberOfPosts", "desc"]],
       limit: 10,
     });
-    consle.log("d".repeat(200));
     var DoctorWithHigtRate = await db.doctors.findAll({
       order: [["rating", "desc"]],
       attributes: [
@@ -74,7 +73,6 @@ const homePage = async (req, res, next) => {
         },
       ],
     });
-
     var somePosts = await db.users.findAll({
       include: [
         {
@@ -120,6 +118,7 @@ const homePage = async (req, res, next) => {
         });
       }
     }
+
 
     res.render("frontEnd/userPages/homePage", {
       title: "homePage",
@@ -3118,12 +3117,17 @@ const userNotification2 = async (req, res, next) => {
 
 /*--------------- start usernotification2NotSeen ---------------------*/
 async function usernotification2NotSeen(req) {
-  return db.userNotification2.findAll({
-    where: {
-      userId: req.cookies.User ? req.cookies.User.id : 0,
-      isSeen: false,
-    },
-  });
+  if( req.cookies.User) {
+    var data = await db.userNotification2.findAll({
+      where: {
+        userId: req.cookies.User.id.toString(),
+        isSeen: false,
+      },
+    })
+    return data
+  } else {
+    return []
+  };
 }
 /*--------------- end usernotification2NotSeen ---------------------*/
 

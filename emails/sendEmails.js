@@ -8,8 +8,8 @@ async function sendEmail(email, id, fName, lName, subject, url) {
     host: "smtp.mailtrap.io",
     port: 587,
     auth: {
-      user: "104c2a023d38b8",
-      pass: "da0a230968ced1",
+      user: "b954a5c39c2bbd",
+      pass: "535437f8e5750f",
     },
   });
   var mailOptions = {
@@ -30,7 +30,7 @@ async function sendEmail(email, id, fName, lName, subject, url) {
             <p>${subject}</p>
             ${
               id
-                ? `<a href='http://localhost:3000/${url}/${id}'>active account</a>`
+                ? `<a href='http://localhost:3001/${url}/${id}'>active account</a>`
                 : ""
             }
             
