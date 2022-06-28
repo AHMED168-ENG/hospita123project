@@ -25,13 +25,16 @@ const usernotification2 = require("../../models/usernotification2");
 /*------------------------------ start home Page ------------------------*/
 const homePage = async (req, res, next) => {
   try {
+
     var allSpecialist = await db.specialist.findAll({
       where: {
         active: true,
       },
-      limit: 30,
+      limit: 10,
       order: [["createdAt", "desc"]],
     });
+    console.log("ahmed".repeat(50))
+
     var someOfActiveDoctors = await db.users.findAll({
       limit: 30,
       include: [
@@ -48,6 +51,7 @@ const homePage = async (req, res, next) => {
       order: [["numberOfPosts", "desc"]],
       limit: 10,
     });
+
     var DoctorWithHigtRate = await db.doctors.findAll({
       order: [["rating", "desc"]],
       attributes: [
@@ -73,6 +77,7 @@ const homePage = async (req, res, next) => {
         },
       ],
     });
+
     var somePosts = await db.users.findAll({
       include: [
         {
@@ -118,7 +123,6 @@ const homePage = async (req, res, next) => {
         });
       }
     }
-
 
     res.render("frontEnd/userPages/homePage", {
       title: "homePage",
