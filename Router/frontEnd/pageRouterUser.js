@@ -74,7 +74,7 @@ const {
 
 const Router = require("express").Router();
 
-Router.get("/home", userAuthonticat, homePage);
+Router.get("/home", homePage);
 Router.get("/All_Doctors", All_Doctors);
 Router.post("/getSearchDoctorData", getSearchDoctorData);
 Router.get("/doctorProfile/:id", doctorProfile);

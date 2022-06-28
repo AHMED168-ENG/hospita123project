@@ -48,6 +48,7 @@ const homePage = async (req, res, next) => {
       order: [["numberOfPosts", "desc"]],
       limit: 10,
     });
+    consle.log("d".repeat(200));
     var DoctorWithHigtRate = await db.doctors.findAll({
       order: [["rating", "desc"]],
       attributes: [
@@ -103,20 +104,23 @@ const homePage = async (req, res, next) => {
       },
       limit: 30,
     });
-    var myPharmacy = await db.medicin.findOne({
-      where: {
-        userId: req.cookies.User.id,
-      },
-    });
     var myPharmacyOrder = [];
-    if (myPharmacy) {
-      myPharmacyOrder = await db.pharmacyOrders.findAll({
+    if (req.cookies.User) {
+      var myPharmacy = await db.medicin.findOne({
         where: {
-          to: myPharmacy.id,
-          isSeen: false,
+          userId: req.cookies.User.id,
         },
       });
+      if (myPharmacy) {
+        myPharmacyOrder = await db.pharmacyOrders.findAll({
+          where: {
+            to: myPharmacy.id,
+            isSeen: false,
+          },
+        });
+      }
     }
+
     res.render("frontEnd/userPages/homePage", {
       title: "homePage",
       somePosts,
@@ -3116,7 +3120,7 @@ const userNotification2 = async (req, res, next) => {
 async function usernotification2NotSeen(req) {
   return db.userNotification2.findAll({
     where: {
-      userId: req.cookies.User.id,
+      userId: req.cookies.User ? req.cookies.User.id : 0,
       isSeen: false,
     },
   });

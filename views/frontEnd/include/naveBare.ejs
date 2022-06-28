@@ -119,6 +119,7 @@
       </ul>
     </div>
     <ul class="nav header-navbar-rht">
+      <% if (usernotification2NotSeen.length > 0) { %>
       <li class="notifications2">
         <i class="fa fa-bell-o" aria-hidden="true">
           <% if (usernotification2NotSeen.length) { %>
@@ -129,6 +130,7 @@
           <ul class="list-unstyled"></ul>
         </div>
       </li>
+      <% } %>
       <li class="nav-item contact-item">
         <div class="header-contact-img">
           <i class="far fa-hospital"></i>
