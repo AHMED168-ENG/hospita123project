@@ -46,6 +46,7 @@ const doctor_dashpored = async (req, res, next) => {
       myPharmacyOrder,
     });
   } catch (error) {
+    console.log(error)
     tryError(res);
   }
 };

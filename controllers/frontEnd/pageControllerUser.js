@@ -3124,7 +3124,7 @@ async function usernotification2NotSeen(req) {
   if( req.cookies.User) {
     var data = await db.userNotification2.findAll({
       where: {
-        userId: req.cookies.User.id.toString(),
+        userId: req.cookies.User.id,
         isSeen: false,
       },
     })
