@@ -26,7 +26,7 @@ module.exports = {
       like: {
         type: Sequelize.INTEGER,
       },
-      disLike: {
+      disLikeUser: {
         type: Sequelize.ARRAY(Sequelize.INTEGER),
       },
       disLike: {

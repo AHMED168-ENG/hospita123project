@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       Rate: DataTypes.INTEGER,
       likeUser: DataTypes.ARRAY(DataTypes.INTEGER),
       like: DataTypes.INTEGER,
-      disLike: DataTypes.ARRAY(DataTypes.INTEGER),
       disLikeUser: DataTypes.ARRAY(DataTypes.INTEGER),
       disLike: DataTypes.INTEGER,
     },

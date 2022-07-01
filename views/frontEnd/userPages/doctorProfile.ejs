@@ -267,7 +267,7 @@ li.comment_test .comment i.active {
 											<div class="service-list">
 												<h4>Specializations</h4>
 												<ul class="clearfix">
-                                                    <li><%= doctor.DoctorSpecialist.name %></li>
+                                                    <li><%= doctor.DoctorSpecialist ? doctor.DoctorSpecialist.name : "not Edit yet" %></li>
 												</ul>
 											</div>
 											<!-- /Specializations List -->

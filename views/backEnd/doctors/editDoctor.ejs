@@ -437,7 +437,7 @@
 									</div>
 								</div>
 								<!-- /Registrations -->
-								<input type="hidden" name="OldclinicImage" value="<%= doctor.Doctorclinic.clinicImage %>">
+								<input type="hidden" name="OldclinicImage" value="<%= doctor.Doctorclinic ? doctor.Doctorclinic.clinicImage : '' %>">
 								<input type="hidden" name="OlddoctorImage" value="<%= doctor.doctorImage %>">
 								<input type="hidden" name="id" value="<%= doctor.id %>">
 								<div class="submit-section submit-btn-bottom">

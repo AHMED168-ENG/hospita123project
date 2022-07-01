@@ -435,7 +435,7 @@
                             <% element2.images.split("--").forEach(element => { %>
                               <% if (element.trim()) { %>
                                   <div>
-                                      <img src="/admin/asset/images/commentsPhoto/<%= element %>" alt="">
+                                      <img src="/backEnd/assets/img/comment_photo/<%= element %>" alt="">
                                   </div>
                               <% } %> 
                             <% }) %>
@@ -548,7 +548,7 @@
                               <% element3.images.split("--").forEach(element => { %>
                                 <% if (element.trim()) { %>
                                     <div>
-                                        <img src="/admin/asset/images/commentsPhoto/<%= element %>" alt="">
+                                        <img src="/backEnd/assets/img/comment_photo/<%= element %>" alt="">
                                     </div>
                                 <% } %> 
                               <% }) %>
@@ -704,17 +704,19 @@
       </div>
     </div>
     <ul class="list-unstyled">
-      <% userFrindesData.forEach(element => { %>
-        <li class="d-flex" onclick="openChate(event , '<%= element.id  %>')">
-          <a class="online ID<%= element.id %>">
-            <img src="/backEnd/assets/img/patients/<%= element.image.split("--")[0] %>" alt="">
-            <span>
-              <span></span>
-            </span>
-          </a>
-          <span><%= element.fName + " " + element.lName %></span>
-        </li>
-      <% }) %>
+      <% if(userFrindesData.length > 0) { %> 
+        <% userFrindesData.forEach(element => { %>
+          <li class="d-flex" onclick="openChate(event , '<%= element.id  %>')">
+            <a class="online ID<%= element.id %>">
+              <img src="/backEnd/assets/img/patients/<%= element.image.split("--")[0] %>" alt="">
+              <span>
+                <span></span>
+              </span>
+            </a>
+            <span><%= element.fName + " " + element.lName %></span>
+          </li>
+        <% }) %>
+      <% } %>
     </ul>
   </div>
   <aside class="asideBox">

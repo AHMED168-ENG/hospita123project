@@ -41,7 +41,7 @@
                   <div class="booking-doc-info">
                     <a href="doctor-profile.html" class="booking-doc-img">
                       <img
-                        src="/backEnd/assets/img/doctors/<%= doctor.doctorImage.split("--")[0] %>"
+                        src="/backEnd/assets/img/doctors/<%= doctor.doctorImage ? doctor.doctorImage.split("--")[0] : '' %>"
                         alt="User Image"
                       />
                     </a>

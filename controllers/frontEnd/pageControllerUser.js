@@ -394,10 +394,10 @@ const bookingDoctor = async (req, res, next) => {
         },
       ],
       where: {
-        id: req.params.id,
+        id: 6,
       },
     });
-
+    console.log(doctor)
     var schdual = await db.schedual.findOne({
       where: {
         doctorId: req.params.id,
@@ -647,6 +647,7 @@ const membersPosts = async (req, res, next) => {
         },
         {
           model: db.users,
+          
           as: "postsUserTo",
           required: false,
           attributes: ["id", "fName", "lName", "image", "isDoctor"],
@@ -767,13 +768,17 @@ const membersPosts = async (req, res, next) => {
       },
       attributes: ["frindesId"],
     });
-    var userFrindesData = await db.users.findAll({
-      where: {
-        id: {
-          [Op.in]: userFrindes.frindesId,
+    var userFrindesData = []
+    if(userFrindes) {
+      userFrindesData = await db.users.findAll({
+        where: {
+          id: {
+            [Op.in]: userFrindes.frindesId,
+          },
         },
-      },
-    });
+      });
+    }
+
 
     res.render("frontEnd/Userpages/membersPosts", {
       title: req.cookies.User.fName,
