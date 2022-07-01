@@ -19,7 +19,7 @@ module.exports = {
         numberOfPosts: 0,
         mobile: "1024756410",
         active: true,
-        image: "0.9936087853388536patient.jpg--",
+        image: "0.2112613652792008doctor-thumb-05.jpg--",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
