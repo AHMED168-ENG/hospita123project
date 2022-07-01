@@ -10,7 +10,7 @@ const {
   deletePharmacy,
 } = require("../../controllers/backEnd/pharmacy.controller");
 
-const { uploade_img } = require("../../helper/helper");
+const { uploade_img } = require("../../Helper/helper");
 const {
   AddSpecialist_validation,
 } = require("../../validation/backEnd/specialist_validation");

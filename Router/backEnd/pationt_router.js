@@ -6,7 +6,7 @@ const {
   Edit_pationt,
   edit_pationt_post,
 } = require("../../controllers/backEnd/pationt_controller");
-const { uploade_img_multi_fild, uploade_img } = require("../../helper/helper");
+const { uploade_img_multi_fild, uploade_img } = require("../../Helper/helper");
 const {
   DoctorSeting,
 } = require("../../validation/frontEnd/doctor/auth_validation");

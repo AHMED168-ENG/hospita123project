@@ -18,7 +18,7 @@ const {
   editLabControllerPost,
 } = require("../../controllers/backEnd/pharmacy.controller");
 
-const { uploade_img } = require("../../helper/helper");
+const { uploade_img } = require("../../Helper/helper");
 const {
   pharmacy_validate,
 } = require("../../validation/frontEnd/pharmacy.validate");

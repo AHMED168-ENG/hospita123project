@@ -4,7 +4,7 @@ const {
   editDoctor_post,
   activeDoctor,
 } = require("../../controllers/backEnd/doctors_controller");
-const { uploade_img_multi_fild } = require("../../helper/helper");
+const { uploade_img_multi_fild } = require("../../Helper/helper");
 const {
   DoctorSeting,
 } = require("../../validation/frontEnd/doctor/auth_validation");
