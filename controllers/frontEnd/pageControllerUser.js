@@ -25,7 +25,6 @@ const usernotification2 = require("../../models/usernotification2");
 /*------------------------------ start home Page ------------------------*/
 const homePage = async (req, res, next) => {
   try {
-
     var allSpecialist = await db.specialist.findAll({
       where: {
         active: true,
@@ -33,7 +32,6 @@ const homePage = async (req, res, next) => {
       limit: 10,
       order: [["createdAt", "desc"]],
     });
-    console.log("ahmed".repeat(50))
 
     var someOfActiveDoctors = await db.users.findAll({
       limit: 30,
@@ -397,7 +395,7 @@ const bookingDoctor = async (req, res, next) => {
         id: 6,
       },
     });
-    console.log(doctor)
+    console.log(doctor);
     var schdual = await db.schedual.findOne({
       where: {
         doctorId: req.params.id,
@@ -647,7 +645,7 @@ const membersPosts = async (req, res, next) => {
         },
         {
           model: db.users,
-          
+
           as: "postsUserTo",
           required: false,
           attributes: ["id", "fName", "lName", "image", "isDoctor"],
@@ -768,8 +766,8 @@ const membersPosts = async (req, res, next) => {
       },
       attributes: ["frindesId"],
     });
-    var userFrindesData = []
-    if(userFrindes) {
+    var userFrindesData = [];
+    if (userFrindes) {
       userFrindesData = await db.users.findAll({
         where: {
           id: {
@@ -778,7 +776,6 @@ const membersPosts = async (req, res, next) => {
         },
       });
     }
-
 
     res.render("frontEnd/Userpages/membersPosts", {
       title: req.cookies.User.fName,
@@ -3126,17 +3123,17 @@ const userNotification2 = async (req, res, next) => {
 
 /*--------------- start usernotification2NotSeen ---------------------*/
 async function usernotification2NotSeen(req) {
-  if( req.cookies.User) {
+  if (req.cookies.User) {
     var data = await db.userNotification2.findAll({
       where: {
         userId: req.cookies.User.id,
         isSeen: false,
       },
-    })
-    return data
+    });
+    return data;
   } else {
-    return []
-  };
+    return [];
+  }
 }
 /*--------------- end usernotification2NotSeen ---------------------*/
 
