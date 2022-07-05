@@ -39,6 +39,7 @@ const signUp_controller_post = async (req, res, next) => {
     var user_data = req.body;
     var hashPassword = bcrypt.hashSync(user_data.password, 10);
     user_data.password = hashPassword;
+    user_data.numberOfPosts = 0;
     user_data.image = image ? image : "avatar.png--";
     user_data.active = false;
     await db.users.create(user_data).then((result) => {

@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const { Op } = require("sequelize");
 const {
   tryError,
   handel_validation_errors,
@@ -16,7 +17,14 @@ const showAll_pationt = async (req, res, next) => {
   try {
     var pationt = await db.users.findAll({
       where: {
-        isDoctor: false,
+        [Op.or]: [
+          {
+            isDoctor: false,
+          },
+          {
+            isDoctor: null,
+          },
+        ],
       },
     });
     res.render("backEnd/pationt/showAll", {

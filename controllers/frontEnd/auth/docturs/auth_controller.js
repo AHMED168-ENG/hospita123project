@@ -49,6 +49,7 @@ const signUp_controller_post = async (req, res, next) => {
     doctor_data.birthImage = files.birthImage;
     doctor_data.imageGraduate = files.Graduation;
     doctor_data.userId = req.cookies.User.id;
+    doctor_data.gender = 1;
     await db.users.update(
       { isDoctor: true },
       {

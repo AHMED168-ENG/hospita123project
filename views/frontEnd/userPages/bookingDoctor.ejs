@@ -39,9 +39,9 @@
               <div class="card">
                 <div class="card-body">
                   <div class="booking-doc-info">
-                    <a href="doctor-profile.html" class="booking-doc-img">
+                    <a href="/userProfile/<%= doctor.userId %>" class="booking-doc-img">
                       <img
-                        src="/backEnd/assets/img/doctors/<%= doctor.doctorImage ? doctor.doctorImage.split("--")[0] : '' %>"
+                        src="/backEnd/assets/img/doctors/<%= doctor.doctorImage ? doctor.doctorImage.split("--")[0] : 'avatar.png' %>"
                         alt="User Image"
                       />
                     </a>

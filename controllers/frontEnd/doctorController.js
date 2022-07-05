@@ -46,7 +46,7 @@ const doctor_dashpored = async (req, res, next) => {
       myPharmacyOrder,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     tryError(res);
   }
 };
@@ -78,6 +78,7 @@ const appointMent = async (req, res, next) => {
         doctorId: req.cookies.Doctor.id,
       },
     });
+
     res.render("frontEnd/userPages/doctor/appointMent", {
       usernotification2NotSeen: await usernotification2NotSeen(req),
       myPharmacy,
@@ -123,6 +124,7 @@ const appointMentToday = async (req, res, next) => {
         date: new Date().getDate() + " / " + (new Date().getMonth() + 1),
       },
     });
+    console.log(new Date().getDate() + " / " + (new Date().getMonth() + 1));
     res.render("frontEnd/userPages/doctor/AllApointmentToday", {
       usernotification2NotSeen: await usernotification2NotSeen(req),
       myPharmacy,

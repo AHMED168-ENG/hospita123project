@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert("specialist", [
+    return queryInterface.bulkInsert("specialists", [
       {
         name: "armes",
         image: "0.7299399124953929specialities-01.png--",
@@ -14,6 +14,6 @@ module.exports = {
     ]);
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("specialist", null, {});
+    return queryInterface.bulkDelete("specialists", null, {});
   },
 };

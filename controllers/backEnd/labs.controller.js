@@ -12,7 +12,11 @@ const db = require("../../models");
 /*--------------- start all Labs page ---------------------*/
 const LabsController = async (req, res, next) => {
   try {
-    allLabs = await db.labs.findAll();
+    allLabs = await db.labs.findAll({
+      where: {
+        isActive: true,
+      },
+    });
     res.render("backEnd/Labs/allLabs", {
       title: "allLabs",
       notification: req.flash("notification")[0],

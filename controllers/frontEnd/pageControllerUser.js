@@ -392,7 +392,7 @@ const bookingDoctor = async (req, res, next) => {
         },
       ],
       where: {
-        id: 6,
+        id: req.params.id,
       },
     });
     console.log(doctor);
@@ -633,9 +633,19 @@ const getDataSearch_ajax = async (req, res, next) => {
 /*------------------ get my account controller ------------------*/
 const membersPosts = async (req, res, next) => {
   try {
+    var userFrindes = await db.userFrindes.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var Posts = await db.userPosts.findAndCountAll({
       limit: 5,
       order: [["createdAt", "desc"]],
+      where: {
+        from: {
+          [Op.in]: userFrindes ? userFrindes.frindesId : [],
+        },
+      },
       include: [
         {
           model: db.users,
