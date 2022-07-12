@@ -12,11 +12,7 @@ const db = require("../../models");
 /*--------------- start all Labs page ---------------------*/
 const LabsController = async (req, res, next) => {
   try {
-    allLabs = await db.labs.findAll({
-      where: {
-        isActive: true,
-      },
-    });
+    allLabs = await db.labs.findAll();
     res.render("backEnd/Labs/allLabs", {
       title: "allLabs",
       notification: req.flash("notification")[0],
@@ -25,112 +21,23 @@ const LabsController = async (req, res, next) => {
       URL: req.url,
       allLabs,
       formateDate: formateDate,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res);
   }
 };
 /*--------------- end all Labs page ---------------------*/
-/*--------------- start addLabsController page ---------------------*/
-const addLabsController = async (req, res, next) => {
-  try {
-    res.render("backEnd/Labs/addLabs", {
-      title: "add Labs",
-      notification: req.flash("notification")[0],
-      user: req.cookies.User,
-      validationError: req.flash("validationError")[0],
-      URL: req.url,
-    });
-  } catch (error) {
-    tryError(res);
-  }
-};
-/*--------------- end addLabsController page ---------------------*/
-
-/*--------------- start editPharmasyController page ---------------------*/
-const editLabsController = async (req, res, next) => {
-  try {
-    var Lab = await db.labs.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.render("backEnd/Labs/editLabs", {
-      title: "edit Labs",
-      notification: req.flash("notification")[0],
-      user: req.cookies.User,
-      validationError: req.flash("validationError")[0],
-      URL: req.url,
-      Lab,
-    });
-  } catch (error) {
-    tryError(res);
-  }
-};
-/*--------------- end editPharmasyController page ---------------------*/
-
-/*--------------- start editPharmasyController page ---------------------*/
-const editLabsControllerPost = async (req, res, next) => {
-  try {
-    var errors = validationResult(req).errors;
-    if (errors.length > 0) {
-      removeImg(req, "LabsImage/");
-      handel_validation_errors(
-        req,
-        res,
-        errors,
-        "/Labs/editLabs/" + req.params.id
-      );
-      return;
-    }
-
-    var files = Rename_uploade_img(req);
-    if (files) {
-      req.body.image = files;
-      if (req.body.oldImage) removeImg(req, "LabsImage/", req.body.oldImage);
-    }
-    req.body.isActive = req.body.isActive ? true : false;
-    await db.labs.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    returnWithMessage(
-      req,
-      res,
-      "/Labs/editLabs/" + req.params.id,
-      "added successful",
-      "success"
-    );
-  } catch (error) {
-    tryError(res, error);
-  }
-};
-/*--------------- end editPharmasyController page ---------------------*/
-
-/*--------------- start addLabsControllerPost page ---------------------*/
-const addLabsControllerPost = async (req, res, next) => {
-  try {
-    var errors = validationResult(req).errors;
-    if (errors.length > 0) {
-      removeImg(req, "LabsImage/");
-      handel_validation_errors(req, res, errors, "/Labs/AddLabs");
-      return;
-    }
-
-    var files = Rename_uploade_img(req);
-    if (files) req.body.image = files;
-    await db.labs.create(req.body);
-    returnWithMessage(req, res, "/Labs/AddLabs", "added successful", "success");
-  } catch (error) {
-    tryError(res, error);
-  }
-};
-/*--------------- end addLabsControllerPost page ---------------------*/
 
 const activeLabs = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["userId", "isActive"],
+    });
     await db.labs.update(
       { isActive: req.query.isActive == "1" ? false : true },
       {
@@ -140,11 +47,19 @@ const activeLabs = async (req, res, next) => {
       }
     );
 
+    await db.userNotification2.create({
+      from: req.cookies.Admin.id,
+      text: lab.isActive
+        ? "The admin disactivated your lab account"
+        : "The admin has activated your lab account",
+      userId: lab.userId,
+      typeOfNotification: null,
+    });
     returnWithMessage(
       req,
       res,
       "/Labs/AllLabs",
-      "activat successful",
+      lab.isActive ? "disActivate success" : "activat successful",
       "success"
     );
   } catch (error) {
@@ -162,6 +77,8 @@ const allOrdersController = async (req, res, next) => {
       doctor: req.cookies.Doctors,
       allOrders,
       formateDate: formateDate,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res);
@@ -197,6 +114,8 @@ const showOrderDataController = async (req, res, next) => {
       doctor: req.cookies.Doctors,
       order,
       formateDate: formateDate,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res);
@@ -204,12 +123,8 @@ const showOrderDataController = async (req, res, next) => {
 };
 module.exports = {
   LabsController,
-  addLabsController,
   showOrderDataController,
-  addLabsControllerPost,
   activeLabs,
-  editLabsController,
-  editLabsControllerPost,
   allOrdersController,
   deleteLap,
 };

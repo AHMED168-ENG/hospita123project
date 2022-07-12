@@ -1,0 +1,89 @@
+<%- include("../../include/head")  %> 
+
+<%- include("../../include/alert")  %> 
+<%- include("../../include/naveBare")  %> 
+</head>
+    </body>
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" >
+            <!-- Page Wrapper -->
+            <div class="page-wrapper"style="min-height:auto !important">
+                <div class="content container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header">
+                       
+                        <%- include("../../include/notification")  %> 
+                    </div>
+                    <!-- /Page Header -->
+                    <div class="container">
+						<div class="row">
+                        <div class="col-sm-12">
+							<div class="card" style="background:#eee">
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="datatable table table-hover table-center mb-0">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>phone</th>
+													<th>Addres</th>
+													<th>Date</th>
+													<th>time</th>
+													<th>countroll</th>
+													
+												</tr>
+											</thead>
+											<tbody>
+												<% if (myLabAppointmest.length > 0) { %>
+													<% myLabAppointmest.forEach(element => { %>
+													<tr>
+														<td>
+															<h2 class="table-avatar">
+																<a href="/userProfile/<%= element.labOrderUser.id %>" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="/backEnd/assets/img/patients/<%= element.labOrderUser.image ? element.labOrderUser.image.split("--")[0] : "avatar.png" %>" alt="User Image"></a>
+																<a href="/userProfile/<%= element.labOrderUser.id %>"><%= element.labOrderUser.name %></a>
+															</h2>
+														</td>
+														<td><%= element.labOrderUser.mobile %></td>
+														<td><%= element.labOrderUser.addres %></td>
+														
+														<td><%= element.date %> %></small></td>
+														<td><%= element.time %> %></small></td>
+														<td>
+															<% if (!element.accept) { %>
+															 <form class="d-inline" action="/acceptLabOrder" method="post">
+																<input type="hidden" value="<%= element.userId %>" name="userId">
+																<input type="hidden" value="<%= element.createdAt %>" name="createdAt">
+																<input type="hidden" value="<%= element.pationtId %>" name="pationtId">
+																<button class="btn btn-primary">Accept</button>
+															</form>
+															<% } %>
+															<a href="/userProfile/<%= element.labOrderUser.id %>" class="btn btn-secondary">Chat</a>
+														</td>
+													
+													</tr>
+													<% }) %>
+												<% } else { %>
+													<tr class="alert alert-danger">
+														<td colspan="5">No Orders To Show</td>
+													</tr>
+													
+												<% } %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>	
+                    </div>
+					</div>
+                </div>			
+            </div>
+            <!-- /Page Wrapper -->        		
+
+        <%- include("../../include/footer.ejs")  %> 
+        <%- include("../../include/footer_script.ejs")  %> 
+
+
+
+    </head>
+</body>

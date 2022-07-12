@@ -26,6 +26,8 @@ const showAll_doctors = async (req, res, next) => {
       doctors,
       doctors,
       formateDate: formateDate,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res);
@@ -52,6 +54,8 @@ const Edit_doctor = async (req, res, next) => {
       validationError: req.flash("validationError")[0],
       doctor,
       specialist,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res, error);

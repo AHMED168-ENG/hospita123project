@@ -30,6 +30,7 @@ const signIn_controller = async (req, res, next) => {
 
 /*----------------------------------- start signUp controller -----------------------------*/
 const signUp_controller_post = async (req, res, next) => {
+  // sign Up Doctor
   try {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {
@@ -89,6 +90,7 @@ const signUp_controller = async (req, res, next) => {
 
 /*----------------------------------- start signIn controller post ------------------------------*/
 const signIn_controller_post = async (req, res, next) => {
+  // sign In Doctor
   try {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {

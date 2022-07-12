@@ -24,12 +24,12 @@
 		color:white
 	}
 </style>
-<%- include("../include/head.ejs")  %> 
+<%- include("../../include/head.ejs")  %> 
 <body>
     <head>
         <!-- Main Wrapper -->
 		<div class="main-wrapper">
-			<%- include("../include/naveBare.ejs")  %> 
+			<%- include("../../include/naveBare.ejs")  %> 
 			<!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
 				<div class="container-fluid">
@@ -41,7 +41,7 @@
 									<li class="breadcrumb-item active" aria-current="page">Search</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">All Pharmacy : (<%= allLabs.length %>)</h2>
+							<h2 class="breadcrumb-title">All Labs : (<%= allLabs.length %>)</h2>
 						</div>
 		
 					</div>
@@ -81,7 +81,7 @@
 							
 						</div>
 						
-						<%- include("../include/notification.ejs")  %> 
+						<%- include("../../include/notification.ejs")  %> 
 
 						<div class="col-md-12 col-lg-8 col-xl-9">
 							<% if (allLabs.length > 0) { %>
@@ -110,6 +110,7 @@
 										
 											<div class="clinic-booking">
 												<a class="view-pro-btn" href="/showLab/<%= element.id%>">Show Data</a>
+												<a class="view-pro-btn" href="/labOrder/<%= element.userId%>">Mack Order</a>
 												
 											</div>
 										</div>
@@ -137,8 +138,8 @@
 			<!-- /Page Content -->
 		</div>
 		<!-- /Main Wrapper -->
-        <%- include("../include/footer.ejs")  %> 
-        <%- include("../include/footer_script.ejs")  %> 
+        <%- include("../../include/footer.ejs")  %> 
+        <%- include("../../include/footer_script.ejs")  %> 
 		<!-- Custom JS -->
 		<script src="/frontEnd/assets/js/script.js"></script>
 		<script>

@@ -201,13 +201,20 @@
           <a class="dropdown-item" href="/pationt/pationt_setings"
             ><i class="fa fa-fw fa-user"></i> Settings</a
           >
-          <a class="dropdown-item" href="/pationt/pationtfavoritDoctors"
-            ><i class="far fa-fw fa-heart"></i> Prefere</a
+
+          <% if (!myLab) { %>
+          <a class="dropdown-item" href="/AddLab"
+            ><i class="far fa-fw fa-hospital"></i> Add Lab</a
           >
-          <a class="dropdown-item" href="#"
-            ><i class="far fa-fw fa-envelope"></i> Contact Us</a
+
+          <% } else { %>
+          <a class="dropdown-item" href="/EditLab"
+            ><i class="far fa-fw fa-hospital"></i> Edit My Lab</a
           >
-          <% if (doctor) { %>
+          <a class="dropdown-item" href="/labOrderUser"
+            ><i class="far fa-fw fa-hospital"></i> lab OrderUser</a
+          >
+          <% } %> <% if (doctor) { %>
           <a class="dropdown-item" href="/doctor/doctour_dashpored"
             ><i class="fa fa-fw fa-medkit"></i> Doctor Account</a
           >
@@ -215,7 +222,6 @@
             <i class="fa fa-fw fa-ambulance"></i> <%= myPharmacy ? "My Pharmacy"
             : "Add Your Pharmacy" %>
           </a>
-          <% if (myPharmacy) { %>
 
           <a
             class="dropdown-item"
@@ -243,7 +249,11 @@
 
             <% } %>
           </a>
-          <% } %> <% } %>
+          <% } %> <% } %> <% if (user.isAdmin) { %>
+          <a class="dropdown-item" href="/dashpord">
+            <i class="fa fa-fw fa-ambulance"></i>Admin Page
+          </a>
+          <% } %> <% if (myPharmacy) { %>
 
           <form action="/pationt/signOut" method="post">
             <button class="dropdown-item">

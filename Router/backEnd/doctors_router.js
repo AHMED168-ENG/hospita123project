@@ -5,17 +5,26 @@ const {
   activeDoctor,
 } = require("../../controllers/backEnd/doctors_controller");
 const { uploade_img_multi_fild } = require("../../Helper/helper");
+const { isAuthonticate } = require("../../middel_ware/backEnd/isAuthonticate");
+const { userAuthonticat } = require("../../middel_ware/frontEnd/userAuthonticate");
 const {
   DoctorSeting,
 } = require("../../validation/frontEnd/doctor/auth_validation");
 
 const Router = require("express").Router();
 
-Router.get("/showAll_doctors", showAll_doctors);
-Router.get("/editDoctor/:id", Edit_doctor);
-Router.get("/activeDoctor/:id", activeDoctor);
+Router.get(
+  "/showAll_doctors",
+  userAuthonticat,
+  isAuthonticate,
+  showAll_doctors
+);
+Router.get("/editDoctor/:id", userAuthonticat, isAuthonticate, Edit_doctor);
+Router.get("/activeDoctor/:id", userAuthonticat, isAuthonticate, activeDoctor);
 Router.post(
   "/editDoctor/:id",
+  userAuthonticat,
+  isAuthonticate,
   uploade_img_multi_fild(
     [
       {

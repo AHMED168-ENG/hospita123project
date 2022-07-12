@@ -3,15 +3,10 @@
   <!-- Logo -->
   <div class="header-left">
     <a href="http://localhost:4000/home" class="logo">
-      <img src="/backEnd/assets/img/logo.png" alt="Logo" />
+      <img style="width: 100%" src="/backEnd/assets/img/logo.jpeg" alt="Logo" />
     </a>
     <a href="http://localhost:4000/home" class="logo logo-small">
-      <img
-        src="/backEnd/assets/img/logo-small.png"
-        alt="Logo"
-        width="30"
-        height="30"
-      />
+      <img src="/backEnd/assets/img/logo-small.jpeg" alt="Logo" />
     </a>
   </div>
   <!-- /Logo -->
@@ -37,9 +32,6 @@
   <ul class="nav user-menu">
     <!-- Notifications -->
     <li class="nav-item dropdown noti-dropdown">
-      <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-        <i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
-      </a>
       <div class="dropdown-menu notifications">
         <div class="topnav-dropdown-header">
           <span class="notification-title">Notifications</span>
@@ -150,30 +142,31 @@
     <li class="nav-item dropdown has-arrow">
       <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
         <span class="user-img"
-          ><img
-            class="rounded-circle"
-            src="/backEnd/assets/img/profiles/avatar-01.jpg"
-            width="31"
-            alt="Ryan Taylor"
-        /></span>
+          ><img class="rounded-circle" src="/backEnd/assets/img/patients/<%=
+          admin.image.split("--")[0] %>" width="31" alt="Ryan Taylor" /></span
+        >
       </a>
       <div class="dropdown-menu">
         <div class="user-header">
           <div class="avatar avatar-sm">
-            <img
-              src="/backEnd/assets/img/profiles/avatar-01.jpg"
-              alt="User Image"
-              class="avatar-img rounded-circle"
-            />
+            <img src="/backEnd/assets/img/patients/<%=
+            admin.image.split("--")[0] %>" alt="User Image" class="avatar-img
+            rounded-circle" />
           </div>
           <div class="user-text">
             <h6>Ryan Taylor</h6>
             <p class="text-muted mb-0">Administrator</p>
           </div>
         </div>
-        <a class="dropdown-item" href="profile.html">My Profile</a>
-        <a class="dropdown-item" href="settings.html">Settings</a>
-        <a class="dropdown-item" href="login.html">Logout</a>
+        <a class="dropdown-item" href="/userProfile/<%= admin.id%>"
+          >My Profile</a
+        >
+        <a class="dropdown-item" href="/pationt/pationt_setings">Settings</a>
+        <form action="/admin/signOutAdmin" method="post">
+          <button class="dropdown-item">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out
+          </button>
+        </form>
       </div>
     </li>
     <!-- /User Menu -->

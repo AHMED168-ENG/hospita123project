@@ -44,6 +44,7 @@ const {
   bookingDoctor_post,
   getSearchDoctorData,
   addProductInterActionAjax,
+  bookingLab_post,
   allDoctorComments,
   allPharmacy,
   allLabs,
@@ -51,6 +52,7 @@ const {
   mackOrderControllerPost,
   showPharmacy,
   showLab,
+  labOrder,
   getMyAccountPhoto,
   editPharmasyController,
   editPharmasyControllerPost,
@@ -60,6 +62,12 @@ const {
   orderData,
   userNotification2,
   acceptOrder,
+  addLabsController,
+  addLabsControllerPost,
+  editLabsController,
+  editLabsControllerPost,
+  labOrderUser,
+  acceptLabOrder,
 } = require("../../controllers/frontEnd/pageControllerUser");
 const { uploade_img_multi_fild, uploade_img } = require("../../Helper/helper");
 const {
@@ -85,6 +93,43 @@ Router.get("/allDoctorComments/:id", allDoctorComments);
 Router.get("/allPharmacy", allPharmacy);
 Router.get("/PharmacyData/:id", showPharmacy);
 Router.get("/showLab/:id", showLab);
+Router.get("/allLabs", allLabs);
+Router.get("/AddLab", userAuthonticat, addLabsController);
+Router.get("/labOrder/:id", userAuthonticat, labOrder);
+Router.post("/labOrder/:id", userAuthonticat, bookingLab_post);
+Router.post(
+  "/AddLab",
+  userAuthonticat,
+  uploade_img_multi_fild(
+    [
+      {
+        name: "image",
+      },
+      {
+        name: "confirmImage",
+      },
+    ],
+    "public/backEnd/assets/img/LabsImage"
+  ),
+  addLabsControllerPost
+);
+Router.get("/EditLab", userAuthonticat, editLabsController);
+Router.post(
+  "/EditLab",
+  userAuthonticat,
+  uploade_img_multi_fild(
+    [
+      {
+        name: "image",
+      },
+      {
+        name: "confirmImage",
+      },
+    ],
+    "public/backEnd/assets/img/LabsImage"
+  ),
+  editLabsControllerPost
+);
 Router.get("/allLabs", allLabs);
 Router.get("/mackOrder/:id", mackOrderController);
 Router.post(
@@ -222,6 +267,8 @@ Router.get("/myPharmasyOrders", userAuthonticat, DoctorAuthonticat, allOrders);
 Router.get("/showOrderData/:id", userAuthonticat, DoctorAuthonticat, orderData);
 Router.post("/userNotification2", userAuthonticat, userNotification2);
 Router.post("/acceptOrder", userAuthonticat, DoctorAuthonticat, acceptOrder);
+Router.get("/labOrderUser", userAuthonticat, labOrderUser);
+Router.post("/acceptLabOrder", userAuthonticat, acceptLabOrder);
 
 module.exports = {
   userPages: Router,

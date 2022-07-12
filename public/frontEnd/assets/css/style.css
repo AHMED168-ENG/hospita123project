@@ -2489,13 +2489,30 @@ html.menu-opened body {
 -----------------------*/
 
 .section-search {
-  background: #f9f9f9 url(../img/search-bg.jpeg) no-repeat bottom center;
+  background: #f9f9f9 url(../img/hero-insurance.jpg) no-repeat bottom center;
   min-height: 450px;
   background-size: 100% auto;
   position: relative;
   background-blend-mode: Darken;
-  background-position:center top;
+  background-position: center top;
   padding: 80px 0;
+  background-size: cover;
+  position: relative;
+}
+.section-search::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.section-search .container-fluid {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
 }
 .section-search-1 {
   background: #f9f9f9 url(../img/slider-bg.jpg) no-repeat bottom center;
@@ -2539,6 +2556,7 @@ html.menu-opened body {
   margin-bottom: 30px;
 }
 .banner-wrapper .banner-header h1 {
+  color: white;
   margin-bottom: 10px;
   font-size: 40px;
   font-weight: 600;

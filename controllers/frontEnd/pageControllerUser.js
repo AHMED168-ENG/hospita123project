@@ -120,6 +120,12 @@ const homePage = async (req, res, next) => {
           },
         });
       }
+
+      var myLab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
     }
 
     res.render("frontEnd/userPages/homePage", {
@@ -130,6 +136,7 @@ const homePage = async (req, res, next) => {
       DoctorWithHigtRate,
       myPharmacy,
       myPharmacyOrder,
+      myLab,
       getRateOp: getSumOfArray,
       validationError: req.flash("validationError")[0],
       notification: req.flash("notification")[0],
@@ -195,7 +202,13 @@ const All_Doctors = async (req, res, next) => {
 
     var myPharmacyOrder = [];
     var myPharmacy;
+    var lab = {};
     if (req.cookies.User) {
+      var lab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
       var userWithDocotr = await db.users.findOne({
         include: [
           { model: db.doctors, as: "userDoctorData", attributes: ["id"] },
@@ -235,6 +248,7 @@ const All_Doctors = async (req, res, next) => {
       specialist,
       Qyery: req.query,
       userWithDocotr,
+      myLab: lab,
       getRateOp: getSumOfArray,
       pages: paginate.getArrayPages(req)(
         req.query.limit,
@@ -316,7 +330,13 @@ const doctorProfile = async (req, res, next) => {
 
     var myPharmacy;
     var myPharmacyOrder = [];
+    var lab = {};
     if (req.cookies.User) {
+      var lab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
       myPharmacy = await db.medicin.findOne({
         where: {
           userId: req.cookies.User.id,
@@ -343,6 +363,7 @@ const doctorProfile = async (req, res, next) => {
       myPharmacyOrder,
       myPharmacy,
       url: req.url,
+      myLab: lab,
       FormData: formateDate,
       getRateOp: getSumOfArray,
     });
@@ -395,7 +416,6 @@ const bookingDoctor = async (req, res, next) => {
         id: req.params.id,
       },
     });
-    console.log(doctor);
     var schdual = await db.schedual.findOne({
       where: {
         doctorId: req.params.id,
@@ -420,6 +440,11 @@ const bookingDoctor = async (req, res, next) => {
     var myPharmacy;
     var myPharmacyOrder = [];
     if (req.cookies.User) {
+      var lab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
       myPharmacy = await db.medicin.findOne({
         where: {
           userId: req.cookies.User.id,
@@ -451,6 +476,7 @@ const bookingDoctor = async (req, res, next) => {
       dayes,
       doctorAppointment,
       url: req.url,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -2525,19 +2551,27 @@ const addProductInterActionAjax = async (req, res, next) => {
 /*-------------------- add comment ajax ----------------------------------*/
 const allDoctorComments = async (req, res, error) => {
   try {
-    var myPharmacy = await db.medicin.findOne({
-      where: {
-        userId: req.cookies.User.id,
-      },
-    });
-    var myPharmacyOrder = [];
-    if (myPharmacy) {
-      myPharmacyOrder = await db.pharmacyOrders.findAll({
+    var lab = {};
+    if (req.cookies.User) {
+      lab = await db.labs.findOne({
         where: {
-          to: myPharmacy.id,
-          isSeen: false,
+          userId: req.cookies.User.id,
         },
       });
+      var myPharmacy = await db.medicin.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
+      var myPharmacyOrder = [];
+      if (myPharmacy) {
+        myPharmacyOrder = await db.pharmacyOrders.findAll({
+          where: {
+            to: myPharmacy.id,
+            isSeen: false,
+          },
+        });
+      }
     }
     var doctorComments = await db.doctorComments.findAndCountAll({
       limit: req.query.limit,
@@ -2576,6 +2610,7 @@ const allDoctorComments = async (req, res, error) => {
         Math.ceil(doctorComments.count / req.query.limit),
         req.query.page
       ),
+      myLab: lab,
       page: req.query.page,
     });
   } catch (error) {
@@ -2588,7 +2623,7 @@ const allPharmacy = async (req, res, error) => {
     var allPharmacy = await db.medicin.findAll({
       where: {
         userId: {
-          [Op.ne]: req.cookies.User.id,
+          [Op.ne]: req.cookies.User ? req.cookies.User.id : 0,
         },
         province: {
           [Op.like]: `${req.query.province ? req.query.province : ""}%`,
@@ -2596,12 +2631,21 @@ const allPharmacy = async (req, res, error) => {
         village: {
           [Op.like]: `${req.query.village ? req.query.village : ""}%`,
         },
+        drug: {
+          [Op.like]: `${req.query.drug ? req.query.drug : ""}%`,
+        },
       },
     });
 
     var myPharmacy;
     var myPharmacyOrder = [];
+    var lab = {};
     if (req.cookies.User) {
+      lab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
       myPharmacy = await db.medicin.findOne({
         where: {
           userId: req.cookies.User.id,
@@ -2635,6 +2679,7 @@ const allPharmacy = async (req, res, error) => {
       allPharmacy,
       doctor: req.cookies.Doctor,
       url: req.url,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -2650,6 +2695,11 @@ const showPharmacy = async (req, res, error) => {
     var myPharmacy;
     var myPharmacyOrder = [];
     if (req.cookies.User) {
+      var lab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
       myPharmacy = await db.medicin.findOne({
         where: {
           userId: req.cookies.User.id,
@@ -2677,6 +2727,7 @@ const showPharmacy = async (req, res, error) => {
       Pharmacy,
       doctor: req.cookies.Doctor,
       url: req.url,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -2687,6 +2738,11 @@ const showLab = async (req, res, error) => {
     var myPharmacy;
     var myPharmacyOrder = [];
     if (req.cookies.User) {
+      var lab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
       myPharmacy = await db.medicin.findOne({
         where: {
           userId: req.cookies.User.id,
@@ -2720,6 +2776,7 @@ const showLab = async (req, res, error) => {
       Lab,
       doctor: req.cookies.Doctor,
       url: req.url,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -2729,6 +2786,9 @@ const allLabs = async (req, res, error) => {
   try {
     var allLabs = await db.labs.findAll({
       where: {
+        userId: {
+          [Op.ne]: req.cookies.User ? req.cookies.User.id : 0,
+        },
         province: {
           [Op.like]: `${req.query.province ? req.query.province : ""}%`,
         },
@@ -2740,6 +2800,11 @@ const allLabs = async (req, res, error) => {
     var myPharmacy;
     var myPharmacyOrder = [];
     if (req.cookies.User) {
+      var lab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
       myPharmacy = await db.medicin.findOne({
         where: {
           userId: req.cookies.User.id,
@@ -2754,7 +2819,7 @@ const allLabs = async (req, res, error) => {
         });
       }
     }
-    res.render("frontEnd/userPages/allLabs", {
+    res.render("frontEnd/userPages/labs/allLabs", {
       usernotification2NotSeen: await usernotification2NotSeen(req),
       title: "All Pharmacy",
       url: req.url,
@@ -2773,6 +2838,7 @@ const allLabs = async (req, res, error) => {
       Qyery: req.query,
       allLabs,
       doctor: req.cookies.Doctor,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -2784,6 +2850,11 @@ const mackOrderController = async (req, res, next) => {
     var myPharmacy;
     var myPharmacyOrder = [];
     if (req.cookies.User) {
+      var lab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
       myPharmacy = await db.medicin.findOne({
         where: {
           userId: req.cookies.User.id,
@@ -2809,6 +2880,7 @@ const mackOrderController = async (req, res, next) => {
       myPharmacy,
       myPharmacyOrder,
       url: req.url,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res);
@@ -2844,6 +2916,11 @@ const mackOrderControllerPost = async (req, res, next) => {
 /*--------------- start editPharmasyController page ---------------------*/
 const editPharmasyController = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -2871,6 +2948,7 @@ const editPharmasyController = async (req, res, next) => {
       validationError: req.flash("validationError")[0],
       url: req.url,
       doctor: req.cookies.Doctor,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -2959,6 +3037,11 @@ const addPharmacyController = async (req, res, next) => {
 /*--------------- start allOrders page ---------------------*/
 const allOrders = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -3006,6 +3089,7 @@ const allOrders = async (req, res, next) => {
       allOrders,
       formateDate: formateDate,
       url: req.url,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -3053,6 +3137,11 @@ const acceptOrder = async (req, res, next) => {
 /*--------------- start order Data page ---------------------*/
 const orderData = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -3088,6 +3177,7 @@ const orderData = async (req, res, next) => {
       allOrders,
       formateDate: formateDate,
       url: req.url,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res);
@@ -3147,9 +3237,422 @@ async function usernotification2NotSeen(req) {
 }
 /*--------------- end usernotification2NotSeen ---------------------*/
 
+/*--------------- start addLabsController page ---------------------*/
+const addLabsController = async (req, res, next) => {
+  try {
+    var myPharmacyOrder = [];
+    if (req.cookies.User) {
+      var myLab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
+      if (myLab) {
+        res.redirect("EditLab");
+        return;
+      }
+      var myPharmacy = await db.medicin.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
+      if (myPharmacy) {
+        myPharmacyOrder = await db.pharmacyOrders.findAll({
+          where: {
+            to: myPharmacy.id,
+            isSeen: false,
+          },
+        });
+      }
+    }
+    res.render("frontEnd/userPages/Labs/addLabs", {
+      title: "add Labs",
+      notification: req.flash("notification")[0],
+      user: req.cookies.User,
+      validationError: req.flash("validationError")[0],
+      URL: req.url,
+      usernotification2NotSeen: await usernotification2NotSeen(req),
+      doctor: req.cookies.Doctor,
+      myLab,
+      myPharmacy,
+      myPharmacyOrder,
+    });
+  } catch (error) {
+    tryError(res);
+  }
+};
+/*--------------- end addLabsController page ---------------------*/
+
+/*--------------- start addLabsControllerPost page ---------------------*/
+const addLabsControllerPost = async (req, res, next) => {
+  try {
+    var errors = validationResult(req).errors;
+    if (errors.length > 0) {
+      removeImgFiled([req.files.image, req.files.confirmImage]);
+      handel_validation_errors(req, res, errors, "/AddLabs");
+      return;
+    }
+    var files = Rename_uploade_img_multiFild([
+      req.files.image,
+      req.files.confirmImage,
+    ]);
+    if (files.image) req.body.image = files.image;
+    if (files.confirmImage) req.body.confirmImage = files.confirmImage;
+    req.body.userId = req.cookies.User.id;
+    req.body.phone = req.body.phone ? req.body.phone : null;
+    req.body.isActive = false;
+    await db.labs.create(req.body);
+    returnWithMessage(
+      req,
+      res,
+      "/EditLab",
+      "Added Successful Wait for the admin to activate it",
+      "success"
+    );
+  } catch (error) {
+    tryError(res, error);
+  }
+};
+/*--------------- end addLabsControllerPost page ---------------------*/
+/*--------------- start editPharmasyController page ---------------------*/
+const editLabsController = async (req, res, next) => {
+  try {
+    var myPharmacyOrder = [];
+    var myLab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
+    if (!myLab) {
+      res.redirect("AddLab");
+    }
+
+    var myPharmacy = await db.medicin.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
+    if (myPharmacy) {
+      myPharmacyOrder = await db.pharmacyOrders.findAll({
+        where: {
+          to: myPharmacy.id,
+          isSeen: false,
+        },
+      });
+    }
+    console.log(myLab);
+    res.render("frontEnd/userPages/Labs/editLabs", {
+      title: "edit Labs",
+      notification: req.flash("notification")[0],
+      user: req.cookies.User,
+      validationError: req.flash("validationError")[0],
+      URL: req.url,
+      usernotification2NotSeen: await usernotification2NotSeen(req),
+      doctor: req.cookies.Doctor,
+      myLab,
+      myPharmacy,
+      myPharmacyOrder,
+    });
+  } catch (error) {
+    tryError(res, error);
+  }
+};
+/*--------------- end editPharmasyController page ---------------------*/
+
+/*--------------- start editPharmasyController page ---------------------*/
+const editLabsControllerPost = async (req, res, next) => {
+  try {
+    var errors = validationResult(req).errors;
+    if (errors.length > 0) {
+      removeImgFiled([req.files.image, req.files.confirmImage]);
+      handel_validation_errors(req, res, errors, "/AddLabs");
+      return;
+    }
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
+    var files = Rename_uploade_img_multiFild([
+      req.files.image,
+      req.files.confirmImage,
+    ]);
+
+    if (files.image) {
+      if (lab.image) removeImg(req, "LabsImage/", lab.image);
+    }
+    if (files.confirmImage) {
+      if (lab.image) removeImg(req, "LabsImage/", lab.confirmImage);
+    }
+
+    req.body.image = files.image ? files.image : lab.image;
+    req.body.confirmImage = files.confirmImage
+      ? files.confirmImage
+      : lab.confirmImage;
+    if (files.confirmImage) req.body.confirmImage = files.confirmImage;
+    await db.labs.update(req.body, {
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
+
+    returnWithMessage(req, res, "/EditLab", "edit successful", "success");
+  } catch (error) {
+    tryError(res, error);
+  }
+};
+/*--------------- end editPharmasyController page ---------------------*/
+
+/*--------------- start editPharmasyController page ---------------------*/
+const labOrder = async (req, res, next) => {
+  try {
+    var userWithDocotr = await db.users.findOne({
+      include: [
+        { model: db.doctors, as: "userDoctorData", attributes: ["id"] },
+      ],
+      where: {
+        id: req.cookies.User.id,
+      },
+      attributes: ["id"],
+    });
+
+    if (
+      userWithDocotr.userDoctorData &&
+      userWithDocotr.userDoctorData.id == req.params.id
+    ) {
+      returnWithMessage(
+        req,
+        res,
+        "/All_Doctors",
+        "you cant booking in your account",
+        "danger"
+      );
+    }
+
+    var year = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var dayes = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wenesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    var allAppointMents = await db.labOrder.findAll({
+      where: {
+        userId: req.params.id,
+      },
+    });
+
+    var myPharmacy;
+    var myPharmacyOrder = [];
+    if (req.cookies.User) {
+      var lab = await db.labs.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
+      myPharmacy = await db.medicin.findOne({
+        where: {
+          userId: req.cookies.User.id,
+        },
+      });
+      if (myPharmacy) {
+        myPharmacyOrder = await db.pharmacyOrders.findAll({
+          where: {
+            to: myPharmacy.id,
+            isSeen: false,
+          },
+        });
+      }
+    }
+    res.render("frontEnd/userPages/labs/bookingLab", {
+      title: "booking Lab",
+      usernotification2NotSeen: await usernotification2NotSeen(req),
+      validationError: req.flash("validationError")[0],
+      notification: req.flash("notification")[0],
+      user: req.cookies.User,
+      doctor: req.cookies.Doctor,
+      myPharmacy,
+      myPharmacyOrder,
+      getRateOp: getSumOfArray,
+      FormData: formateDate,
+      year,
+      dayes,
+      doctorAppointment: allAppointMents,
+      url: req.url,
+      myLab: lab,
+    });
+  } catch (error) {
+    tryError(res, error);
+  }
+};
+/*--------------- end editPharmasyController page ---------------------*/
+/*------------------------------ start doctorProfile Page ------------------------*/
+const bookingLab_post = async (req, res, next) => {
+  try {
+    var labOrder = await db.labOrder.findOne({
+      where: {
+        pationtId: req.body.pationtId,
+        userId: req.params.id,
+      },
+    });
+
+    var anyPationtAppointment = await db.labOrder.findOne({
+      where: {
+        date: req.body.date,
+        userId: req.params.id,
+        time: req.body.time,
+        pationtId: {
+          [Op.ne]: req.body.pationtId,
+        },
+      },
+    });
+    if (anyPationtAppointment) {
+      returnWithMessage(
+        req,
+        res,
+        `/labOrder/${req.params.id}`,
+        "you cant chose this date becouse this date is booked",
+        "danger"
+      );
+      return;
+    } else {
+      if (labOrder) {
+        if (labOrder.date == req.body.date) {
+          await db.labOrder.destroy({
+            where: {
+              pationtId: req.body.pationtId,
+              userId: req.params.id,
+            },
+          });
+          returnWithMessage(
+            req,
+            res,
+            `/labOrder/${req.params.id}`,
+            "Delete Successful Date",
+            "success"
+          );
+        } else {
+          await db.labOrder.update(req.body, {
+            where: {
+              pationtId: req.body.pationtId,
+            },
+          });
+          returnWithMessage(
+            req,
+            res,
+            `/labOrder/${req.params.id}`,
+            "update Date Successful",
+            "success"
+          );
+        }
+        return;
+      } else {
+        req.body.userId = req.params.id;
+        req.body.accept = false;
+        db.labOrder.create(req.body);
+        returnWithMessage(
+          req,
+          res,
+          `/labOrder/${req.params.id}`,
+          "Booking Successful Date",
+          "success"
+        );
+      }
+    }
+  } catch (error) {
+    tryError(res, error);
+  }
+};
+/*------------------------------ end doctorProfile Page ------------------------*/
+
+/*--------------- start allOrders page ---------------------*/
+const labOrderUser = async (req, res, next) => {
+  try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
+    var myPharmacy = await db.medicin.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
+    var myPharmacyOrder = [];
+    var myLabAppointmest = await db.labOrder.findAll({
+      where: {
+        userId: req.cookies.User.id,
+      },
+      include: [{ model: db.users, as: "labOrderUser" }],
+    });
+
+    res.render("frontEnd/userPages/labs/allOrders", {
+      usernotification2NotSeen: await usernotification2NotSeen(req),
+      title: "All Pharmacy Orders",
+      myPharmacy,
+      myPharmacyOrder,
+      notification: req.flash("notification")[0],
+      user: req.cookies.User,
+      doctor: req.cookies.Doctor,
+      validationError: req.flash("validationError")[0],
+      URL: req.url,
+      allOrders,
+      formateDate: formateDate,
+      url: req.url,
+      myLab: lab,
+      myLabAppointmest,
+    });
+  } catch (error) {
+    tryError(res, error);
+  }
+};
+/*--------------- end allOrders page ---------------------*/
+
+/*--------------- start accept order ---------------------*/
+const acceptLabOrder = async (req, res, next) => {
+  try {
+    await db.userNotification2.create({
+      from: req.cookies.User.id,
+      userId: req.body.pationtId,
+      typeOfNotification: "F",
+      text: `the request for the Lab (${
+        formateDate(req.body.createdAt, "date") +
+        "/" +
+        formateDate(req.body.createdAt)
+      }) has been accept`,
+    });
+    await db.labOrder.update(
+      {
+        accept: true,
+      },
+      {
+        where: {
+          userId: req.body.userId,
+          pationtId: req.body.pationtId,
+        },
+      }
+    );
+    returnWithMessage(
+      req,
+      res,
+      "/labOrderUser",
+      "Accept Order Successful",
+      "success"
+    );
+  } catch (error) {
+    tryError(res, error);
+  }
+};
+/*--------------- end accept order ---------------------*/
+
 module.exports = {
   acceptOrder,
   addPharmacyControllerPost,
+  addLabsControllerPost,
+  addLabsController,
   orderData,
   userNotification2,
   addPharmacyController,
@@ -3202,4 +3705,10 @@ module.exports = {
   addProductInterActionAjax,
   showPharmacy,
   allOrders,
+  editLabsController,
+  editLabsControllerPost,
+  labOrder,
+  bookingLab_post,
+  labOrderUser,
+  acceptLabOrder,
 };

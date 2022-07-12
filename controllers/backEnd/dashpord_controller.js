@@ -6,6 +6,8 @@ const dashpord_page_controller = async (req, res, next) => {
     res.render("backEnd/dashpord", {
       title: "dashpord",
       URL: req.url,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res);

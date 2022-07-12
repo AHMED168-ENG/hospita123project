@@ -34,6 +34,8 @@ const showAll_pationt = async (req, res, next) => {
       user: req.cookies.User,
       pationt,
       formateDate: formateDate,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res);
@@ -57,6 +59,8 @@ const Edit_pationt = async (req, res, next) => {
       validationError: req.flash("validationError")[0],
       user,
       formateDate: formateDate,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res, error);

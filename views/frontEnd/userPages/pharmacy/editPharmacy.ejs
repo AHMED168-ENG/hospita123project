@@ -2,6 +2,21 @@
 
 <%- include("../../include/alert")  %> 
 <%- include("../../include/naveBare")  %> 
+    <link
+      rel="stylesheet"
+      href="/frontEnd/assets/plugins/select2/css/select2.min.css"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="/frontEnd/assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="/frontEnd/assets/plugins/dropzone/dropzone.min.css"
+    />
 </head>
     </body>
         <!-- Main Wrapper -->
@@ -118,6 +133,13 @@
 													<% } %>  
 												</div>
 											</div>
+
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>enter drages <span class="text-danger">*</span></label>
+													<input  type="text" data-role="tagsinput"  value="<%= myPharmacy.drug %>" class="input-tags form-control" placeholder="Enter Services" name="drug" id="services">
+												</div>
+											</div>
 											
 										</div>
 									</div>
@@ -139,6 +161,15 @@
 
         <%- include("../../include/footer.ejs")  %> 
         <%- include("../../include/footer_script.ejs")  %> 
+		<script src="/backEnd/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="/backEnd/assets/plugins/datatables/datatables.min.js"></script>
 
+		<script src="/frontEnd/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+		<script src="/frontEnd/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+		<script src="/frontEnd/assets/plugins/select2/js/select2.min.js"></script>
+
+		<script src="/frontEnd/assets/plugins/dropzone/dropzone.min.js"></script>
+		<script src="/frontEnd/assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>	
     </head>
 </body>

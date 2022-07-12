@@ -28,6 +28,7 @@ const { pharmacy } = require("./Router/backEnd/pharmacy.router");
 const { Labs } = require("./Router/backEnd/labs.router");
 
 const { Sequelize } = require("sequelize");
+const { authAdmin } = require("./Router/backEnd/auth.router");
 const opts =
   process.env.NODE_ENV === "development"
     ? {}
@@ -185,6 +186,7 @@ app.use(paginate.middleware(10, 20));
 /* ------------- set seting -------------------*/
 
 /*--------------------------- backEnd routers  ----------------------------------*/
+app.use("/admin/", authAdmin);
 app.use("/", dashpord);
 app.use("/specialities", specialist);
 app.use("/doctors", doctors_router);

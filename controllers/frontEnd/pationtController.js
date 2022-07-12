@@ -18,6 +18,11 @@ const pationt_dashpored = async (req, res, next) => {
         userId: req.cookies.User.id,
       },
     });
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacyOrder = [];
     if (myPharmacy) {
       myPharmacyOrder = await db.pharmacyOrders.findAll({
@@ -37,6 +42,7 @@ const pationt_dashpored = async (req, res, next) => {
       doctor: req.cookies.Doctor,
       myPharmacyOrder,
       myPharmacy,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -46,6 +52,11 @@ const pationt_dashpored = async (req, res, next) => {
 /*------------------------------ start home Page ------------------------*/
 const pationtfavoritDoctors = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -70,6 +81,7 @@ const pationtfavoritDoctors = async (req, res, next) => {
       doctor: req.cookies.Doctor,
       myPharmacy,
       myPharmacyOrder,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res);
@@ -93,6 +105,11 @@ const pationt_setings = async (req, res, next) => {
         },
       });
     }
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     res.render("frontEnd/userPages/pationt/userProfile_seting", {
       usernotification2NotSeen: await usernotification2NotSeen(req),
       myPharmacy,
@@ -104,6 +121,7 @@ const pationt_setings = async (req, res, next) => {
       URL: req.url,
       doctor: req.cookies.Doctor,
       formateDate: formateDate,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, errors);
@@ -165,6 +183,11 @@ const resetPassword = async (req, res, next) => {
         },
       });
     }
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     res.render("frontEnd/userPages/pationt/resetPassword", {
       myPharmacy,
       myPharmacyOrder,
@@ -175,6 +198,7 @@ const resetPassword = async (req, res, next) => {
       doctor: req.cookies.Doctor,
       validationError: req.flash("validationError")[0],
       URL: req.url,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);

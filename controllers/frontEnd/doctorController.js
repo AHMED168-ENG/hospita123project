@@ -16,6 +16,11 @@ const { Op } = require("sequelize");
 /*------------------------------ start home Page ------------------------*/
 const doctor_dashpored = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy;
     var myPharmacyOrder = [];
     if (req.cookies.User) {
@@ -44,6 +49,7 @@ const doctor_dashpored = async (req, res, next) => {
       doctor: req.cookies.Doctor,
       myPharmacy,
       myPharmacyOrder,
+      myLab: lab,
     });
   } catch (error) {
     console.log(error);
@@ -54,6 +60,11 @@ const doctor_dashpored = async (req, res, next) => {
 /*------------------------------ start appointMent Page ------------------------*/
 const appointMent = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -90,6 +101,7 @@ const appointMent = async (req, res, next) => {
       URL: req.url,
       doctor: req.cookies.Doctor,
       doctorAppointment,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -99,6 +111,11 @@ const appointMent = async (req, res, next) => {
 /*------------------------------ start appointMent Page ------------------------*/
 const appointMentToday = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -124,7 +141,6 @@ const appointMentToday = async (req, res, next) => {
         date: new Date().getDate() + " / " + (new Date().getMonth() + 1),
       },
     });
-    console.log(new Date().getDate() + " / " + (new Date().getMonth() + 1));
     res.render("frontEnd/userPages/doctor/AllApointmentToday", {
       usernotification2NotSeen: await usernotification2NotSeen(req),
       myPharmacy,
@@ -136,6 +152,7 @@ const appointMentToday = async (req, res, next) => {
       URL: req.url,
       doctor: req.cookies.Doctor,
       appointMentToday,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -232,6 +249,11 @@ const cancelAppointMent = async (req, res, next) => {
 /*------------------------------ start myPationts Page ------------------------*/
 const myPationts = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -273,6 +295,7 @@ const myPationts = async (req, res, next) => {
       URL: req.url,
       doctor: req.cookies.Doctor,
       doctorClientData,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -283,6 +306,11 @@ const myPationts = async (req, res, next) => {
 /*------------------------------ start schedual Page ------------------------*/
 const schedual = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -313,6 +341,7 @@ const schedual = async (req, res, next) => {
       URL: req.url,
       doctor: req.cookies.Doctor,
       schedual,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res);
@@ -423,6 +452,11 @@ const invoices = async (req, res, next) => {
 /*------------------------------ start invoices Page ------------------------*/
 const reviews = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -456,6 +490,7 @@ const reviews = async (req, res, next) => {
       URL: req.url,
       doctor: req.cookies.Doctor,
       DateFormat: formateDate,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -482,6 +517,11 @@ const chat_doctor = async (req, res, next) => {
 /*------------------------------ start doctor_setings Page ------------------------*/
 const doctorSeting = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -518,6 +558,7 @@ const doctorSeting = async (req, res, next) => {
       URL: req.url,
       specialist,
       FormData: formateDate,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);
@@ -527,6 +568,11 @@ const doctorSeting = async (req, res, next) => {
 /*------------------------------ start doctor_setings Page ------------------------*/
 const socialmedia = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy;
     var myPharmacyOrder = [];
     if (req.cookies.User) {
@@ -560,6 +606,7 @@ const socialmedia = async (req, res, next) => {
       socialMedia,
       myPharmacy,
       myPharmacyOrder,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res);
@@ -668,6 +715,11 @@ const editDoctor_post = async (req, res, next) => {
 /*------------------------------ start resetPassword Page ------------------------*/
 const resetPassword = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -691,6 +743,7 @@ const resetPassword = async (req, res, next) => {
       validationError: req.flash("validationError")[0],
       URL: req.url,
       doctor: req.cookies.Doctor,
+      myLab: lab,
     });
   } catch (error) {
     tryError(res, error);

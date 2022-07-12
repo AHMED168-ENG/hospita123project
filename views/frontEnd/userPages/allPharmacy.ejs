@@ -65,9 +65,11 @@
 								<div class="card-body">
 								<div class="filter-widget">
 									<div class="cal-icon">
-										<input type="text" name="province" value="<%= Qyery.province %>" class="form-control datetimepicker province" placeholder="Select province">
+										<input type="text" name="province" value="<%= Qyery.province %>" class="filter form-control datetimepicker province" placeholder="Select province">
 										<small style="margin-bottom:10px">search with first name</small>
-										<input type="text" name="village" value="<%= Qyery.village %>" class="form-control datetimepicker village" placeholder="Select village">
+										<input type="text" name="village" value="<%= Qyery.village %>" class="filter form-control datetimepicker village" placeholder="Select village">
+										<small style="margin-bottom:10px">search with drug</small>
+										<input type="text" name="drug" value="<%= Qyery.drug %>" class="filter form-control datetimepicker drug" placeholder="Select drug">
 									</div>			
 								</div>
 							
@@ -140,7 +142,6 @@
         <%- include("../include/footer.ejs")  %> 
         <%- include("../include/footer_script.ejs")  %> 
 		<!-- Custom JS -->
-		<script src="/frontEnd/assets/js/script.js"></script>
 		<script>
 			document.querySelector(".btn-search").onclick = function () {
 				var Qyery = "?"
@@ -150,21 +151,10 @@
 						Qyery += ele.getAttribute("name") + "=" + ele.getAttribute("data_type") + "&"
 					}
 				})
-				window.location.href = window.location.pathname + Qyery + "&" + "province="+document.querySelector(".province").value+"&village=" + document.querySelector(".village").value
+				window.location.href = window.location.pathname + Qyery + "&" + "province="+document.querySelector(".province").value+"&village=" + document.querySelector(".village").value+"&drug=" + document.querySelector(".drug").value
 			}
 
-			function filter(e) {
-				var query = "?"
-				var filter = document.querySelectorAll(".filter")
-				filter.forEach(ele => {
-					if(ele.checked) {
-						query += ele.getAttribute("name") + "=" + ele.getAttribute("data_type") + "&"
-					}
-				})
-
-				window.location.href = window.location.pathname + query + `filter=${e.target.value}`
-
-			}
+		
 		</script>
     </body>
 </head>

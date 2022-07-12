@@ -14,6 +14,12 @@ module.exports = {
       image: {
         type: Sequelize.STRING,
       },
+      confirmImage: {
+        type: Sequelize.STRING,
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+      },
       province: {
         type: Sequelize.STRING,
       },

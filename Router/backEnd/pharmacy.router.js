@@ -11,6 +11,10 @@ const {
 } = require("../../controllers/backEnd/pharmacy.controller");
 
 const { uploade_img } = require("../../Helper/helper");
+const { isAuthonticate } = require("../../middel_ware/backEnd/isAuthonticate");
+const {
+  userAuthonticat,
+} = require("../../middel_ware/frontEnd/userAuthonticate");
 const {
   AddSpecialist_validation,
 } = require("../../validation/backEnd/specialist_validation");
@@ -22,25 +26,46 @@ const {
 } = require("../../validation/frontEnd/pharmacy.validate");
 
 const Router = require("express").Router();
-Router.get("/AllPharmacy", pharmacyController);
-Router.get("/AddPharmacy", addPharmacyController);
+Router.get("/AllPharmacy", userAuthonticat, isAuthonticate, pharmacyController);
+Router.get(
+  "/AddPharmacy",
+  userAuthonticat,
+  isAuthonticate,
+  addPharmacyController
+);
 Router.post(
   "/AddPharmacy",
+  userAuthonticat,
+  isAuthonticate,
+
   uploade_img("public/backEnd/assets/img/pharmacyImage", "image"),
   pharmacy_validate(),
   addPharmacyControllerPost
 );
-Router.get("/editPharmasy/:id", editPharmasyController);
+Router.get("/editPharmasy/:id", isAuthonticate, editPharmasyController);
 Router.post(
   "/editPharmasy/:id",
+  userAuthonticat,
+  isAuthonticate,
+
   uploade_img("public/backEnd/assets/img/pharmacyImage", "image"),
   pharmacy_validate(),
   editPharmasyControllerPost
 );
-Router.post("/deletePharmacy", deletePharmacy);
-Router.get("/activePharmacy/:id", activePharmacy);
-Router.get("/allOrders", allOrdersController);
-Router.get("/showOrderData/:id", showOrderDataController);
+Router.post("/deletePharmacy", userAuthonticat, isAuthonticate, deletePharmacy);
+Router.get(
+  "/activePharmacy/:id",
+  userAuthonticat,
+  isAuthonticate,
+  activePharmacy
+);
+Router.get("/allOrders", userAuthonticat, isAuthonticate, allOrdersController);
+Router.get(
+  "/showOrderData/:id",
+  userAuthonticat,
+  isAuthonticate,
+  showOrderDataController
+);
 
 module.exports = {
   pharmacy: Router,

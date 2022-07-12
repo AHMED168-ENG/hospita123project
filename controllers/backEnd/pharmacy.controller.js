@@ -21,6 +21,8 @@ const pharmacyController = async (req, res, next) => {
       URL: req.url,
       allPharmacy,
       formateDate: formateDate,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res);
@@ -33,9 +35,10 @@ const addPharmacyController = async (req, res, next) => {
     res.render("backEnd/pharmacy/addPharmacy", {
       title: "add Pharmacy",
       notification: req.flash("notification")[0],
-      user: req.cookies.User,
       validationError: req.flash("validationError")[0],
       URL: req.url,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res);
@@ -58,6 +61,8 @@ const editPharmasyController = async (req, res, next) => {
       validationError: req.flash("validationError")[0],
       URL: req.url,
       pharmacy,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res);
@@ -69,7 +74,6 @@ const editPharmasyController = async (req, res, next) => {
 const editPharmasyControllerPost = async (req, res, next) => {
   try {
     var errors = validationResult(req).errors;
-    console.group(errors);
     if (errors.length > 0) {
       removeImg(req, "pharmacyImage/");
       handel_validation_errors(
@@ -87,8 +91,10 @@ const editPharmasyControllerPost = async (req, res, next) => {
       if (req.body.oldImage)
         removeImg(req, "pharmacyImage/", req.body.oldImage);
     }
-    req.body.isActive = req.body.isActive ? true : false;
-    await db.medicin.update(req.body, {
+    var data = req.body;
+    data.drug = data.drug ? data.drug : "";
+    data.isActive = data.isActive ? true : false;
+    await db.medicin.update(data, {
       where: {
         id: req.params.id,
       },
@@ -119,8 +125,9 @@ const addPharmacyControllerPost = async (req, res, next) => {
 
     var files = Rename_uploade_img(req);
     var data = req.body;
+    data.drug = data.drug ? data.drug : "";
     if (files) data.image = files;
-    await db.medicin.create(req.body);
+    await db.medicin.create(data);
     returnWithMessage(
       req,
       res,
@@ -207,6 +214,9 @@ const showOrderDataController = async (req, res, next) => {
       user: req.cookies.User,
       doctor: req.cookies.Doctors,
       order,
+      admin: req.cookies.Admin,
+      notification: req.flash("notification")[0],
+
       formateDate: formateDate,
     });
   } catch (error) {
