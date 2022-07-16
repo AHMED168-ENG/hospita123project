@@ -5,7 +5,7 @@ const {
 } = require("../../controllers/backEnd/auth/signInUser.controller");
 const {
   dashpord_page_controller,
-} = require("../../controllers/backend/dashpord_controller");
+} = require("../../controllers/backEnd/dashpord_controller");
 
 const {
   isNotAuthonticate,
