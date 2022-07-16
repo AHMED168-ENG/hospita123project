@@ -2,7 +2,7 @@ const {
   signInAdmin,
   signInPage,
   signOutAdmin,
-} = require("../../controllers/backend/auth/signInUser.controller");
+} = require("../../controllers/backEnd/auth/signInUser.controller");
 const {
   dashpord_page_controller,
 } = require("../../controllers/backend/dashpord_controller");
