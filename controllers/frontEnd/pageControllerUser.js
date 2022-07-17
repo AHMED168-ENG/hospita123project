@@ -40,6 +40,12 @@ const homePage = async (req, res, next) => {
           model: db.doctors,
           as: "userDoctorData",
           where: { isActive: true },
+          include: [
+            {
+              model: db.specialist,
+              as: "DoctorSpecialist",
+            },
+          ],
         },
       ],
       where: {
@@ -62,6 +68,7 @@ const homePage = async (req, res, next) => {
         "isFree",
         "userRate",
         "rating",
+        "Addres",
       ],
       include: [
         {
@@ -72,6 +79,10 @@ const homePage = async (req, res, next) => {
           },
           required: true,
           attributes: ["active", "id"],
+        },
+        {
+          model: db.specialist,
+          as: "DoctorSpecialist",
         },
       ],
     });

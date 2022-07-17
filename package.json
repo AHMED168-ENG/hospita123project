@@ -10,7 +10,7 @@
     "migrate": "sequelize db:migrate",
     "migrateUndo": "sequelize db:migrate:undo:all",
     "seeder": "npx sequelize-cli db:seed:all",
-    "build": "npm run migrateUndo && npm run migrate && npm run seeder"
+    "build": "npm run migrateUndo "
   },
   "author": "",
   "license": "ISC",

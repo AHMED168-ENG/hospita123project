@@ -16,6 +16,22 @@ const { Op } = require("sequelize");
 /*------------------------------ start home Page ------------------------*/
 const doctor_dashpored = async (req, res, next) => {
   try {
+    var appointMentToday = await db.doctorAppointment.findAll({
+      where: {
+        doctorId: req.cookies.Doctor.id,
+        date: new Date().getDate() + " / " + (new Date().getMonth() + 1),
+      },
+    });
+    var doctorAppointment = await db.doctorAppointment.findAll({
+      where: {
+        doctorId: req.cookies.Doctor.id,
+      },
+    });
+    var doctorClient = await db.doctorClient.findOne({
+      where: {
+        doctorId: req.cookies.Doctor.id,
+      },
+    });
     var lab = await db.labs.findOne({
       where: {
         userId: req.cookies.User.id,
@@ -50,6 +66,9 @@ const doctor_dashpored = async (req, res, next) => {
       myPharmacy,
       myPharmacyOrder,
       myLab: lab,
+      doctorClient,
+      doctorAppointment,
+      appointMentToday,
     });
   } catch (error) {
     console.log(error);

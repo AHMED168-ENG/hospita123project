@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   userPosts.init(
     {
       post: DataTypes.STRING,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       image: DataTypes.STRING,
       video: DataTypes.STRING,
       commentNumber: DataTypes.INTEGER,

@@ -229,7 +229,7 @@
             href="/myPharmasyOrders"
           >
             <i class="fa fa-fw fa-ambulance"></i> My Pharmacy Orders <% if (
-            myPharmacyOrder.length) { %>
+            myPharmacyOrder && myPharmacyOrder.length) { %>
             <span
               style="
                 position: absolute;
@@ -253,16 +253,14 @@
           <a class="dropdown-item" href="/dashpord">
             <i class="fa fa-fw fa-ambulance"></i>Admin Page
           </a>
-          <% } %> <% if (myPharmacy) { %>
-
           <form action="/pationt/signOut" method="post">
             <button class="dropdown-item">
               <i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out
             </button>
           </form>
+          <% } %>
         </div>
       </div>
-      <% } %>
     </ul>
   </nav>
 </header>

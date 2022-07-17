@@ -195,7 +195,7 @@
                                                 <a href="/userProfile/<%= element.id %>"><%= element.userDoctorData.fName + " " + element.userDoctorData.lName %></a> 
                                                 <i class="fas fa-check-circle verified"></i>
                                             </h3>
-                                            <p class="speciality"></p>
+                                            <p class="speciality"><%= element.userDoctorData.DoctorSpecialist.name %></p>
                                             <div class="rating">
                                                     <i class="fas fa-star <%= Math.ceil(((getRateOp(element.userDoctorData.userRate) * 100) / (element.userDoctorData.userRate.length * 5)) /20) >= 1 ? "active" :  "" %>"></i>
 													<i class="fas fa-star <%= Math.ceil(((getRateOp(element.userDoctorData.userRate) * 100) / (element.userDoctorData.userRate.length * 5)) /20) >= 2 ? "active" :  "" %>"></i>
@@ -212,7 +212,7 @@
                                                     <i class="far fa-clock"></i> <%= formateDate(element.userDoctorData.createdAt) %>
                                                 </li>
                                                 <li>
-                                                    <i class="far fa-money-bill-alt"></i> <%= element.userDoctorData.isFree ? element.userDoctorData.price : "free" %>
+                                                    <i class="far fa-money-bill-alt"></i> <%= !element.userDoctorData.isFree ? element.userDoctorData.price + "$" : "free" %>
                                                 </li>
                                             </ul>
                                             <div class="row row-sm">
@@ -275,7 +275,7 @@
                                         <i class="far fa-clock"></i> <%= formateDate(element.createdAt) %>
                                     </li>
                                     <li>
-                                        <i class="far fa-money-bill-alt"></i> <%= element.isFree ? element.price : "free" %>
+                                        <i class="far fa-money-bill-alt"></i> <%= !element.isFree ? element.price + "$" : "free" %>
                                     </li>
                                 </ul>
                                 <div class="row row-sm">
