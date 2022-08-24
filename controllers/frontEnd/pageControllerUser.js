@@ -2277,6 +2277,8 @@ const changeCoverImage = async (req, res, next) => {
     console.log(req.body);
     console.log("*".repeat(22));
     if (userData) {
+      console.log("ahmed reda alsahed ahmed");
+      console.log(userData.coverImage);
       if (userData.coverImage)
         removeImg(req, "cover_image/", userData.coverImage);
       await db.moreDataForUser.update(
