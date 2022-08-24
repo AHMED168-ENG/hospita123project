@@ -106,9 +106,7 @@ const Rename_uploade_img = (req) => {
       element.destination + "/" + randomNumber + element.originalname;
     fs.renameSync(element.path, newPath);
     image += randomNumber + element.originalname + "--";
-    console.log(image);
   });
-  console.log(image);
   return image;
 };
 /*--------------------------------------------------*/
