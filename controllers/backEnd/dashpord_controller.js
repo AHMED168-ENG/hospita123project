@@ -28,7 +28,7 @@ const dashpord_page_controller = async (req, res, next) => {
       labs: labs.count,
     });
   } catch (error) {
-    tryError(res);
+    tryError(res, error);
   }
 };
 /*--------------- end dashpord page ---------------------*/
