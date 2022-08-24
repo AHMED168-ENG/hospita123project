@@ -85,11 +85,11 @@ const edit_pationt_post = async (req, res, next) => {
     var userData = req.body;
     var image = Rename_uploade_img(req);
     if (image) {
-      //removeImg(req, "patients/", userData.OldpationtImage);
+      removeImg(req, "patients/", userData.OldpationtImage);
     } else {
       image = userData.OldpationtImage;
     }
-    userData.image = null;
+    userData.image = image;
     userData.Date_brith = userData.Date_brith ? userData.Date_brith : null;
     await db.users.update(userData, {
       where: {
@@ -141,9 +141,28 @@ const activeDoctor = async (req, res, next) => {
 };
 /*--------------- end active Doctor page ---------------------*/
 
+const deletePationt = async (req, res, next) => {
+  try {
+    var user = await db.users.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    await db.users.destroy({
+      where: {
+        id: req.body.id,
+      },
+    });
+    removeImg(req, "users/", user.image);
+  } catch (error) {
+    tryError(res, error);
+  }
+};
+
 module.exports = {
   showAll_pationt,
   Edit_pationt,
   edit_pationt_post,
   activeDoctor,
+  deletePationt,
 };

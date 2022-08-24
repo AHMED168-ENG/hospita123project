@@ -4,9 +4,14 @@ const {
   editDoctor_post,
   activeDoctor,
 } = require("../../controllers/backEnd/doctors_controller");
+const {
+  deletePationt,
+} = require("../../controllers/backEnd/pationt_controller");
 const { uploade_img_multi_fild } = require("../../Helper/helper");
 const { isAuthonticate } = require("../../middel_ware/backEnd/isAuthonticate");
-const { userAuthonticat } = require("../../middel_ware/frontEnd/userAuthonticate");
+const {
+  userAuthonticat,
+} = require("../../middel_ware/frontEnd/userAuthonticate");
 const {
   DoctorSeting,
 } = require("../../validation/frontEnd/doctor/auth_validation");
@@ -21,6 +26,12 @@ Router.get(
 );
 Router.get("/editDoctor/:id", userAuthonticat, isAuthonticate, Edit_doctor);
 Router.get("/activeDoctor/:id", userAuthonticat, isAuthonticate, activeDoctor);
+Router.get(
+  "/deletePationt/:id",
+  userAuthonticat,
+  isAuthonticate,
+  deletePationt
+);
 Router.post(
   "/editDoctor/:id",
   userAuthonticat,
