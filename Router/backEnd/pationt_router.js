@@ -5,6 +5,7 @@ const {
   showAll_pationt,
   Edit_pationt,
   edit_pationt_post,
+  deletePationt,
 } = require("../../controllers/backEnd/pationt_controller");
 const { uploade_img_multi_fild, uploade_img } = require("../../Helper/helper");
 const { isAuthonticate } = require("../../middel_ware/backEnd/isAuthonticate");
@@ -35,6 +36,12 @@ Router.post(
   uploade_img("public/backEnd/assets/img/patients", "pationtImage"),
   signUp_validation(),
   edit_pationt_post
+);
+Router.get(
+  "/deletePationt/:id",
+  userAuthonticat,
+  isAuthonticate,
+  deletePationt
 );
 module.exports = {
   pationt_router: Router,

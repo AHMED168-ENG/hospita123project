@@ -26,12 +26,7 @@ Router.get(
 );
 Router.get("/editDoctor/:id", userAuthonticat, isAuthonticate, Edit_doctor);
 Router.get("/activeDoctor/:id", userAuthonticat, isAuthonticate, activeDoctor);
-Router.get(
-  "/deletePationt/:id",
-  userAuthonticat,
-  isAuthonticate,
-  deletePationt
-);
+
 Router.post(
   "/editDoctor/:id",
   userAuthonticat,
