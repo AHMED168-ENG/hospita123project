@@ -1,4 +1,5 @@
 const { tryError } = require("../../Helper/helper");
+const db = require("../../models");
 
 /*--------------- start dashpord page ---------------------*/
 const dashpord_page_controller = async (req, res, next) => {
