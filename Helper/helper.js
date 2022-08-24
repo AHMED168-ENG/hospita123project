@@ -137,7 +137,7 @@ const removeImg = (req, folder, imgname = "") => {
       }
     }
   } catch (error) {
-    tryError(res, error);
+    console.log(error);
   }
 };
 /*------------------------------------ end uploade image -------------------------------*/
