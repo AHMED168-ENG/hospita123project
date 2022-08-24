@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { tryError } = require("../../Helper/helper");
 const db = require("../../models");
 
