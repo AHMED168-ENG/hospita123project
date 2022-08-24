@@ -85,11 +85,11 @@ const edit_pationt_post = async (req, res, next) => {
     var userData = req.body;
     var image = Rename_uploade_img(req);
     if (image) {
-      removeImg(req, "patients/", userData.OldpationtImage);
+      //removeImg(req, "patients/", userData.OldpationtImage);
     } else {
       image = userData.OldpationtImage;
     }
-    userData.image = image;
+    userData.image = null;
     userData.Date_brith = userData.Date_brith ? userData.Date_brith : null;
     await db.users.update(userData, {
       where: {
