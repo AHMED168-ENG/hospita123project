@@ -86,7 +86,7 @@ const signUp_validation = () => {
       .custom(async (value, { req }) => {
         if (!req.files.length) return true;
         req.files.forEach((element) => {
-          if (element.size > 2000000) {
+          if (element.size > 20000000) {
             throw new Error("");
           }
         });

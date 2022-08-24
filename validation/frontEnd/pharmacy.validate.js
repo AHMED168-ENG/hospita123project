@@ -21,14 +21,14 @@ const pharmacy_validate = () => {
       .custom(async (value, { req }) => {
         if (
           req.files.length == 0 &&
-          req.url != `/editLabs/${req.params.id}` &&
-          req.url != `/editPharmasy/${req.params.id}`
+          req.url != `/editLabs` &&
+          req.url != `/editPharmasy`
         ) {
           throw new Error("");
         }
         return true;
       })
-      .withMessage(`you should enter labe image`)
+      .withMessage(`you should enter image`)
       .custom(async (value, { req }) => {
         if (req.files.length == 0) return true;
         req.files.forEach((element) => {
@@ -42,7 +42,7 @@ const pharmacy_validate = () => {
       .custom(async (value, { req }) => {
         if (req.files.length == 0) return true;
         req.files.forEach((element) => {
-          var arrayExtention = ["jpg", "png", "jpeg", "gif", "svg"];
+          var arrayExtention = ["jpg", "png", "jpeg", "gif", "svg", "jfif"];
           var originalname = element.originalname.split(".");
           var imgExtension =
             originalname[originalname.length - 1].toLowerCase();
@@ -51,7 +51,9 @@ const pharmacy_validate = () => {
           }
         });
       })
-      .withMessage(`يجب ان يكون امتداد الصور jpg , jpeg , png , gif , svg`),
+      .withMessage(
+        `يجب ان يكون امتداد الصور jpg , jpeg , png , gif , svg , jfif`
+      ),
   ];
 };
 module.exports = {

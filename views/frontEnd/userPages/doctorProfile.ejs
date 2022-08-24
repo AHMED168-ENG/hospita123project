@@ -63,7 +63,7 @@ li.comment_test .comment i.active {
                                         <img class="img-fluid" alt="User Image" src="/backEnd/assets/img/doctors/<%= doctor.doctorImage ? doctor.doctorImage.split("--")[0] : "avatar.png" %>">
 									</div>
 									<div class="doc-info-cont">
-										<h4 class="doc-name"><%= doctor.fName + " " + doctor.lName %></h4>
+										<h4 class="doc-name"><a href="/userProfile/<%= doctor.userId %>"><%= doctor.fName + " " + doctor.lName %></a></h4>
 										<p class="doc-speciality"><%= doctor.service ? doctor.service : "not Edit Yet" %></p>
 										<p class="doc-department"><img src="/backEnd/assets/img/specialities/<%= doctor.DoctorSpecialist ? doctor.DoctorSpecialist.image.split("--")[0] : "01.jpg" %>" class="img-fluid" alt="Speciality"><%= doctor.DoctorSpecialist ? doctor.DoctorSpecialist.name : "not Edit Before" %></p>
 										<div class="rating">

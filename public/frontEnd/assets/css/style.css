@@ -6901,6 +6901,8 @@ html.menu-opened body {
   border-radius: 100%;
   width: 28px;
   margin-right: 5px;
+  height: 25px;
+  weight: 25px;
 }
 .custom-edit-service textarea.form-control {
   min-height: 200px;

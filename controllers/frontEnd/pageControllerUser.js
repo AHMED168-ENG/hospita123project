@@ -889,6 +889,18 @@ const getMyAccount = async (req, res, next) => {
       where: {
         id: req.params.id,
       },
+      include: [
+        {
+          model: db.doctors,
+          as: "userDoctorData",
+          include: [
+            {
+              model: db.specialist,
+              as: "DoctorSpecialist",
+            },
+          ],
+        },
+      ],
     });
     if (!user) {
       tryError(res, "هذا المستخدم غير موجود");
@@ -2637,13 +2649,13 @@ const allPharmacy = async (req, res, error) => {
           [Op.ne]: req.cookies.User ? req.cookies.User.id : 0,
         },
         province: {
-          [Op.like]: `${req.query.province ? req.query.province : ""}%`,
+          [Op.like]: `%${req.query.province ? req.query.province : ""}%`,
         },
         village: {
-          [Op.like]: `${req.query.village ? req.query.village : ""}%`,
+          [Op.like]: `%${req.query.village ? req.query.village : ""}%`,
         },
         drug: {
-          [Op.like]: `${req.query.drug ? req.query.drug : ""}%`,
+          [Op.like]: `%${req.query.drug ? req.query.drug : ""}%`,
         },
       },
     });
@@ -3021,11 +3033,17 @@ const addPharmacyControllerPost = async (req, res, next) => {
 /*--------------- start addPharmacyController page ---------------------*/
 const addPharmacyController = async (req, res, next) => {
   try {
+    var lab = await db.labs.findOne({
+      where: {
+        userId: req.cookies.User.id,
+      },
+    });
     var myPharmacy = await db.medicin.findOne({
       where: {
         userId: req.cookies.User.id,
       },
     });
+
     if (myPharmacy) {
       res.redirect("/editPharmasy");
     }
@@ -3039,9 +3057,11 @@ const addPharmacyController = async (req, res, next) => {
       validationError: req.flash("validationError")[0],
       url: req.url,
       myPharmacy,
+      myLab: lab,
+      myPharmacyOrder: [],
     });
   } catch (error) {
-    tryError(res);
+    tryError(res, error);
   }
 };
 /*--------------- end addPharmacyController page ---------------------*/

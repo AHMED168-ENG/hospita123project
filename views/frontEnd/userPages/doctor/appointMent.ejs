@@ -41,7 +41,7 @@
 												<img src="/backEnd/assets/img/patients/<%= element.ApointmentPationt.image.split("--")[0] %>" alt="User Image">
 											</a>
 											<div class="profile-det-info">
-												<h3><a href="patient-profile.html"><%= element.ApointmentPationt.fName + " " + element.ApointmentPationt.lName %></a></h3>
+												<h3><a href="/userProfile/<%= element.ApointmentPationt.id %>"><%= element.ApointmentPationt.fName + " " + element.ApointmentPationt.lName %></a></h3>
 												<div class="patient-details">
 													<h5><i class="far fa-clock"></i> <%= element.createdAt%></h5>
 													<h5><i class="fas fa-map-marker-alt"></i> <%= element.ApointmentPationt.addres %></h5>

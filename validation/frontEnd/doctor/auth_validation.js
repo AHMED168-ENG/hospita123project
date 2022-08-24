@@ -92,11 +92,13 @@ const signUp_validation = () => {
           }
         });
       })
-      .withMessage(`The image extension must be jpg, jpeg, png, gif, svg`)
+      .withMessage(
+        `The image extension must be jpg, jpeg, png, gif, svg , jfif`
+      )
       .custom(async (value, { req }) => {
         if (!req.files.Graduation) return true;
         req.files.Graduation.forEach((element) => {
-          if (element.size > 2000000) {
+          if (element.size > 20000000) {
             throw new Error("");
           }
         });
@@ -112,7 +114,7 @@ const signUp_validation = () => {
       .custom(async (value, { req }) => {
         if (!req.files.birthImage) return true;
         req.files.birthImage.forEach((element) => {
-          var arrayExtention = ["jpg", "png", "jpeg", "gif", "svg"];
+          var arrayExtention = ["jpg", "png", "jpeg", "gif", "svg", "jfif"];
           var originalname = element.originalname.split(".");
           var imgExtension =
             originalname[originalname.length - 1].toLowerCase();
@@ -121,11 +123,13 @@ const signUp_validation = () => {
           }
         });
       })
-      .withMessage(`The image extension must be jpg, jpeg, png, gif, svg`)
+      .withMessage(
+        `The image extension must be jpg, jpeg, png, gif, svg , jfif`
+      )
       .custom(async (value, { req }) => {
         if (!req.files.birthImage) return true;
         req.files.birthImage.forEach((element) => {
-          if (element.size > 2000000) {
+          if (element.size > 20000000) {
             throw new Error("");
           }
         });
