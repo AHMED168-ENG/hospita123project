@@ -125,15 +125,19 @@ const removeImgFiled = (fields) => {
 /*--------------------------------------------------*/
 
 const removeImg = (req, folder, imgname = "") => {
-  if (!imgname) {
-    req.files.forEach((element) => {
-      fs.unlinkSync(element.path);
-    });
-  } else {
-    var imgname = imgname.split("--");
-    for (var i = 0; i < imgname.length - 1; i++) {
-      fs.unlinkSync("public/backEnd/assets/img/" + folder + imgname[i]);
+  try {
+    if (!imgname) {
+      req.files.forEach((element) => {
+        fs.unlinkSync(element.path);
+      });
+    } else {
+      var imgname = imgname.split("--");
+      for (var i = 0; i < imgname.length - 1; i++) {
+        fs.unlinkSync("public/backEnd/assets/img/" + folder + imgname[i]);
+      }
     }
+  } catch (error) {
+    tryError(res, error);
   }
 };
 /*------------------------------------ end uploade image -------------------------------*/
