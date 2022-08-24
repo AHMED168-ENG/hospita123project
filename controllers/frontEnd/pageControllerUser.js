@@ -824,7 +824,7 @@ const membersPosts = async (req, res, next) => {
       });
     }
 
-    res.render("frontEnd/Userpages/membersPosts", {
+    res.render("frontEnd/userPages/membersPosts", {
       title: req.cookies.User.fName,
       notification: req.flash("notification")[0],
       UserCookie: req.cookies.User,
@@ -865,7 +865,7 @@ const getMyAccountPhoto = async (req, res, next) => {
       offset: (parseInt(req.query.page) - 1) * req.query.limit,
     });
 
-    res.render("frontEnd/Userpages/myAccountPhoto", {
+    res.render("frontEnd/userPages/myAccountPhoto", {
       title: "All UserAcount Photo",
       UserCookie: req.cookies.User,
       allPhoto: allPhoto.rows,
@@ -1125,7 +1125,7 @@ const getMyAccount = async (req, res, next) => {
         userId: req.params.id,
       },
     });
-    res.render("frontEnd/Userpages/userProfile", {
+    res.render("frontEnd/userPages/userProfile", {
       title: req.cookies.User.fName,
       notification: req.flash("notification")[0],
       user,
@@ -1181,7 +1181,7 @@ const editPersonalInformationGet = async (req, res, next) => {
     });
     var frindRequestCount = frindRequest1 ? frindRequest1.from.length : 0;
 
-    res.render("frontEnd/Userpages/editPersonalInformation", {
+    res.render("frontEnd/userPages/editPersonalInformation", {
       title: req.cookies.User.fName,
       notification: req.flash("notification")[0],
       validationError: req.flash("validationError")[0],
