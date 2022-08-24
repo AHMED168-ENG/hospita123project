@@ -150,10 +150,10 @@ const deletePationt = async (req, res, next) => {
     });
     await db.users.destroy({
       where: {
-        id: req.body.id,
+        id: req.params.id,
       },
     });
-    removeImg(req, "users/", user.image);
+    removeImg(req, "patients/", user.image);
   } catch (error) {
     tryError(res, error);
   }
