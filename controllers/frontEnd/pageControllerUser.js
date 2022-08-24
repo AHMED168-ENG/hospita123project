@@ -2285,11 +2285,12 @@ const changeCoverImage = async (req, res, next) => {
           },
         }
       );
-      console.log(await db.moreDataForUser.findOne({
-      where: {
-        userId: +req.body.userId,
-      },
-    });)
+      var xx = await db.moreDataForUser.findOne({
+        where: {
+          userId: +req.body.userId,
+        },
+      });
+      console.log(xx);
     } else {
       await db.moreDataForUser.create({
         coverImage: images,
