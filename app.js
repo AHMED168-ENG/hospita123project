@@ -8,7 +8,7 @@ require("dotenv").config();
 const path = require("path");
 const db = require("./models");
 const paginate = require("express-paginate");
-const session = require("express-session");
+const session = require("cookie-session");
 const flash = require("connect-flash");
 const cookies = require("cookie-parser");
 const { dashpord } = require("./Router/backEnd/dashpord_router");
