@@ -2267,10 +2267,10 @@ const changeCoverImage = async (req, res, next) => {
 
     var userData = await db.moreDataForUser.findOne({
       where: {
-        userId: req.body.userId,
+        userId: +req.body.userId,
       },
     });
-    console.log(req.body.userId);
+    console.log(req.body.images);
     console.log("*".repeat(22));
     console.log(userData);
     console.log("*".repeat(22));
@@ -2287,7 +2287,7 @@ const changeCoverImage = async (req, res, next) => {
         },
         {
           where: {
-            userId: req.body.userId,
+            userId: 1,
           },
         }
       );
