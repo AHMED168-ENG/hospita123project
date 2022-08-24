@@ -2270,11 +2270,12 @@ const changeCoverImage = async (req, res, next) => {
         userId: req.body.userId,
       },
     });
-    consolde.log("*".repeat(22))
-    consolde.log(userData);
-    consolde.log("*".repeat(22))
-    consolde.log(req.body);
-    consolde.log("*".repeat(22))
+    console.log(req.body.userId);
+    console.log("*".repeat(22));
+    console.log(userData);
+    console.log("*".repeat(22));
+    console.log(req.body);
+    console.log("*".repeat(22));
     if (userData) {
       if (userData.coverImage)
         removeImg(req, "cover_image/", userData.coverImage);
@@ -2294,9 +2295,9 @@ const changeCoverImage = async (req, res, next) => {
         userId: req.body.userId,
       });
     }
-    consolde.log("*".repeat(22));
-    consolde.log(images);
-    consolde.log("*".repeat(22));
+    console.log("*".repeat(22));
+    console.log(images);
+    console.log("*".repeat(22));
     res.send("chang success");
   } catch (error) {
     tryError(res, error);
