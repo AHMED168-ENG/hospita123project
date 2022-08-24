@@ -2288,7 +2288,7 @@ const changeCoverImage = async (req, res, next) => {
         },
         {
           where: {
-            userId: 1,
+            userId: +req.body.userId,
           },
         }
       );
