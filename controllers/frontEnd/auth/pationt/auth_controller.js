@@ -42,6 +42,7 @@ const signUp_controller_post = async (req, res, next) => {
     user_data.numberOfPosts = 0;
     user_data.image = image ? image : "avatar.png--";
     user_data.active = false;
+    user_data.isAdmin = false;
     await db.users.create(user_data).then((result) => {
       sendEmail(
         user_data.email,
