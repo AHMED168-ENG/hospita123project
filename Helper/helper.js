@@ -98,6 +98,8 @@ const Rename_uploade_img_multiFild = (fields) => {
 
 const Rename_uploade_img = (req) => {
   var image = "";
+  console.log(req.files);
+  console.log("*".repeat(20));
   req.files.forEach((element) => {
     var randomNumber = Math.random(1000, 9000);
     var newPath =
