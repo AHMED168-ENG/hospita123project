@@ -2270,18 +2270,13 @@ const changeCoverImage = async (req, res, next) => {
         userId: +req.body.userId,
       },
     });
-    console.log(images);
-    console.log("*".repeat(22));
-    console.log(userData);
-    console.log("*".repeat(22));
-    console.log(req.body);
-    console.log("*".repeat(22));
+
     if (userData) {
       console.log("ahmed reda alsahed ahmed");
       console.log(userData.coverImage);
-      if (userData.coverImage) {
-        removeImg(req, "cover_image/", userData.coverImage);
-      }
+      // if (userData.coverImage) {
+      //   removeImg(req, "cover_image/", userData.coverImage);
+      // }
       await db.moreDataForUser.update(
         {
           coverImage: images,
@@ -2298,9 +2293,7 @@ const changeCoverImage = async (req, res, next) => {
         userId: req.body.userId,
       });
     }
-    console.log("*".repeat(22));
-    console.log(images);
-    console.log("*".repeat(22));
+
     res.send("chang success");
   } catch (error) {
     tryError(res, error);
