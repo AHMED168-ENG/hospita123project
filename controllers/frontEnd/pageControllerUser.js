@@ -3296,7 +3296,7 @@ const addLabsController = async (req, res, next) => {
         });
       }
     }
-    res.render("frontEnd/userPages/Labs/addLabs", {
+    res.render("frontEnd/userPages/labs/addLabs", {
       title: "add Labs",
       notification: req.flash("notification")[0],
       user: req.cookies.User,
