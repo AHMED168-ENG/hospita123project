@@ -541,9 +541,7 @@
 
   function changCoverPhoto(e) {
     var data = new FormData();
-    console.log(<%= UserCookie.id%>);
-    console.log(e.target.files[0]);
-    console.log(e.target.files);
+ 
     data.append("imageCover", e.target.files[0]);
     data.append("userId", "<%= UserCookie.id %>");
     axios({
