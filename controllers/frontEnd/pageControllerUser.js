@@ -1802,12 +1802,12 @@ const deletePost_ajax = async (req, res, next) => {
       },
     });
 
-    // if (post.image) {
-    //   removeImg(req, "posts_image/", post.image);
-    // }
-    // if (post.video) {
-    //   removeImg(req, "posts_image/", post.video);
-    // }
+    if (post.image) {
+      removeImg(req, "posts_image/", post.image);
+    }
+    if (post.video) {
+      removeImg(req, "posts_image/", post.video);
+    }
 
     await db.userPosts.destroy({
       where: {
@@ -2274,9 +2274,9 @@ const changeCoverImage = async (req, res, next) => {
     if (userData) {
       console.log("ahmed reda alsahed ahmed");
       console.log(userData.coverImage);
-      // if (userData.coverImage) {
-      //   removeImg(req, "cover_image/", userData.coverImage);
-      // }
+      if (userData.coverImage) {
+        removeImg(req, "cover_image/", userData.coverImage);
+      }
       await db.moreDataForUser.update(
         {
           coverImage: images,
