@@ -2272,6 +2272,9 @@ const changeCoverImage = async (req, res, next) => {
     });
 
     if (userData) {
+      if (userData.coverImage) {
+        removeImg(req, "cover_image/", userData.coverImage);
+      }
       await db.moreDataForUser.update(
         {
           coverImage: images,
@@ -2282,11 +2285,7 @@ const changeCoverImage = async (req, res, next) => {
           },
         }
       );
-      if (userData.coverImage) {
-        console.log("*".repeat(22))
-        console.log(userData.coverImage)
-        removeImg(req, "cover_image/", userData.coverImage);
-      }
+      
     } else {
       await db.moreDataForUser.create({
         coverImage: images,
