@@ -170,6 +170,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookies());
+app.set("trust proxy", 1);
+
 app.use(
   session({
     secret:
@@ -180,12 +182,11 @@ app.use(
     },*/
     resave: true,
     cookie: {
-      secure: true, // required for cookies to work on HTTPS
-      httpOnly: false,
-      sameSite: "none",
+      maxAge: 1000 * 60 * 60 * 48,
+      sameSite: process.env.ENV === "dev" ? "lax" : "none",
+      secure: process.env.ENV === "dev" ? false : true,
     },
 
-    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
     name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
   })
 );
