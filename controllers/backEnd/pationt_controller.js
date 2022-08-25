@@ -83,9 +83,11 @@ const edit_pationt_post = async (req, res, next) => {
       return;
     }
     var userData = req.body;
+    console.log(userData);
     var image = Rename_uploade_img(req);
     if (image) {
-      removeImg(req, "patients/", userData.OldpationtImage);
+      if (userData.OldpationtImage)
+        removeImg(req, "patients/", userData.OldpationtImage);
     } else {
       image = userData.OldpationtImage;
     }

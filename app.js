@@ -174,6 +174,7 @@ app.set("trust proxy", 1);
 
 app.use(
   session({
+    name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
     secret:
       "هذا الاوبشن خاص بالتشفير يطلب منك نص معين يستخدمه هو عند التشفير وكلما زاد هذا النص زاد الحمايه",
     saveUninitialized: false, // معناها انه عند عمل session لاتقوم بحفظها في الداتابيز الا عندما امرك بذالك
@@ -186,8 +187,6 @@ app.use(
       sameSite: process.env.ENV === "dev" ? "lax" : "none",
       secure: process.env.ENV === "dev" ? false : true,
     },
-
-    name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
   })
 );
 app.use(flash());
