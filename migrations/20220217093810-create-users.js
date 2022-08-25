@@ -46,16 +46,18 @@ module.exports = {
       },
       isDoctor: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       active: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       numberOfPosts: {
         type: Sequelize.INTEGER,
       },
       isAdmin: {
         type: Sequelize.BOOLEAN,
-        defaultValue: true,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
