@@ -83,7 +83,6 @@ const edit_pationt_post = async (req, res, next) => {
       return;
     }
     var userData = req.body;
-    console.log(userData);
     var image = Rename_uploade_img(req);
     if (image) {
       if (userData.OldpationtImage)
@@ -93,6 +92,7 @@ const edit_pationt_post = async (req, res, next) => {
     }
     userData.image = image;
     userData.Date_brith = userData.Date_brith ? userData.Date_brith : null;
+    userData.age = userData.age ? userData.age : null;
     await db.users.update(userData, {
       where: {
         id: req.params.id,
