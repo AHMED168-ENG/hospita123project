@@ -174,14 +174,17 @@ app.set("trust proxy", 1);
 
 app.use(
   session({
+    secret:
+      "هذا الاوبشن خاص بالتشفير يطلب منك نص معين يستخدمه هو عند التشفير وكلما زاد هذا النص زاد الحمايه",
+    saveUninitialized: false, // معناها انه عند عمل session لاتقوم بحفظها في الداتابيز الا عندما امرك بذالك
+    /*cookie : { // السشن ده هو في الاصل عباره عن cookie لذالك انا اقوم بتحديد بعض القيم لتحديد مده الانتهاء الديفولت هو عند اغلاق المتصفح
+        //maxAge : 1 * 60 * 60 * 100, 
+    },*/
+    resave: true,
     cookie: {
       secure: true,
       maxAge: 60000,
     },
-    store: new RedisStore(),
-    secret: "secret",
-    saveUninitialized: true,
-    resave: false,
   })
 );
 app.use(flash());
