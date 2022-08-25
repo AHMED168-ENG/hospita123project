@@ -172,6 +172,7 @@ const signOut = async (req, res, next) => {
   try {
     res.clearCookie("User");
     res.clearCookie("Doctor");
+    res.clearCookie("Admin");
     res.redirect("/pationt/signIn");
   } catch (error) {}
 };
