@@ -179,6 +179,11 @@ app.use(
         //maxAge : 1 * 60 * 60 * 100, 
     },*/
     resave: true,
+    cookie: {
+      secure: true, // required for cookies to work on HTTPS
+      httpOnly: false,
+      sameSite: "none",
+    },
   })
 );
 app.use(flash());
