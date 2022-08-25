@@ -249,17 +249,17 @@
 
             <% } %>
           </a>
-          <% } %> <% } %> <% if (user && user.isAdmin) { %>
+          <% } %> <% } %> <% if (user) { %> <%if(user.isAdmin) {%>
           <a class="dropdown-item" href="/dashpord">
             <i class="fa fa-fw fa-ambulance"></i>Admin Page
           </a>
-
-          <% } %>
+          <%}%>
           <form action="/pationt/signOut" method="post">
             <button class="dropdown-item">
               <i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out
             </button>
           </form>
+          <% } %>
         </div>
       </div>
     </ul>
