@@ -19,6 +19,7 @@ const {
   pationtAuth_router,
 } = require("./Router/frontEnd/auth/pationt/auth_router");
 const { userPages } = require("./Router/frontEnd/pageRouterUser");
+
 const { pationtRouter } = require("./Router/frontEnd/pationtRouter");
 const {
   doctorAuth_router,
