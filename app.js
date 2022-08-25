@@ -24,6 +24,7 @@ const {
 } = require("./Router/frontEnd/auth/docturs/auth_router");
 const { doctors_router } = require("./Router/backEnd/doctors_router");
 const { doctotrRouter } = require("./Router/frontEnd/doctorRouter");
+
 const { pationt_router } = require("./Router/backEnd/pationt_router");
 const { pharmacy } = require("./Router/backEnd/pharmacy.router");
 const { Labs } = require("./Router/backEnd/labs.router");
