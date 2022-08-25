@@ -6,7 +6,6 @@ const sockitIo = require("socket.io")(server);
 require("dotenv").config();
 
 const path = require("path");
-
 const db = require("./models");
 const paginate = require("express-paginate");
 const session = require("cookie-session");
@@ -14,7 +13,6 @@ const flash = require("connect-flash");
 const cookies = require("cookie-parser");
 const { dashpord } = require("./Router/backEnd/dashpord_router");
 const { specialist } = require("./Router/backEnd/specialities_router");
-
 const {
   pationtAuth_router,
 } = require("./Router/frontEnd/auth/pationt/auth_router");
