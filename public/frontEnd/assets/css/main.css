@@ -4709,6 +4709,8 @@ nav .collapse .userNotification .pairant > div > ul li a > span {
   height: 100%;
   border-radius: 50%;
   box-shadow: 5px 5px 14px rgba(0, 0, 0, 0.3);
+  padding: 3px;
+  background: white;
 }
 
 .aside2 {
