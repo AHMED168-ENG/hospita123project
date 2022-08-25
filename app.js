@@ -184,6 +184,9 @@ app.use(
       httpOnly: false,
       sameSite: "none",
     },
+
+    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
+    name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
   })
 );
 app.use(flash());
