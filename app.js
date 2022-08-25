@@ -8,7 +8,7 @@ require("dotenv").config();
 const path = require("path");
 const db = require("./models");
 const paginate = require("express-paginate");
-const session = require("express-session");
+const session = require("cookie-session");
 const flash = require("connect-flash");
 const cookies = require("cookie-parser");
 const { dashpord } = require("./Router/backEnd/dashpord_router");
@@ -174,19 +174,14 @@ app.set("trust proxy", 1);
 
 app.use(
   session({
-    name: "MyCoolWebAppCookieName", // This needs to be unique per-host.
-    secret:
-      "هذا الاوبشن خاص بالتشفير يطلب منك نص معين يستخدمه هو عند التشفير وكلما زاد هذا النص زاد الحمايه",
-    saveUninitialized: false, // معناها انه عند عمل session لاتقوم بحفظها في الداتابيز الا عندما امرك بذالك
-    /*cookie : { // السشن ده هو في الاصل عباره عن cookie لذالك انا اقوم بتحديد بعض القيم لتحديد مده الانتهاء الديفولت هو عند اغلاق المتصفح
-        //maxAge : 1 * 60 * 60 * 100, 
-    },*/
-    resave: true,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 48,
-      sameSite: process.env.ENV === "dev" ? "lax" : "none",
-      secure: process.env.ENV === "dev" ? false : true,
+      secure: true,
+      maxAge: 60000,
     },
+    store: new RedisStore(),
+    secret: "secret",
+    saveUninitialized: true,
+    resave: false,
   })
 );
 app.use(flash());
