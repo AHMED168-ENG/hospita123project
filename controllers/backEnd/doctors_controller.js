@@ -175,9 +175,39 @@ const activeDoctor = async (req, res, next) => {
 };
 /*--------------- end active Doctor page ---------------------*/
 
+/*--------------- start delete Doctor page ---------------------*/
+const DeleteDoctor = async (req, res, next) => {
+  try {
+    var doctor = await db.doctors.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["doctorImage"],
+    });
+    await db.doctors.delete({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    await removeImg(req, doctor.doctorImage);
+    returnWithMessage(
+      req,
+      res,
+      "/doctors/showAll_doctors",
+      "delete successful",
+      "success"
+    );
+  } catch (error) {
+    tryError(res);
+  }
+};
+/*--------------- end delete Doctor page ---------------------*/
+
 module.exports = {
   showAll_doctors,
   Edit_doctor,
   editDoctor_post,
   activeDoctor,
+  DeleteDoctor,
 };

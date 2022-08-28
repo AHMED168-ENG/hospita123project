@@ -3,6 +3,7 @@ const {
   Edit_doctor,
   editDoctor_post,
   activeDoctor,
+  DeleteDoctor,
 } = require("../../controllers/backEnd/doctors_controller");
 const {
   deletePationt,
@@ -26,6 +27,7 @@ Router.get(
 );
 Router.get("/editDoctor/:id", userAuthonticat, isAuthonticate, Edit_doctor);
 Router.get("/activeDoctor/:id", userAuthonticat, isAuthonticate, activeDoctor);
+Router.get("/DeleteDoctor/:id", userAuthonticat, isAuthonticate, DeleteDoctor);
 
 Router.post(
   "/editDoctor/:id",
