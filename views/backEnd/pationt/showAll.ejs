@@ -43,7 +43,9 @@
 												 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="/userProfile/<%= element.id %>" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= element.image ? element.image.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image"></a>
+															<a href="/userProfile/<%= element.id %>" class="avatar avatar-sm mr-2">
+																<img class="avatar-img rounded-circle" src="<%= element.image ? element.image.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image">
+															</a>
 															<a href="/userProfile/<%= element.id %>"><%= element.fName + " " + element.lName %></a>
 														</h2>
 													</td>
