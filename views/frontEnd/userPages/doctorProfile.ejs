@@ -60,7 +60,7 @@ li.comment_test .comment i.active {
 							<div class="doctor-widget">
 								<div class="doc-info-left">
 									<div class="doctor-img">
-                                        <img class="img-fluid" alt="User Image" src="/backEnd/assets/img/doctors/<%= doctor.doctorImage ? doctor.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>">
+                                        <img class="img-fluid" alt="User Image" src="<%= doctor.doctorImage ? doctor.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>">
 									</div>
 									<div class="doc-info-cont">
 										<h4 class="doc-name"><a href="/userProfile/<%= doctor.userId %>"><%= doctor.fName + " " + doctor.lName %></a></h4>
