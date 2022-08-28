@@ -1210,20 +1210,14 @@
         if (data.image) {
           var div = document.createElement("div");
           var image = document.createElement("img");
-          image.setAttribute(
-            "src",
-            `/backEnd/assets/img/posts_image/${data.image.split("--")[0]}`
-          );
+          image.setAttribute("src", `${data.image.split("--")[0]}`);
           div.appendChild(image);
           addPostReal.querySelector(".modal-body .assets").appendChild(div);
         }
         if (data.video) {
           var div = document.createElement("div");
           var video = document.createElement("video");
-          video.setAttribute(
-            "src",
-            `/backEnd/assets/img/posts_image/${data.video.split("--")[0]}`
-          );
+          video.setAttribute("src", `${data.video.split("--")[0]}`);
           video.setAttribute("controls", "");
           div.appendChild(video);
           addPostReal.querySelector(".modal-body .assets").appendChild(div);
@@ -1321,18 +1315,12 @@
           post.querySelector(".postBody").appendChild(h5);
           if (res.image) {
             var image = document.createElement("img");
-            image.setAttribute(
-              "src",
-              "/backEnd/assets/img/posts_image/" + res.image.split("--")[0]
-            );
+            image.setAttribute("src", res.image.split("--")[0]);
             post.querySelector(".postBody").appendChild(image);
           } else if (res.video) {
             controls;
             var video = document.createElement("video");
-            video.setAttribute(
-              "src",
-              "/backEnd/assets/img/posts_image/" + res.video.split("--")[0]
-            );
+            video.setAttribute("src", res.video.split("--")[0]);
             video.setAttribute("controls", "");
             post.querySelector(".postBody").appendChild(video);
           }
