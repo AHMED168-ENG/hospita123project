@@ -199,7 +199,7 @@ const DeleteDoctor = async (req, res, next) => {
       "success"
     );
   } catch (error) {
-    tryError(res);
+    tryError(res, error);
   }
 };
 /*--------------- end delete Doctor page ---------------------*/
