@@ -3048,8 +3048,7 @@
         })
           .then((data) => {
             sockit.emit("addNotificationUser", { userId: "<%=  user.id %>" });
-            e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
-              "fa fa-times";
+            e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList = "fa fa-times"
             data = data.data;
             var comment = document.createElement("div");
             comment.classList.add("comment");

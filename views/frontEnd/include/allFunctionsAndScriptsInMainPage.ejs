@@ -1056,6 +1056,7 @@
           removeAsset();
         })
         .catch((error) => {
+          console.log(error);
           alert2.classList.add("active");
           alert2.querySelector("div").innerHTML = "هناك خطا ما";
           setTimeout(() => {
@@ -3022,13 +3023,19 @@
         for (var x in inputs.files) {
           dataComment.append("image", inputs.files[x]);
         }
+        e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
+          "fa fa-times";
         axios({
           method: "post",
           url: "/addCommentOnPosts",
           data: dataComment,
         })
           .then((data) => {
-            sockit.emit("addNotificationUser", { userId: frindId.toString() });
+            sockit.emit("addNotificationUser", {
+              userId: frindId.toString(),
+            });
+            e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
+              "fa fa-times";
             data = data.data;
             var comment = document.createElement("div");
             comment.classList.add("comment");
