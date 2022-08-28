@@ -44,8 +44,8 @@
 												 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= element.doctorImage ? element.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image"></a>
-															<a href="profile.html"><%= element.fName + " " + element.lName %></a>
+															<a href="/doctorProfile/<%= element.id %>" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= element.doctorImage ? element.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image"></a>
+															<a href="/doctorProfile/<%= element.id %>"><%= element.fName + " " + element.lName %></a>
 														</h2>
 													</td>
 													<td><%= element.DoctorSpecialist ? element.DoctorSpecialist.name : "not Edit" %></td>
