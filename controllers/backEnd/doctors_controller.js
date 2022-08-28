@@ -184,7 +184,7 @@ const DeleteDoctor = async (req, res, next) => {
       },
       attributes: ["doctorImage"],
     });
-    await db.doctors.delete({
+    await db.doctors.destroy({
       where: {
         id: req.params.id,
       },
