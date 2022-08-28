@@ -55,7 +55,6 @@ const Edit_doctor = async (req, res, next) => {
       doctor,
       specialist,
       admin: req.cookies.Admin,
-      notification: req.flash("notification")[0],
     });
   } catch (error) {
     tryError(res, error);
@@ -93,7 +92,6 @@ const editDoctor_post = async (req, res, next) => {
       if (req.body.OlddoctorImage)
         await removeImg(req, req.body.OlddoctorImage);
     }
-    console.log(req.body);
     doctorData.doctorImage = files.doctorImage
       ? files.doctorImage
       : req.body.OlddoctorImage;
