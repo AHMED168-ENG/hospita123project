@@ -3039,8 +3039,12 @@
         for (var x in inputs.files) {
           dataComment.append("image", inputs.files[x]);
         }
-        e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
-          "fa fa-spinner fa-spin";
+        if (
+          e.target.parentElement.parentElement.nextElementSibling
+            .firstElementChild
+        )
+          e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
+            "fa fa-spinner fa-spin";
         axios({
           method: "post",
           url: "/addCommentOnPosts",
@@ -3048,7 +3052,12 @@
         })
           .then((data) => {
             sockit.emit("addNotificationUser", { userId: "<%=  user.id %>" });
-            e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList = "fa fa-times"
+            if (
+              e.target.parentElement.parentElement.nextElementSibling
+                .firstElementChild
+            )
+              e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
+                "fa fa-times";
             data = data.data;
             var comment = document.createElement("div");
             comment.classList.add("comment");

@@ -907,11 +907,8 @@
                     </div>
                     <div class="right">
                       <div class="fromNotTo d-flex">`;
-          if (res[0].from == res[0].to) {
-            x += `<a href="userProfile/${res[1].id}"><h4>${res[1].fName}  ${res[1].lName} </h4></a>`;
-          } else {
-            x += `<a href="userProfile/${res[1].id}"><h4> ${res[1].fName}  ${res[1].lName} </h4></a> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> <a href="userProfile/${res[2].id}"><h5>${res[2].fName} ${res[2].lName}</h5></a>`;
-          }
+          x += `<a href="userProfile/${UserCookie.id}"><h4>${UserCookie.fName}  ${UserCookie.lName} </h4></a>`;
+
           x += `</div>
                       <span style="color:green">الان</span>
                     </div>
@@ -3023,8 +3020,12 @@
         for (var x in inputs.files) {
           dataComment.append("image", inputs.files[x]);
         }
-        e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
-          "fa fa-times";
+        if (
+          e.target.parentElement.parentElement.nextElementSibling
+            .firstElementChild
+        )
+          e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
+            "fa fa-times";
         axios({
           method: "post",
           url: "/addCommentOnPosts",
@@ -3034,8 +3035,12 @@
             sockit.emit("addNotificationUser", {
               userId: frindId.toString(),
             });
-            e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
-              "fa fa-times";
+            if (
+              e.target.parentElement.parentElement.nextElementSibling
+                .firstElementChild
+            )
+              e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
+                "fa fa-times";
             data = data.data;
             var comment = document.createElement("div");
             comment.classList.add("comment");
