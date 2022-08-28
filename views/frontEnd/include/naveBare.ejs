@@ -176,9 +176,9 @@
         >
           <p class="dropdown-item user-aria">
             <a href="/userProfile/<%= user.id %>">
-              <% if (user.image) { %> <img class="float-left"
-              src="/backEnd/assets/img/patients/<%= user.image.split("--")[0]
-              %>" width="49" height="49" /> <% } else { %>
+              <% if (user.image) { %> <img class="float-left" src="<%=
+              user.image.split("--")[0] %>" width="49" height="49" /> <% } else
+              { %>
               <img
                 class="float-left"
                 src="/backEnd/assets/img/users/avatar.png"
@@ -293,10 +293,8 @@
               }">
                 <img src="${
                   element.typeOfNotification == "F"
-                    ? "/backEnd/assets/img/pharmacyImage/" +
-                      element.Notification2User.userMedicin.image.split("--")[0]
-                    : "/backEnd/assets/img/doctors/" +
-                      element.Notification2User.userDoctorData.doctorImage.split(
+                    ? element.Notification2User.userMedicin.image.split("--")[0]
+                    : element.Notification2User.userDoctorData.doctorImage.split(
                         "--"
                       )[0]
                 }" />

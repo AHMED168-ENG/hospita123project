@@ -28,8 +28,7 @@ Router.post(
   "/AddSpecialities",
   userAuthonticat,
   isAuthonticate,
-
-  uploade_img("public/backEnd/assets/img/specialities", "image"),
+  uploade_img("image"),
   AddSpecialist_validation(),
   Add_specialist_post_controller
 );
@@ -43,8 +42,7 @@ Router.post(
   "/EditSpecialities",
   userAuthonticat,
   isAuthonticate,
-
-  uploade_img("public/backEnd/assets/img/specialities", "image"),
+  uploade_img("image"),
   AddSpecialist_validation(),
   edit_specialist_controller
 );

@@ -133,7 +133,7 @@
       <div>
           <div class="text d-flex">
               <a href="#" class="online ID<%= UserCookie.id %>" >
-                <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt="">
+                <img src="<%= UserCookie.image.split("--")[0] %>" alt="">
                 <span>
                   <span></span>
                 </span>
@@ -154,7 +154,7 @@
                     <div class="modal-body">
                         <div class=" d-flex align-items-center">
                           <a href="#" class="online ID<%= UserCookie.id %>">
-                            <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split('--')[0]%>" alt="">
+                            <img src="<%= UserCookie.image.split('--')[0]%>" alt="">
                             <span>
                               <span></span>
                             </span>
@@ -224,7 +224,7 @@
               <div class="modal-body">
                   <div class=" d-flex align-items-center">
                     <a href="/userProfile/<%= UserCookie.id %>" class="online  ID<%= UserCookie.id %>">
-                      <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split('--')[0]%>" alt="">
+                      <img src="<%= UserCookie.image.split('--')[0]%>" alt="">
                       <span><span></span></span>
                     </a>
                     <h5><%= UserCookie.fName + " " + UserCookie.lName %></h5>
@@ -328,7 +328,7 @@
               <div class="pairant d-flex">
                 <div class="left">
                   <a href="/userProfile/<%= element.postsUser.id %>" class="online ID<%= element.postsUser.id %>">
-                    <img src="/backEnd/assets/img/patients/<%= element.postsUser.image.split("--")[0] %>" alt="">
+                    <img src="<%= element.postsUser.image.split("--")[0] %>" alt="">
                     <span><span></span></span>
                   </a>
                 </div>
@@ -413,7 +413,7 @@
                     <div class="pairant d-flex">
                       <div class="image">
                         <a href="/userProfile/<%= element2.id %>" class="online ID<%= element2.postCommentUser.id %>">
-                          <img src="/backEnd/assets/img/patients/<%= element2.postCommentUser.image.split("--")[0] %>" alt="">
+                          <img src="<%= element2.postCommentUser.image.split("--")[0] %>" alt="">
                           <span><span></span></span>
                         </a>
                       </div>
@@ -480,7 +480,7 @@
                     <div class="writeComment">
                       <div class="left">
                         <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                          <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt=""></a>
+                          <img src="<%= UserCookie.image.split("--")[0] %>" alt=""></a>
                           <span>
                             <span></span>
                           </span>
@@ -524,7 +524,7 @@
                       <div class="pairant d-flex">
                         <div class="image">
                           <a href="" class="online ID<%= element3.postCommentUser.id %>">
-                            <img src="/backEnd/assets/img/patients/<%= element3.postCommentUser.image.split("--")[0] %>" alt="">
+                            <img src="<%= element3.postCommentUser.image.split("--")[0] %>" alt="">
                             <span>
                               <span></span>
                             </span>
@@ -592,7 +592,7 @@
                       
                       <div class="writeComment">
                         <div class="left">
-                          <a href="/userProfile/<%= UserCookie.id %>"><img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt=""></a>
+                          <a href="/userProfile/<%= UserCookie.id %>"><img src="<%= UserCookie.image.split("--")[0] %>" alt=""></a>
                           <span><span></span></span>
                         </div>
                         <div>
@@ -645,7 +645,7 @@
               <div class="writeComment d-flex">
                 <div class="left">
                   <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                    <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt="">
+                    <img src="<%= UserCookie.image.split("--")[0] %>" alt="">
                     <span>
                       <span></span>
                     </span>
@@ -708,7 +708,7 @@
         <% userFrindesData.forEach(element => { %>
           <li class="d-flex" onclick="openChate(event , '<%= element.id  %>')">
             <a class="online ID<%= element.id %>">
-              <img src="/backEnd/assets/img/patients/<%= element.image.split("--")[0] %>" alt="">
+              <img src="<%= element.image.split("--")[0] %>" alt="">
               <span>
                 <span></span>
               </span>
@@ -722,7 +722,7 @@
   <aside class="asideBox">
     <% chateAside.forEach(element => { %>
       <a onclick="openChate(event , '<%= element.FromChatUser.id != UserCookie.id ? element.FromChatUser.id : element.chatUser.id %>' , mackShourtCut(event))" class="online ID<%= element.FromChatUser.id != UserCookie.id ? element.FromChatUser.id : element.chatUser.id %> ">
-        <img src="/backEnd/assets/img/patients/<%= element.FromChatUser.id != UserCookie.id ? element.FromChatUser.image.split("--")[0] : element.chatUser.image.split('--')[0] %>" alt="">
+        <img src="<%= element.FromChatUser.id != UserCookie.id ? element.FromChatUser.image.split("--")[0] : element.chatUser.image.split('--')[0] %>" alt="">
         <span style="width:12px !important;height:12px !important">
           <span></span>
         </span>

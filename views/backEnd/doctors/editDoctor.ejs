@@ -57,7 +57,7 @@
 												<div class="form-group">
 													<div class="change-avatar">
 														<div class="profile-img">
-															<img src="<%= doctor.doctorImage ? "/backEnd/assets/img/doctors/" + doctor.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image">
+															<img src="<%= doctor.doctorImage ? doctor.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image">
 														</div>
 														<div class="upload-img">
 															<div class="change-photo-btn">
@@ -166,7 +166,7 @@
 											<% if (doctor.Doctorclinic && doctor.Doctorclinic.clinicImage) { %>
 											<div class="col-6">
 												<div style="width:100px;height:100px">
-													<img style="width:100%;height:100%" src="/backEnd/assets/img/doctors/<%= doctor.Doctorclinic.clinicImage.split("--")[0] %>" alt="">
+													<img style="width:100%;height:100%" src="<%= doctor.Doctorclinic.clinicImage.split("--")[0] %>" alt="">
 												</div>
 											</div>
 											<% } %>
@@ -423,13 +423,13 @@
 												<div class="upload-img col-6" style="margin-bottom:20px">
 													<h5>ID Card</h5>
 													<div class="divImage" style="height:150px">
-														<img style="height:100%;width:150px" src="/backEnd/assets/img/doctors/<%= doctor.birthImage.split("--")[0] %>" alt="">
+														<img style="height:100%;width:150px" src="<%= doctor.birthImage.split("--")[0] %>" alt="">
 													</div>
 												</div>
 												<div class="upload-img col-6" style="margin-bottom:20px">
 													<h5>gyild card</h5>
 													<div class="divImage" style="height:150px">
-														<img style="height:100%;width:150px" src="/backEnd/assets/img/doctors/<%= doctor.imageGraduate.split("--")[0] %>" alt="">
+														<img style="height:100%;width:150px" src="<%= doctor.imageGraduate.split("--")[0] %>" alt="">
 													</div>
 												</div>
 											</div>

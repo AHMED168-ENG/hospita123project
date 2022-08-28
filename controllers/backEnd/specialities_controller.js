@@ -32,22 +32,34 @@ const show_specialist_controller = async (req, res, next) => {
 const Add_specialist_post_controller = async (req, res, next) => {
   try {
     var validationError = validationResult(req).errors;
+    console.log(validationError);
     if (validationError.length > 0) {
-      removeImg(req);
-      var errors = handel_validation_errors(req, res, validationError, "only");
+      await removeImg(req);
+      var errors = handel_validation_errors(
+        req,
+        res,
+        validationError,
+        "",
+        "only"
+      );
       res.send({ type: "error", data: errors });
       return;
     }
-    var image = Rename_uploade_img(req);
-    await db.specialist.create({
-      name: req.body.name,
-      description: req.body.description,
-      active: req.body.active ? true : false,
-      image: image,
-    });
+    var image = await Rename_uploade_img(req, "hospitalProject/specialty/");
+    await db.specialist
+      .create({
+        name: req.body.name,
+        description: req.body.description,
+        active: req.body.active ? true : false,
+        image: image,
+      })
+      .then((result) => {
+        console.log(result);
+      });
     res.send({ type: "success", data: "تم تسجيل القسم بنجاح" });
   } catch (error) {
-    tryError(res);
+    console.log(error);
+    tryError(res, error);
   }
 };
 /*--------------------------- Add_specialist_controller ----------------------*/
@@ -72,14 +84,14 @@ const edit_specialist_controller = async (req, res, next) => {
   try {
     var validationError = validationResult(req).errors;
     if (validationError.length > 0) {
-      removeImg(req);
+      await removeImg(req);
       var errors = handel_validation_errors(req, res, validationError, "only");
       res.send({ type: "error", data: errors });
       return;
     }
 
-    var image = Rename_uploade_img(req);
-    if (image) removeImg(req, "specialities/", req.body.oldImage);
+    var image = await Rename_uploade_img(req, "hospitalProject/specialty");
+    if (image) await removeImg(req, req.body.oldImage);
 
     await db.specialist.update(
       {
@@ -129,7 +141,7 @@ const deleteSpecialist_controller = async (req, res, next) => {
         id: req.body.id,
       },
     });
-    removeImg(req, "specialities/", req.body.deletedImage);
+    await removeImg(req, req.body.deletedImage);
     returnWithMessage(
       req,
       res,

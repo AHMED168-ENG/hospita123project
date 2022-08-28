@@ -129,13 +129,13 @@
 										<div class="doc-info-left">
 											<div class="doctor-img">
 												<a href="/doctorProfile/<%= element.id%>">
-													<img src="/backEnd/assets/img/doctors/<%= element.doctorImage ? element.doctorImage.split("--")[0] : "avatar.png" %>" class="img-fluid" alt="User Image">
+													<img src="<%= element.doctorImage ? element.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" class="img-fluid" alt="User Image">
 												</a>
 											</div>
 											<div class="doc-info-cont">
 												<h4 class="doc-name"><a href="/doctorProfile/<%= element.id%>"><%= element.fName + " " + element.lName %></a></h4>
 												<p class="doc-speciality"><%= element.service ? element.service : "not edit yet" %></p>
-												<h5 class="doc-department"><img src="/backEnd/assets/img/specialities/<%= element.DoctorSpecialist ? element.DoctorSpecialist.image.split("--")[0] : "01.jpg" %>" class="img-fluid" alt="Speciality"><%= element.DoctorSpecialist ? element.DoctorSpecialist.name : "not Edit Before" %></h5>
+												<h5 class="doc-department"><img src="<%= element.DoctorSpecialist ? element.DoctorSpecialist.image.split("--")[0] : "01.jpg" %>" class="img-fluid" alt="Speciality"><%= element.DoctorSpecialist ? element.DoctorSpecialist.name : "not Edit Before" %></h5>
 												<div class="rating">
 													<i class="fas fa-star <%= Math.ceil(((getRateOp(element.userRate) * 100) / (element.userRate.length * 5)) /20) >= 1 ? "active" :  "" %>"></i>
 													<i class="fas fa-star <%= Math.ceil(((getRateOp(element.userRate) * 100) / (element.userRate.length * 5)) /20) >= 2 ? "active" :  "" %>"></i>

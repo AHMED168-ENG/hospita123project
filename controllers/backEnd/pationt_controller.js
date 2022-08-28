@@ -73,7 +73,7 @@ const edit_pationt_post = async (req, res, next) => {
   try {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {
-      removeImg(req);
+      await removeImg(req);
       handel_validation_errors(
         req,
         res,
@@ -83,10 +83,10 @@ const edit_pationt_post = async (req, res, next) => {
       return;
     }
     var userData = req.body;
-    var image = Rename_uploade_img(req);
+    var image = await Rename_uploade_img(req, "hospitalProject/patients");
     if (image) {
       if (userData.OldpationtImage)
-        removeImg(req, "patients/", userData.OldpationtImage);
+        await removeImg(req, userData.OldpationtImage);
     } else {
       image = userData.OldpationtImage;
     }
@@ -155,7 +155,7 @@ const deletePationt = async (req, res, next) => {
         id: req.params.id,
       },
     });
-    removeImg(req, "patients/", user.image);
+    await removeImg(req, user.image);
   } catch (error) {
     tryError(res, error);
   }

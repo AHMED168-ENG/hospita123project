@@ -23,7 +23,7 @@ Router.get("/pationt_setings", userAuthonticat, pationt_setings);
 Router.post(
   "/pationt_setings",
   userAuthonticat,
-  uploade_img("public/backEnd/assets/img/patients", "pationtImage"),
+  uploade_img("public/backEnd/assets/img/patients"),
   signUp_validation(),
   pationt_setings_post
 );

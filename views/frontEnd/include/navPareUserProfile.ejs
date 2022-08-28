@@ -12,7 +12,7 @@
   
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav child1 mt-2 mt-lg-0 d-flex align-items-center">
-        <li><a href="/userProfile/<%= UserCookie.id %>"><img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt=""><span><%= UserCookie.fName + " " + UserCookie.lName %></span></a></li>
+        <li><a href="/userProfile/<%= UserCookie.id %>"><img src="<%= UserCookie.image.split("--")[0] %>" alt=""><span><%= UserCookie.fName + " " + UserCookie.lName %></span></a></li>
         <li class="requestNotification"><i onclick="showRequestNotification(event)" class="fa fa-users"></i>
           <% if (notificationRequestNumber) { %>
             <span class="notification"><%= notificationRequestNumber %></span>

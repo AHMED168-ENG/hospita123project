@@ -133,14 +133,14 @@ const pationt_setings_post = async (req, res, next) => {
   try {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {
-      removeImg(req);
+      await removeImg(req);
       handel_validation_errors(req, res, errors, "pationt_setings");
       return;
     }
     var userData = req.body;
-    var image = Rename_uploade_img(req);
+    var image = await Rename_uploade_img(req, "hospitalProject/patients");
     if (image) {
-      removeImg(req, "patients/", userData.OldpationtImage);
+      await removeImg(req, userData.OldpationtImage);
     } else {
       image = userData.OldpationtImage;
     }

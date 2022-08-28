@@ -47,7 +47,7 @@
 												<div class="form-group">
 													<div class="change-avatar">
 														<div class="profile-img">
-															<img src="<%= myPharmacy.image ? "/backEnd/assets/img/pharmacyImage/" + myPharmacy.image.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image">
+															<img src="<%= myPharmacy.image ? myPharmacy.image.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image">
 														</div>
 														<div class="upload-img">
 															<div class="change-photo-btn">

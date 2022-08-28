@@ -6,6 +6,7 @@ const sockitIo = require("socket.io")(server);
 require("dotenv").config();
 
 const path = require("path");
+const cloudinary = require("cloudinary");
 const db = require("./models");
 const paginate = require("express-paginate");
 const session = require("cookie-session");
@@ -169,6 +170,12 @@ sockitIo.on("connection", (clint) => {
 /*--------------------------- start sockit Io ----------------------------------*/
 
 /* ------------- set seting -------------------*/
+
+cloudinary.config({
+  cloud_name: process.env.cloud_name,
+  api_key: process.env.api_key,
+  api_secret: process.env.api_secret,
+});
 app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

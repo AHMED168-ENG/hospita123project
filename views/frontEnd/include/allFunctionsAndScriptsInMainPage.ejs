@@ -102,9 +102,7 @@
       return;
     document.querySelector(
       `.messagesController .messages .chate${data.frindId} .text .footer`
-    ).innerHTML = `<img src='/backEnd/assets/img/patients/${
-      data.image.split("--")[0]
-    }' />`;
+    ).innerHTML = `<img src='${data.image.split("--")[0]}' />`;
   });
 
   sockit.on("clickOnChateToShowMessages", (data) => {
@@ -215,9 +213,7 @@
       <div class="header d-flex align-items-center justify-centent-between">
         <div class="user d-flex align-items-center">
           <a href="" class="online ID${data[0].id}">
-            <img src="/backEnd/assets/img/patients/${
-              data[0].image.split("--")[0]
-            }" alt="">
+            <img src="${data[0].image.split("--")[0]}" alt="">
               <span><span></span></span>
           </a>
           <div class="information d-flex align-items-center">
@@ -247,9 +243,7 @@
               <a href="/userProfile/${data[0].id}" class="online ID${
           data[0].id
         }">
-                <img src="/backEnd/assets/img/patients/${
-                  data[0].image.split("--")[0]
-                }" alt="">
+                <img src="${data[0].image.split("--")[0]}" alt="">
                 <span><span></span></span>
               </a>
             </div>
@@ -379,9 +373,7 @@
                       <a href="/userProfile/${ele.id}" class="online ID${
               ele.id
             }">
-                        <img src="/backEnd/assets/img/patients/${
-                          ele.image.split("--")[0]
-                        }" alt="">
+                        <img src="${ele.image.split("--")[0]}" alt="">
                         <span><span></span></span>
                       </a>
                     </div>
@@ -415,7 +407,7 @@
                         <a href="/userProfile/${ele.id}" class="online ID${
               ele.chatUser.id
             }">
-                          <img src="/backEnd/assets/img/patients/${
+                          <img src="${
                             ele.chatUser.image.split("--")[0]
                           }" alt="">
                           <span><span></span></span>
@@ -464,9 +456,7 @@
               if (!ele.chatUser.userToMessage[0].isSeen) {
                 x += `<i class="fa fa-check-circle" aria-hidden="true"></i>`;
               } else {
-                x += `<img src="/backEnd/assets/img/patients/${
-                  ele.chatUser.image.split("--")[0]
-                }" />`;
+                x += `<img src="${ele.chatUser.image.split("--")[0]}" />`;
               }
             } else {
               if (!ele.chatUser.userFromMessage[0].isSeen) {
@@ -567,7 +557,7 @@
                 <li>
                   <a href="" class="d-flex align-items-center">
                       <div class="assets">
-                        <img src="/backEnd/assets/img/patients/${
+                        <img src="${
                           ele.notificationUser.image.split("--")[0]
                         }" alt="">
                         <img src="/admin/asset/images/ico/${
@@ -670,9 +660,7 @@
               e.target.parentElement.querySelector("ul").innerHTML += `<li>
                   <div class="main d-flex">
                     <a href="/userProfile/${ele.id}" class="photo">
-                      <img src="/backEnd/assets/img/patients/${
-                        ele.image.split("--")[0]
-                      }" alt="">
+                      <img src="${ele.image.split("--")[0]}" alt="">
                     </a>
                     <div class="data">
                       <p>قام <span>${ele.fName} ${
@@ -914,7 +902,7 @@
           x += ` <div class="postHeade d-flex">
                   <div class="pairant d-flex">
                     <div class="left">
-                      <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt="">
+                      <img src="<%= UserCookie.image.split("--")[0] %>" alt="">
                       <span><span></span></span>
                     </div>
                     <div class="right">
@@ -946,13 +934,9 @@
                   <h5>${textarea.value}</h5>
                   `;
           if (res[0].image) {
-            x += `<img src="/backEnd/assets/img/posts_image/${
-              res[0].image.split("--")[0]
-            }">`;
+            x += `<img src="${res[0].image.split("--")[0]}">`;
           } else if (res[0].video) {
-            x += `<video controls src="/backEnd/assets/img/posts_image/${
-              res[0].video.split("--")[0]
-            }">`;
+            x += `<video controls src="${res[0].video.split("--")[0]}">`;
           }
 
           x += `</div>
@@ -982,7 +966,7 @@
                   <div class="writeComment d-flex">
                     <div class="left">
                       <a href="/userProfile/<%= UserCookie.id %>">
-                        <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt=""></a>
+                        <img src="<%= UserCookie.image.split("--")[0] %>" alt=""></a>
                         <span><span></span></span>
                     </div>
                     <div>
@@ -1103,20 +1087,14 @@
         if (data.image) {
           var div = document.createElement("div");
           var image = document.createElement("img");
-          image.setAttribute(
-            "src",
-            `/backEnd/assets/img/posts_image/${data.image.split("--")[0]}`
-          );
+          image.setAttribute("src", `${data.image.split("--")[0]}`);
           div.appendChild(image);
           addPostReal.querySelector(".modal-body .assets").appendChild(div);
         }
         if (data.video) {
           var div = document.createElement("div");
           var video = document.createElement("video");
-          video.setAttribute(
-            "src",
-            `/backEnd/assets/img/posts_image/${data.video.split("--")[0]}`
-          );
+          video.setAttribute("src", `${data.video.split("--")[0]}`);
           video.setAttribute("controls", "");
           div.appendChild(video);
           addPostReal.querySelector(".modal-body .assets").appendChild(div);
@@ -1214,18 +1192,12 @@
           post.querySelector(".postBody").appendChild(h5);
           if (res.image) {
             var image = document.createElement("img");
-            image.setAttribute(
-              "src",
-              "/backEnd/assets/img/posts_image/" + res.image.split("--")[0]
-            );
+            image.setAttribute("src", res.image.split("--")[0]);
             post.querySelector(".postBody").appendChild(image);
           } else if (res.video) {
             controls;
             var video = document.createElement("video");
-            video.setAttribute(
-              "src",
-              "/backEnd/assets/img/posts_image/" + res.video.split("--")[0]
-            );
+            video.setAttribute("src", res.video.split("--")[0]);
             video.setAttribute("controls", "");
             post.querySelector(".postBody").appendChild(video);
           }
@@ -1372,7 +1344,7 @@
                             <a href="/userProfile/${
                               element.postCommentUser.id
                             }" class="online ID${element.postCommentUser.id}">
-                              <img src="/backEnd/assets/img/patients/${
+                              <img src="${
                                 element.postCommentUser.image.split("--")[0]
                               }" alt="">
                                 <span><span></span></span>
@@ -1419,7 +1391,7 @@
             element.images.split("--").forEach((element) => {
               if (element.trim()) {
                 x += `<div>
-                                        <img src="/backEnd/assets/img/comment_photo/${element} " alt="">
+                                        <img src="${element} " alt="">
                                     </div>`;
               }
             });
@@ -1591,7 +1563,7 @@
                         <div class="writeComment">
                           <div class="left">
                             <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                              <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0]%>" alt="">
+                              <img src="<%= UserCookie.image.split("--")[0]%>" alt="">
                                 <span><span></span></span>
                               </a>
                           </div>
@@ -1673,7 +1645,7 @@
                             <div class="pairant d-flex">
                               <div class="image">
                                 <a href="/userProfile/<%= UserCookie.id%>" class="online ID<%= UserCookie.id%>">
-                                    <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0]%>" alt="">
+                                    <img src="<%= UserCookie.image.split("--")[0]%>" alt="">
                                       <span><span></span></span>
                                     </a>
                                 </div>
@@ -1716,7 +1688,7 @@
               ele.images.split("--").forEach((element) => {
                 if (element.trim()) {
                   x += `<div>
-                                            <img src="/backEnd/assets/img/comment_photo/${element} " alt="">
+                                            <img src="${element} " alt="">
                                         </div>`;
                 }
               });
@@ -1891,7 +1863,7 @@
 
                             <div class="writeComment">
                               <div class="left">
-                                <a href="/userProfile/<%= UserCookie.id %>"><img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt=""></a>
+                                <a href="/userProfile/<%= UserCookie.id %>"><img src="<%= UserCookie.image.split("--")[0] %>" alt=""></a>
                                 <span><span></span></span>
                               </div>
                               <div>
@@ -2025,7 +1997,7 @@
                             <a href="/userProfile/${
                               element.postsUser.id
                             }" class="online ID${element.postsUser.id}">
-                              <img src="/backEnd/assets/img/patients/${
+                              <img src="${
                                 element.postsUser.image.split("--")[0]
                               }" alt="">
                               <span><span></span></span>
@@ -2085,11 +2057,9 @@
                       <div class="postBody">`;
             if (element.post) x += `<h5>${element.post}</h5>`;
             if (element.image)
-              x += `<img src="/backEnd/assets/img/posts_image/${
-                element.image.split("--")[0]
-              }" alt="">`;
+              x += `<img src="${element.image.split("--")[0]}" alt="">`;
             if (element.video)
-              x += `<video controls src="/backEnd/assets/img/posts_image/${
+              x += `<video controls src="${
                 element.video.split("--")[0]
               }" alt=""></video>`;
 
@@ -2289,7 +2259,7 @@
                                   }" class="online ID${
                   element2.postCommentUser.id
                 }">
-                                    <img src="/backEnd/assets/img/patients/${
+                                    <img src="${
                                       element2.postCommentUser.image.split(
                                         "--"
                                       )[0]
@@ -2340,7 +2310,7 @@
                 if (element2.images) {
                   element2.images.split("--").forEach((ele) => {
                     if (ele.trim()) {
-                      x += `<div><img src="/backEnd/assets/img/comment_photo/${ele}" /></div>`;
+                      x += `<div><img src="${ele}" /></div>`;
                     }
                   });
                 }
@@ -2521,7 +2491,7 @@
                               <div class="writeComment">
                                 <div class="left">
                                   <a href="/userProfile/<%= UserCookie.id%>" class="online ID<%= UserCookie.id%>">
-                                    <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt="">
+                                    <img src="<%= UserCookie.image.split("--")[0] %>" alt="">
                                     <span><span></span></span>
                                     </a>
                                 </div>
@@ -2611,7 +2581,7 @@
                                     }" class="online ID${
                     element3.postCommentUser.id
                   }">
-                                    <img src="/backEnd/assets/img/patients/${
+                                    <img src="${
                                       element3.postCommentUser.image.split(
                                         "--"
                                       )[0]
@@ -2661,7 +2631,7 @@
                   if (element3.images) {
                     element3.images.split("--").forEach((ele) => {
                       if (ele.trim()) {
-                        x += `<div><img src="/backEnd/assets/img/comment_photo/${ele}" /></div>`;
+                        x += `<div><img src="${ele}" /></div>`;
                       }
                     });
                   }
@@ -2841,7 +2811,7 @@
                                 <div class="writeComment">
                                   <div class="left">
                                     <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                                    <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt="">
+                                    <img src="<%= UserCookie.image.split("--")[0] %>" alt="">
                                     <span><span></span></span>
                                     </a>
                                   </div>
@@ -2947,7 +2917,7 @@
                         <div class="writeComment d-flex">
                           <div class="left">
                             <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                              <img src="/backEnd/assets/img/patients/<%=UserCookie.image.split("--")[0] %>" alt="">
+                              <img src="<%=UserCookie.image.split("--")[0] %>" alt="">
                               <span><span></span></span>
                               </a>
                           </div>
@@ -3067,7 +3037,7 @@
                     <div class="pairant d-flex">
                       <div class="image">
                         <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                          <img src="/backEnd/assets/img/patients/${
+                          <img src="${
                             data[0].postCommentUser.image.split("--")[0]
                           }" alt="">
                           <span><span></span></span>
@@ -3135,7 +3105,7 @@
                     <div class="writeComment">
                       <div class="left">
                         <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                          <img src="/backEnd/assets/img/patients/<%=UserCookie.image.split("--")[0] %>" alt="">`;
+                          <img src="<%=UserCookie.image.split("--")[0] %>" alt="">`;
             if ("<%= UserCookie.onLine %>" == "true") {
               myComment += `<span><span></span></span>`;
             }
@@ -3358,7 +3328,7 @@
             if (ele.trim() != "") {
               popUp.firstElementChild.querySelector(
                 ".assets"
-              ).innerHTML += `<div data_number="${i}"><i class="fa fa-times" onclick="removeAssetComment(event , 'old')"></i><img src="/backEnd/assets/img/comment_photo/${ele}" /></div>`;
+              ).innerHTML += `<div data_number="${i}"><i class="fa fa-times" onclick="removeAssetComment(event , 'old')"></i><img src="${ele}" /></div>`;
             }
           });
         }
@@ -3681,7 +3651,7 @@
             ul.innerHTML += `<li>
                         <a href="/userProfile/${ele.id}" class="d-flex">
                           <div class="online ID${ele.id}">
-                            <img src="/backEnd/assets/img/patients/${
+                            <img src="${
                               ele.image
                                 ? ele.image.split("--")[0]
                                 : "avatar.png"
@@ -3767,9 +3737,7 @@
       var asideBox = document.querySelector(".asideBox");
       var element = `
         <a onclick="openChate(event , ${frindId} , 'ID${frindId}')" class="online ID${frindId}">
-          <img src="/backEnd/assets/img/patients/${
-            image.split("--")[0]
-          }" alt="">
+          <img src="${image.split("--")[0]}" alt="">
           <span style="width:12px !important;height:12px !important">
             <span></span>
           </span>

@@ -78,13 +78,13 @@ module.exports = {
         type: Sequelize.BOOLEAN,
       },
       doctorImage: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       imageGraduate: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       birthImage: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       awardesDate: {
         type: Sequelize.STRING,

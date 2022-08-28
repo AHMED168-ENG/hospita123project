@@ -9,7 +9,6 @@ const {
   All_Doctors,
   doctorProfile,
   addDoctorComment,
-
   getDataSearch_ajax,
   getSearchUserData,
   getMyAccount,
@@ -100,34 +99,28 @@ Router.post("/labOrder/:id", userAuthonticat, bookingLab_post);
 Router.post(
   "/AddLab",
   userAuthonticat,
-  uploade_img_multi_fild(
-    [
-      {
-        name: "image",
-      },
-      {
-        name: "confirmImage",
-      },
-    ],
-    "public/backEnd/assets/img/LabsImage"
-  ),
+  uploade_img_multi_fild([
+    {
+      name: "image",
+    },
+    {
+      name: "confirmImage",
+    },
+  ]),
   addLabsControllerPost
 );
 Router.get("/EditLab", userAuthonticat, editLabsController);
 Router.post(
   "/EditLab",
   userAuthonticat,
-  uploade_img_multi_fild(
-    [
-      {
-        name: "image",
-      },
-      {
-        name: "confirmImage",
-      },
-    ],
-    "public/backEnd/assets/img/LabsImage"
-  ),
+  uploade_img_multi_fild([
+    {
+      name: "image",
+    },
+    {
+      name: "confirmImage",
+    },
+  ]),
   editLabsControllerPost
 );
 Router.get("/allLabs", allLabs);
@@ -158,7 +151,7 @@ Router.get(
 Router.post(
   "/editPersonalInformation",
   userAuthonticat,
-  uploade_img("public/admin/asset/images/users_photo", "image"),
+  uploade_img("image"),
   editPersonalData_validation(),
   editPersonalInformationPost
 );
@@ -168,48 +161,42 @@ Router.get("/membersPosts", userAuthonticat, membersPosts);
 Router.post(
   "/addPostAjax",
   userAuthonticat,
-  uploade_img_multi_fild(
-    [
-      {
-        name: "image",
-      },
-      {
-        name: "video",
-      },
-    ],
-    "public/backEnd/assets/img/posts_image"
-  ),
+  uploade_img_multi_fild([
+    {
+      name: "image",
+    },
+    {
+      name: "video",
+    },
+  ]),
   addPostAjax
 );
 /*-------------------------------------------- edit post ajax ----------------------------------------*/
 Router.post(
   "/editPostAjax",
   userAuthonticat,
-  uploade_img_multi_fild(
-    [
-      {
-        name: "image",
-      },
-      {
-        name: "video",
-      },
-    ],
-    "public/backEnd/assets/img/posts_image"
-  ),
+  uploade_img_multi_fild([
+    {
+      name: "image",
+    },
+    {
+      name: "video",
+    },
+  ]),
   editPostAjax
 );
 Router.post("/AddLikes", userAuthonticat, AddLikesAjax);
 Router.post(
   "/addCommentOnPosts",
   userAuthonticat,
-  uploade_img("public/backEnd/assets/img/comment_photo", "image"),
+  uploade_img("image"),
   addCommentOnPosts
 );
 Router.post("/deleteCommentAjax", userAuthonticat, deleteCommentAjax);
 Router.post(
   "/editCommentAjax",
   userAuthonticat,
-  uploade_img("public/backEnd/assets/img/comment_photo", "image"),
+  uploade_img("image"),
   editCommentAjax
 );
 Router.post("/getCommentData", userAuthonticat, getCommentData);
@@ -227,7 +214,7 @@ Router.post("/getUserNotification", userAuthonticat, getUserNotification);
 Router.post(
   "/changeCoverImage",
   userAuthonticat,
-  uploade_img("public/backEnd/assets/img/cover_image", "imageCover"),
+  uploade_img("imageCover"),
   changeCoverImage
 );
 Router.post("/getFrindMessages", userAuthonticat, getFrindMessages);
@@ -245,7 +232,7 @@ Router.post(
   "/editPharmasy",
   userAuthonticat,
   DoctorAuthonticat,
-  uploade_img("public/backEnd/assets/img/pharmacyImage", "image"),
+  uploade_img("image"),
   pharmacy_validate(),
   editPharmasyControllerPost
 );
@@ -259,7 +246,7 @@ Router.post(
   "/AddPharmacy",
   userAuthonticat,
   DoctorAuthonticat,
-  uploade_img("public/backEnd/assets/img/pharmacyImage", "image"),
+  uploade_img("image"),
   pharmacy_validate(),
   addPharmacyControllerPost
 );

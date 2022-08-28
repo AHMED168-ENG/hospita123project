@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       clinicImage: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       clinicAddress: {
         type: Sequelize.STRING,

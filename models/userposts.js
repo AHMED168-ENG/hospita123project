@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       post: DataTypes.STRING,
       type: DataTypes.TEXT,
-      image: DataTypes.STRING,
+      image: DataTypes.TEXT,
       video: DataTypes.STRING,
       commentNumber: DataTypes.INTEGER,
       from: DataTypes.INTEGER,

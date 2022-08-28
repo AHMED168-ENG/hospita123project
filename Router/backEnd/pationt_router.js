@@ -33,7 +33,7 @@ Router.post(
   "/editPationt/:id",
   userAuthonticat,
   isAuthonticate,
-  uploade_img("public/backEnd/assets/img/patients", "pationtImage"),
+  uploade_img("pationtImage"),
   signUp_validation(),
   edit_pationt_post
 );

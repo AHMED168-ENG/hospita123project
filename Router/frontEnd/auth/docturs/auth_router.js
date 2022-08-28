@@ -36,17 +36,14 @@ Router.post(
   "/signUp",
   userAuthonticat,
   DoctorNotAuthonticat,
-  uploade_img_multi_fild(
-    [
-      {
-        name: "birthImage",
-      },
-      {
-        name: "Graduation",
-      },
-    ],
-    "public/backEnd/assets/img/doctors"
-  ),
+  uploade_img_multi_fild([
+    {
+      name: "birthImage",
+    },
+    {
+      name: "Graduation",
+    },
+  ]),
   signUp_validation(),
   signUp_controller_post
 );

@@ -75,7 +75,7 @@ const editPharmasyControllerPost = async (req, res, next) => {
   try {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {
-      removeImg(req, "pharmacyImage/");
+      await removeImg(req, "pharmacyImage/");
       handel_validation_errors(
         req,
         res,
@@ -85,11 +85,11 @@ const editPharmasyControllerPost = async (req, res, next) => {
       return;
     }
 
-    var files = Rename_uploade_img(req);
+    var files = await Rename_uploade_img(req, "hospitalProject/pharmasy");
     if (files) {
       req.body.image = files;
       if (req.body.oldImage)
-        removeImg(req, "pharmacyImage/", req.body.oldImage);
+        await removeImg(req, "pharmacyImage/", req.body.oldImage);
     }
     var data = req.body;
     data.drug = data.drug ? data.drug : "";
@@ -118,12 +118,12 @@ const addPharmacyControllerPost = async (req, res, next) => {
   try {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {
-      removeImg(req, "pharmacyImage/");
+      await removeImg(req);
       handel_validation_errors(req, res, errors, "/pharmacy/AddPharmacy");
       return;
     }
 
-    var files = Rename_uploade_img(req);
+    var files = await Rename_uploade_img(req, "hospitalProject/pharmasy");
     var data = req.body;
     data.drug = data.drug ? data.drug : "";
     if (files) data.image = files;
@@ -171,7 +171,7 @@ const deletePharmacy = async (req, res, next) => {
         id: req.body.id,
       },
     });
-    removeImg(req, "pharmacyImage/", req.body.oldImage);
+    await removeImg(req, req.body.oldImage);
     returnWithMessage(
       req,
       res,

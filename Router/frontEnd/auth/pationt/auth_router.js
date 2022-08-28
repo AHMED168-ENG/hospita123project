@@ -30,7 +30,7 @@ Router.get("/signUp", userNotAuthonticat, signUp_controller);
 Router.post(
   "/signUp",
   userNotAuthonticat,
-  uploade_img("public/backEnd/assets/img/patients", "image"),
+  uploade_img("image"),
   signUp_validation(),
   signUp_controller_post
 );

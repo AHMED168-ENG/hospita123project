@@ -1201,14 +1201,14 @@ const editPersonalInformationPost = async (req, res, next) => {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {
       handel_validation_errors(req, res, errors, "/editPersonalInformation");
-      removeImg(req);
+      await removeImg(req);
       return;
     }
-    var image = Rename_uploade_img(req);
+    var image = await Rename_uploade_img(req, "hospitalProject/patients");
     var userData = req.body;
     if (image) {
       userData.image = image;
-      removeImg(req, "users_photo/", req.body.oldImage);
+      await removeImg(req, req.body.oldImage);
     } else {
       userData.image = req.body.oldImage;
     }
@@ -1239,10 +1239,10 @@ const editPersonalInformationPost = async (req, res, next) => {
 /*----------------------- start part add post ajax --------------------------*/
 const addPostAjax = async (req, res, next) => {
   try {
-    var files = Rename_uploade_img_multiFild([
-      req.files.image,
-      req.files.video,
-    ]);
+    var files = await Rename_uploade_img_multiFild(
+      [req.files.image, req.files.video],
+      "hospitalProject/posts"
+    );
     await db.userPosts
       .create({
         post: req.body.post,
@@ -1285,15 +1285,15 @@ const editPostAjax = async (req, res, next) => {
       attributes: ["image", "video"],
     });
 
-    var files = Rename_uploade_img_multiFild([
-      req.files.image,
-      req.files.video,
-    ]);
+    var files = await Rename_uploade_img_multiFild(
+      [req.files.image, req.files.video],
+      "hospitalProject/posts"
+    );
     if (files.image) {
-      if (post.image) removeImg(req, "posts_image/", post.image);
+      if (post.image) await removeImg(req, post.image);
     }
     if (files.video) {
-      if (post.video) removeImg(req, "posts_image/", post.video);
+      if (post.video) await removeImg(req, post.video);
     }
     await db.userPosts.update(
       {
@@ -1416,7 +1416,7 @@ const AddLikesAjax = async (req, res, next) => {
 /*------------------ add comment on posts ------------------*/
 const addCommentOnPosts = async (req, res, next) => {
   try {
-    var images = Rename_uploade_img(req);
+    var images = await Rename_uploade_img(req, "hospitalProject/comments");
     await db.postComments
       .create({
         comment: req.body.comment,
@@ -1506,7 +1506,7 @@ const deleteCommentAjax = async (req, res, next) => {
               id: ele.id,
             },
           });
-          if (ele.images) removeImg(req, "comment_photo/", ele.images);
+          if (ele.images) await removeImg(req, ele.images);
           post -= 1;
           await db.userPosts.update(
             { commentNumber: post },
@@ -1529,7 +1529,7 @@ const deleteCommentAjax = async (req, res, next) => {
       },
       attributes: ["images"],
     });
-    if (comment.images) removeImg(req, "comment_photo/", comment.images);
+    if (comment.images) await removeImg(req, comment.images);
 
     await db.postComments.destroy({
       where: {
@@ -1555,7 +1555,7 @@ const deleteCommentAjax = async (req, res, next) => {
 /*------------------ update comment on posts ------------------*/
 const editCommentAjax = async (req, res, next) => {
   try {
-    var image = Rename_uploade_img(req);
+    var image = await Rename_uploade_img(req, "hospitalProject/comments");
     var comment = await db.postComments.findOne({
       where: {
         id: req.body.commentId,
@@ -1563,13 +1563,13 @@ const editCommentAjax = async (req, res, next) => {
       attributes: ["images"],
     });
     if (image) {
-      if (comment.images) removeImg(req, "comment_photo/", comment.images);
+      if (comment.images) await removeImg(req, comment.images);
     } else if (req.body.numberOFimage) {
       image = "";
-      comment.images.split("--").forEach((ele, i) => {
+      comment.images.split("--").forEach(async (ele, i) => {
         if (ele.trim() == "") return;
         if (req.body.numberOFimage.split(",").includes(i + "")) {
-          removeImg(req, "comment_photo/", ele + "--");
+          await removeImg(req, ele + "--");
         } else {
           image += ele + "--";
         }
@@ -1803,10 +1803,10 @@ const deletePost_ajax = async (req, res, next) => {
     });
 
     if (post.image) {
-      removeImg(req, "posts_image/", post.image);
+      await removeImg(req, post.image);
     }
     if (post.video) {
-      removeImg(req, "posts_image/", post.video);
+      await removeImg(req, post.video);
     }
 
     await db.userPosts.destroy({
@@ -2263,7 +2263,7 @@ async function acceptFrind2(frindes, userId, userFrindId, direction) {
 /*------------------ changeCoverImage ------------------*/
 const changeCoverImage = async (req, res, next) => {
   try {
-    var images = Rename_uploade_img(req);
+    var images = await Rename_uploade_img(req, "hospitalProject/coverImage");
 
     var userData = await db.moreDataForUser.findOne({
       where: {
@@ -2273,7 +2273,7 @@ const changeCoverImage = async (req, res, next) => {
 
     if (userData) {
       if (userData.coverImage) {
-        removeImg(req, "cover_image/", userData.coverImage);
+        await removeImg(req, userData.coverImage);
       }
       await db.moreDataForUser.update(
         {
@@ -2285,7 +2285,6 @@ const changeCoverImage = async (req, res, next) => {
           },
         }
       );
- 
     } else {
       await db.moreDataForUser.create({
         coverImage: images,
@@ -2919,10 +2918,10 @@ const mackOrderControllerPost = async (req, res, next) => {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {
       handel_validation_errors(req, res, errors, "/mackOrder/" + req.params.id);
-      removeImg(req, "pharmacyOrderImage/");
+      await removeImg(req);
       return;
     }
-    var image = Rename_uploade_img(req);
+    var image = await Rename_uploade_img(req, "hospitalProject/orders");
     req.body.image = image;
     req.body.from = req.cookies.User.id;
     req.body.to = req.params.id;
@@ -2989,16 +2988,15 @@ const editPharmasyControllerPost = async (req, res, next) => {
     var errors = validationResult(req).errors;
     console.log(errors);
     if (errors.length > 0) {
-      removeImg(req, "pharmacyImage/");
+      await removeImg(req);
       handel_validation_errors(req, res, errors, "/editPharmasy");
       return;
     }
 
-    var files = Rename_uploade_img(req);
+    var files = await Rename_uploade_img(req, "hospitalProject/pharmasy");
     if (files) {
       req.body.image = files;
-      if (req.body.oldImage)
-        removeImg(req, "pharmacyImage/", req.body.oldImage);
+      if (req.body.oldImage) await removeImg(req, req.body.oldImage);
     }
     await db.medicin.update(req.body, {
       where: {
@@ -3017,12 +3015,12 @@ const addPharmacyControllerPost = async (req, res, next) => {
   try {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {
-      removeImg(req, "pharmacyImage/");
+      await removeImg(req);
       handel_validation_errors(req, res, errors, "/AddPharmacy");
       return;
     }
 
-    var files = Rename_uploade_img(req);
+    var files = await Rename_uploade_img(req, "hospitalProject/pharmasy");
     var data = req.body;
     if (files) data.image = files;
     req.body.userId = req.cookies.User.id;
@@ -3327,10 +3325,10 @@ const addLabsControllerPost = async (req, res, next) => {
       handel_validation_errors(req, res, errors, "/AddLabs");
       return;
     }
-    var files = Rename_uploade_img_multiFild([
-      req.files.image,
-      req.files.confirmImage,
-    ]);
+    var files = await Rename_uploade_img_multiFild(
+      [req.files.image, req.files.confirmImage],
+      "hospitalProject/Labs"
+    );
     if (files.image) req.body.image = files.image;
     if (files.confirmImage) req.body.confirmImage = files.confirmImage;
     req.body.userId = req.cookies.User.id;
@@ -3408,16 +3406,16 @@ const editLabsControllerPost = async (req, res, next) => {
         userId: req.cookies.User.id,
       },
     });
-    var files = Rename_uploade_img_multiFild([
-      req.files.image,
-      req.files.confirmImage,
-    ]);
+    var files = await Rename_uploade_img_multiFild(
+      [req.files.image, req.files.confirmImage],
+      "hospitalProject/Labs"
+    );
 
     if (files.image) {
-      if (lab.image) removeImg(req, "LabsImage/", lab.image);
+      if (lab.image) await removeImg(req, lab.image);
     }
     if (files.confirmImage) {
-      if (lab.image) removeImg(req, "LabsImage/", lab.confirmImage);
+      if (lab.image) await removeImg(req, lab.confirmImage);
     }
 
     req.body.image = files.image ? files.image : lab.image;

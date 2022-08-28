@@ -92,7 +92,7 @@ const deleteLap = async (req, res, next) => {
         id: req.body.id,
       },
     });
-    removeImg(req, "LabsImage/", req.body.oldImage);
+    await removeImg(req, "hospitalProject/Labs/");
     returnWithMessage(req, res, "/Labs/AllLabs", "delete success", "danger");
   } catch (error) {
     tryError(res, error);

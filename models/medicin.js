@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       province: DataTypes.STRING,
       village: DataTypes.STRING,
       isActive: DataTypes.BOOLEAN,
-      image: DataTypes.STRING,
+      image: DataTypes.TEXT,
       start: DataTypes.STRING,
       end: DataTypes.STRING,
       userId: DataTypes.INTEGER,

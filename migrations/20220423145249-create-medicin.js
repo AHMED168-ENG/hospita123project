@@ -25,7 +25,7 @@ module.exports = {
         defaultValue: true,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       userId: {
         type: Sequelize.INTEGER,

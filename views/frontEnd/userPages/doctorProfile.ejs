@@ -60,12 +60,12 @@ li.comment_test .comment i.active {
 							<div class="doctor-widget">
 								<div class="doc-info-left">
 									<div class="doctor-img">
-                                        <img class="img-fluid" alt="User Image" src="/backEnd/assets/img/doctors/<%= doctor.doctorImage ? doctor.doctorImage.split("--")[0] : "avatar.png" %>">
+                                        <img class="img-fluid" alt="User Image" src="/backEnd/assets/img/doctors/<%= doctor.doctorImage ? doctor.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>">
 									</div>
 									<div class="doc-info-cont">
 										<h4 class="doc-name"><a href="/userProfile/<%= doctor.userId %>"><%= doctor.fName + " " + doctor.lName %></a></h4>
 										<p class="doc-speciality"><%= doctor.service ? doctor.service : "not Edit Yet" %></p>
-										<p class="doc-department"><img src="/backEnd/assets/img/specialities/<%= doctor.DoctorSpecialist ? doctor.DoctorSpecialist.image.split("--")[0] : "01.jpg" %>" class="img-fluid" alt="Speciality"><%= doctor.DoctorSpecialist ? doctor.DoctorSpecialist.name : "not Edit Before" %></p>
+										<p class="doc-department"><img src="<%= doctor.DoctorSpecialist ? doctor.DoctorSpecialist.image.split("--")[0] : "01.jpg" %>" class="img-fluid" alt="Speciality"><%= doctor.DoctorSpecialist ? doctor.DoctorSpecialist.name : "not Edit Before" %></p>
 										<div class="rating">
 											<i class="fas fa-star <%= Math.ceil(((getRateOp(doctor.userRate) * 100) / (doctor.userRate.length * 5)) /20) >= 1 ? "active" :  "" %>"></i>
 											<i class="fas fa-star <%= Math.ceil(((getRateOp(doctor.userRate) * 100) / (doctor.userRate.length * 5)) /20) >= 2 ? "active" :  "" %>"></i>

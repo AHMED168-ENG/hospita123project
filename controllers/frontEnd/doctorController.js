@@ -5,7 +5,6 @@ const {
   removeImg,
   Rename_uploade_img,
   returnWithMessage,
-  Rename_uploade_img_multiFild,
   formateDate,
   removeImgFiled,
 } = require("../../Helper/helper");
@@ -674,10 +673,10 @@ const editDoctor_post = async (req, res, next) => {
       return;
     }
 
-    var files = Rename_uploade_img_multiFild([
-      req.files.clinicImage,
-      req.files.doctorImage,
-    ]);
+    var files = await Rename_uploade_img_multiFild(
+      [req.files.clinicImage, req.files.doctorImage],
+      "hospitalProject/Doctor"
+    );
     var doctorData = req.body;
 
     doctorData.doctorImage = files.doctorImage

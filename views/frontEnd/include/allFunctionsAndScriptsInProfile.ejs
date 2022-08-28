@@ -145,9 +145,7 @@
       return;
     document.querySelector(
       `.messagesController .messages .chate${data.frindId} .text .footer`
-    ).innerHTML = `<img src='/backEnd/assets/img/patients/${
-      data.image.split("--")[0]
-    }' />`;
+    ).innerHTML = `<img src='${data.image.split("--")[0]}' />`;
   });
 
   sockit.on("clickOnChateToShowMessages", (data) => {
@@ -259,9 +257,7 @@
       <div class="header d-flex align-items-center justify-centent-between">
         <div class="user d-flex align-items-center">
           <a href="" class="online ID${data[0].id}">
-            <img src="/backEnd/assets/img/patients/${
-              data[0].image.split("--")[0]
-            }" alt="">
+            <img src="${data[0].image.split("--")[0]}" alt="">
               <span><span></span></span>
           </a>
           <div class="information d-flex align-items-center">
@@ -291,12 +287,10 @@
               <a href="/userProfile/${data[0].id}" class="online ID${
           data[0].id
         }">
-                <img src="/backEnd/assets/img/patients/${
-                  data[0].image.split("--")[0]
-                }" alt="">
+                <img src="${data[0].image.split("--")[0]}" alt="">
                 <span><span></span></span>
               </a>
-            </div>  
+            </div>
             <a href="/userProfile/${data[0].id}">View Profile</a>
           </div>
           <div class="messages">`;
@@ -420,9 +414,7 @@
               <div class="mainContent d-flex">
                 <div class="img">
                   <a href="/userProfile/${ele.id}" class="online ID${ele.id}">
-                    <img src="/backEnd/assets/img/patients/${
-                      ele.image.split("--")[0]
-                    }" alt="">
+                    <img src="${ele.image.split("--")[0]}" alt="">
                     <span><span></span></span>
                   </a>
                 </div>
@@ -456,9 +448,7 @@
                     <a href="/userProfile/${ele.id}" class="online ID${
               ele.chatUser.id
             }">
-                      <img src="/backEnd/assets/img/patients/${
-                        ele.chatUser.image.split("--")[0]
-                      }" alt="">
+                      <img src="${ele.chatUser.image.split("--")[0]}" alt="">
                       <span><span></span></span>
                     </a>
                   </div>
@@ -473,7 +463,7 @@
                   ele.chatUser.userFromMessage[0].createdAt)
             ) {
               x += `<span>
-                                  <span> you : </span> 
+                                  <span> you : </span>
                                   <span>${
                                     ele.chatUser.userToMessage[0].message
                                   }</span>
@@ -483,7 +473,7 @@
                                 ).fromNow()}</span>`;
             } else {
               x += `<span>
-                                  <span> </span> 
+                                  <span> </span>
                                   <span>${
                                     ele.chatUser.userFromMessage[0].message
                                   }</span>
@@ -503,9 +493,7 @@
               if (!ele.chatUser.userToMessage[0].isSeen) {
                 x += `<i class="fa fa-check-circle" aria-hidden="true"></i>`;
               } else {
-                x += `<img src="/backEnd/assets/img/patients/${
-                  ele.chatUser.image.split("--")[0]
-                }" />`;
+                x += `<img src="${ele.chatUser.image.split("--")[0]}" />`;
               }
             } else {
               if (!ele.chatUser.userFromMessage[0].isSeen) {
@@ -541,7 +529,7 @@
 
   function changCoverPhoto(e) {
     var data = new FormData();
- 
+
     data.append("imageCover", e.target.files[0]);
     data.append("userId", "<%= UserCookie.id %>");
     axios({
@@ -637,8 +625,8 @@
               x = `
             <li>
               <a href="" class="d-flex align-items-center">
-                  <div class="assets">      
-                    <img src="/backEnd/assets/img/patients/${
+                  <div class="assets">
+                    <img src="${
                       ele.notificationUser.image.split("--")[0]
                     }" alt="">
                     <img src="/admin/asset/images/ico/${
@@ -691,7 +679,7 @@
               x += `<span>منذ ${moment(ele.createdAt).fromNow()}</span>
                   </div>
                 <span></span>
-              </a> 
+              </a>
             </li>
             `;
               e.target.parentElement.querySelector(
@@ -740,10 +728,8 @@
             data[0].forEach((ele) => {
               e.target.parentElement.querySelector("ul").innerHTML += `<li>
               <div class="main d-flex">
-                <a href="/userProfile/${ele.id}" class="photo"> 
-                  <img src="/backEnd/assets/img/patients/${
-                    ele.image.split("--")[0]
-                  }" alt="">
+                <a href="/userProfile/${ele.id}" class="photo">
+                  <img src="${ele.image.split("--")[0]}" alt="">
                 </a>
                 <div class="data">
                   <p>قام <span>${ele.fName} ${
@@ -1039,7 +1025,7 @@
           x += ` <div class="postHeade d-flex">
               <div class="pairant d-flex">
                 <div class="left">
-                  <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt="">
+                  <img src="<%= UserCookie.image.split("--")[0] %>" alt="">
                   <span><span></span></span>
                 </div>
                 <div class="right">
@@ -1071,13 +1057,9 @@
               <h5>${textarea.value}</h5>
               `;
           if (res[0].image) {
-            x += `<img src="/backEnd/assets/img/posts_image/${
-              res[0].image.split("--")[0]
-            }">`;
+            x += `<img src="${res[0].image.split("--")[0]}">`;
           } else if (res[0].video) {
-            x += `<video controls src="/backEnd/assets/img/posts_image/${
-              res[0].video.split("--")[0]
-            }">`;
+            x += `<video controls src="${res[0].video.split("--")[0]}">`;
           }
 
           x += `</div>
@@ -1088,7 +1070,7 @@
               </div>
               <div class="mackAction d-flex">
                   <button>
-                    <i class="fa fa-thumbs-up" aria-hidden="true"></i> 
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                     <span class="emojiName" onclick="removeOrAddLike(event , '${res[0].id}' , 'top')">اعجبني</span>
                     <div class="emoji">
                       <span onclick="addLikes(event , 'thumbsup'  , '${res[0].id}' , 'top')" title="اعجبني">👍 </span>
@@ -1098,7 +1080,7 @@
                       <span onclick="addLikes(event , 'hushed' , '${res[0].id}' , 'top')" title="واو">😯</span>
                       <span onclick="addLikes(event , 'cry' , '${res[0].id}' , 'top')" title="احزنني">😢</span>
                       <span onclick="addLikes(event , 'joy' , '${res[0].id}' , 'top')" title="هاهاها">😂</span>
-                    </div>   
+                    </div>
                   </button>
                   <button><i class="fa fa-comment-o" aria-hidden="true"></i> تعليق</button>
                   <button><i class="fa fa-share" aria-hidden="true"></i> مشاركه</button>
@@ -1107,7 +1089,7 @@
               <div class="writeComment d-flex">
                 <div class="left">
                   <a href="/userProfile/<%= UserCookie.id %>">
-                    <img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt=""></a>
+                    <img src="<%= UserCookie.image.split("--")[0] %>" alt=""></a>
                     <span><span></span></span>
                 </div>
                 <div>
@@ -1165,7 +1147,7 @@
                             <i class="fa fa-chevron-left" onclick="goBack(event)" aria-hidden="true"></i>
                           </div>
                           <ul class="list-unstyled">
-                          
+
                           </ul>
                         </div>
                         <div class="over">
@@ -1181,7 +1163,7 @@
             <div class="over">
               <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
             </div>
-          
+
           `;
           post.innerHTML = x;
           var pairant = document.querySelector(".userProfile .allMyPosts");
@@ -1496,7 +1478,7 @@
                         <a href="/userProfile/${
                           element.postCommentUser.id
                         }" class="online ID${element.postCommentUser.id}">
-                          <img src="/backEnd/assets/img/patients/${
+                          <img src="${
                             element.postCommentUser.image.split("--")[0]
                           }" alt="">
                             <span><span></span></span>
@@ -1541,7 +1523,7 @@
             element.images.split("--").forEach((element) => {
               if (element.trim()) {
                 x += `<div>
-                                    <img src="/backEnd/assets/img/comment_photo/${element} " alt="">
+                                    <img src="${element} " alt="">
                                 </div>`;
               }
             });
@@ -1613,7 +1595,7 @@
                                     }</span>`
                                   : ""
                               }
-                                 
+
                               <i class="fa fa-thumbs-up" ${
                                 element.usersLikes
                                   ? element.usersLikes.indexOf(
@@ -1622,7 +1604,7 @@
                                     ? "style=display:none"
                                     : ""
                                   : ""
-                              } aria-hidden="true"></i> 
+                              } aria-hidden="true"></i>
                               <span class="emojiName" onclick="removeOrAddLike(event , '${
                                 element.id
                               }' , 'bottom')">${
@@ -1657,8 +1639,8 @@
                               <span onclick="addLikes(event , 'joy' , '${
                                 element.id
                               }' , 'bottom')" title="هاهاها">😂</span>
-                              </div> 
-                          </button>   
+                              </div>
+                          </button>
                           <button onclick="showInputReplayComment(event)">رد</button>
                           <span><span>${
                             element.createdAt.split("T")[0]
@@ -1687,7 +1669,7 @@
                         <a href="/userProfile/${
                           element.postCommentUser.id
                         }" class="online ID${element.postCommentUser.id}">
-                          <img src="/backEnd/assets/img/patients/${
+                          <img src="${
                             element.postCommentUser.image.split("--")[0]
                           }" alt="">
                             <span><span></span></span>
@@ -1752,7 +1734,7 @@
                                   <i class="fa fa-chevron-left" onclick="goBack(event)" aria-hidden="true"></i>
                                 </div>
                                 <ul class="list-unstyled">
-                                
+
                                 </ul>
                               </div>
                               <div class="over">
@@ -1773,11 +1755,11 @@
                             <a href="/userProfile/${
                               ele.postCommentUser.id
                             }" class="online ID${ele.postCommentUser.id}">
-                                <img src="/backEnd/assets/img/patients/${
+                                <img src="${
                                   ele.postCommentUser.image.split("--")[0]
                                 }" alt="">
                                   <span><span></span></span>
-                                </a>                          
+                                </a>
                             </div>
                           <div class="mainText">
                             <div class="text">
@@ -1818,7 +1800,7 @@
               ele.images.split("--").forEach((element) => {
                 if (element.trim()) {
                   x += `<div>
-                                        <img src="/backEnd/assets/img/comment_photo/${element} " alt="">
+                                        <img src="${element} " alt="">
                                     </div>`;
                 }
               });
@@ -1902,7 +1884,7 @@
                                         }</span>`
                                       : ""
                                   }
-                                    
+
                                   <i class="fa fa-thumbs-up" ${
                                     ele.usersLikes
                                       ? ele.usersLikes.indexOf(
@@ -1911,7 +1893,7 @@
                                         ? "style=display:none"
                                         : ""
                                       : ""
-                                  } aria-hidden="true"></i> 
+                                  } aria-hidden="true"></i>
                                   <span class="emojiName" onclick="removeOrAddLike(event , '${
                                     ele.id
                                   }' , 'bottom')">${
@@ -1946,8 +1928,8 @@
                                   <span onclick="addLikes(event , 'joy' , '${
                                     ele.id
                                   }' , 'bottom')" title="هاهاها">😂</span>
-                                  </div> 
-                              </button>   
+                                  </div>
+                              </button>
                               <button onclick="showInputReplayComment(event)">رد</button>
                               <span><span>${
                                 ele.createdAt.split("T")[0]
@@ -1972,10 +1954,10 @@
                             </div>
                           </div>
                         </div>
-                        
+
                         <div class="writeComment">
                           <div class="left">
-                            <a href="/userProfile/<%= UserCookie.id %>"><img src="/backEnd/assets/img/patients/<%= UserCookie.image.split("--")[0] %>" alt=""></a>
+                            <a href="/userProfile/<%= UserCookie.id %>"><img src="<%= UserCookie.image.split("--")[0] %>" alt=""></a>
                             <span><span></span></span>
                           </div>
                           <div>
@@ -2034,7 +2016,7 @@
                                       <i class="fa fa-chevron-left" onclick="goBack(event)" aria-hidden="true"></i>
                                     </div>
                                     <ul class="list-unstyled">
-                                    
+
                                     </ul>
                                   </div>
                                   <div class="over">
@@ -2047,7 +2029,7 @@
                         </div>
                         <div class="assets"></div>
                         <span style="cursor: pointer;display: block;" onclick='getMoreComments(event , ${ele.id} , ${postId} , "sup" )' >عرض المزيد من الكمنتات</span>
-                      </div> 
+                      </div>
                       `;
           });
           if (element.supComments.length > 0) {
@@ -2110,7 +2092,7 @@
                         <a href="/userProfile/<%= user.id %>" class="online ID${
                           element.postsUser.id
                         }">
-                          <img src="/backEnd/assets/img/patients/${
+                          <img src="${
                             element.postsUser.image.split("--")[0]
                           }" alt="">
                           <span><span></span></span>
@@ -2150,11 +2132,9 @@
                   <div class="postBody">`;
             if (element.post) x += `<h5>${element.post}</h5>`;
             if (element.image)
-              x += `<img src="/backEnd/assets/img/posts_image/${
-                element.image.split("--")[0]
-              }" alt="">`;
+              x += `<img src="${element.image.split("--")[0]}" alt="">`;
             if (element.video)
-              x += `<video controls src="/backEnd/assets/img/posts_image/${
+              x += `<video controls src="${
                 element.video.split("--")[0]
               }" alt=""></video>`;
 
@@ -2261,7 +2241,7 @@
                                     }</span>`
                                   : ""
                               }
-                                 
+
                               <i class="fa fa-thumbs-up" ${
                                 element.PostsLikes
                                   ? element.PostsLikes.usersId.indexOf(
@@ -2270,7 +2250,7 @@
                                     ? "style=display:none"
                                     : ""
                                   : ""
-                              } aria-hidden="true"></i> 
+                              } aria-hidden="true"></i>
                               <span class="emojiName" onclick="removeOrAddLike(event , '${
                                 element.id
                               }' , 'top')">${
@@ -2308,12 +2288,12 @@
                               <span onclick="addLikes(event , 'joy' , '${
                                 element.id
                               }' , 'top')" title="هاهاها">😂</span>
-                              </div> 
+                              </div>
                           </button>
                         <button><i class="fa fa-comment-o" aria-hidden="true"></i> تعليق</button>
                         <button><i class="fa fa-share" aria-hidden="true"></i> مشاركه</button>
                     </div>
-                                
+
                     <div class="myComments">`;
             if (element.postComments.length > 0) {
               element.postComments.forEach((element2) => {
@@ -2326,7 +2306,7 @@
                               }" class="online ID${
                   element2.postCommentUser.id
                 }">
-                                <img src="/backEnd/assets/img/patients/${
+                                <img src="${
                                   element2.postCommentUser.image.split("--")[0]
                                 }" alt="">
                                 <span><span></span></span>
@@ -2375,7 +2355,7 @@
                 if (element2.images) {
                   element2.images.split("--").forEach((ele) => {
                     if (ele.trim()) {
-                      x += `<div><img src="/backEnd/assets/img/comment_photo/${ele}" /></div>`;
+                      x += `<div><img src="${ele}" /></div>`;
                     }
                   });
                 }
@@ -2460,7 +2440,7 @@
                                             }</span>`
                                           : ""
                                       }
-                                        
+
                                       <i class="fa fa-thumbs-up" ${
                                         element2.usersLikes
                                           ? element2.usersLikes.indexOf(
@@ -2469,7 +2449,7 @@
                                             ? "style=display:none"
                                             : ""
                                           : ""
-                                      } aria-hidden="true"></i> 
+                                      } aria-hidden="true"></i>
                                       <span class="emojiName" onclick="removeOrAddLike(event , '${
                                         element2.id
                                       }' , 'bottom')">${
@@ -2507,7 +2487,7 @@
                                       <span onclick="addLikes(event , 'joy' , '${
                                         element2.id
                                       }' , 'bottom')" title="هاهاها">😂</span>
-                                      </div> 
+                                      </div>
                                   </button>
                                 <button onclick="showInputReplayComment(event)">رد</button>
                                 <span><span></span> ${
@@ -2542,7 +2522,7 @@
                               }" class="online ID${
                   element2.postCommentUser.id
                 }">
-                                <img src="/backEnd/assets/img/patients/${
+                                <img src="${
                                   element2.postCommentUser.image.split("--")[0]
                                 }" alt="">
                                 <span><span></span></span>
@@ -2611,7 +2591,7 @@
                                         <i class="fa fa-chevron-left" onclick="goBack(event)" aria-hidden="true"></i>
                                       </div>
                                       <ul class="list-unstyled">
-                                      
+
                                       </ul>
                                     </div>
                                     <div class="over">
@@ -2634,11 +2614,11 @@
                                 }" class="online ID${
                     element3.postCommentUser.id
                   }">
-                                <img src="/backEnd/assets/img/patients/${
+                                <img src="${
                                   element3.postCommentUser.image.split("--")[0]
                                 }" alt="">
                                 <span><span></span></span>
-                                </a>                              
+                                </a>
                               </div>
                               <div class="mainText">
                                 <div class="text">
@@ -2682,7 +2662,7 @@
                   if (element3.images) {
                     element3.images.split("--").forEach((ele) => {
                       if (ele.trim()) {
-                        x += `<div><img src="/backEnd/assets/img/comment_photo/${ele}" /></div>`;
+                        x += `<div><img src="${ele}" /></div>`;
                       }
                     });
                   }
@@ -2767,7 +2747,7 @@
                                             }</span>`
                                           : ""
                                       }
-                                        
+
                                       <i class="fa fa-thumbs-up" ${
                                         element3.usersLikes
                                           ? element3.usersLikes.indexOf(
@@ -2776,7 +2756,7 @@
                                             ? "style=display:none"
                                             : ""
                                           : ""
-                                      } aria-hidden="true"></i> 
+                                      } aria-hidden="true"></i>
                                       <span class="emojiName" onclick="removeOrAddLike(event , '${
                                         element3.id
                                       }' , 'bottom')">${
@@ -2814,8 +2794,8 @@
                                       <span onclick="addLikes(event , 'joy' , '${
                                         element3.id
                                       }' , 'bottom')" title="هاهاها">😂</span>
-                                      </div> 
-                                  </button>                              
+                                      </div>
+                                  </button>
                                   <button onclick="showInputReplayComment(event)">رد</button>
                                   <span><span>${
                                     element3.createdAt.split("T")[0]
@@ -2840,7 +2820,7 @@
                   x += `</div>
                               </div>
                             </div>
-                            
+
                             <div class="writeComment">
                               <div class="left">
                                 <a href="/userProfile/${
@@ -2848,7 +2828,7 @@
                                 }" class="online ID${
                     element3.postCommentUser.id
                   }">
-                                <img src="/backEnd/assets/img/patients/${
+                                <img src="${
                                   element3.postCommentUser.image.split("--")[0]
                                 }" alt="">
                                 <span><span></span></span>
@@ -2917,7 +2897,7 @@
                                             <i class="fa fa-chevron-left" onclick="goBack(event)" aria-hidden="true"></i>
                                           </div>
                                           <ul class="list-unstyled">
-                                          
+
                                           </ul>
                                         </div>
                                         <div class="over">
@@ -2950,13 +2930,13 @@
                 : ""
             }
                     </div>
-                    
-                    
+
+
 
                     <div class="writeComment d-flex">
                       <div class="left">
                         <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                          <img src="/backEnd/assets/img/patients/<%=UserCookie.image.split("--")[0] %>" alt="">
+                          <img src="<%=UserCookie.image.split("--")[0] %>" alt="">
                           <span><span></span></span>
                           </a>
                       </div>
@@ -3019,7 +2999,7 @@
                                   <i class="fa fa-chevron-left" onclick="goBack(event)" aria-hidden="true"></i>
                                 </div>
                                 <ul class="list-unstyled">
-                                
+
                                 </ul>
                               </div>
                               <div class="over">
@@ -3031,7 +3011,7 @@
                       </div>
                     </div>
                     <div class="assets"></div>
-                  
+
                   </div>
                 `;
             div.innerHTML = x;
@@ -3059,6 +3039,8 @@
         for (var x in inputs.files) {
           dataComment.append("image", inputs.files[x]);
         }
+        e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
+          "fa fa-spinner fa-spin";
         axios({
           method: "post",
           url: "/addCommentOnPosts",
@@ -3066,6 +3048,8 @@
         })
           .then((data) => {
             sockit.emit("addNotificationUser", { userId: "<%=  user.id %>" });
+            e.target.parentElement.parentElement.nextElementSibling.firstElementChild.classList =
+              "fa fa-times";
             data = data.data;
             var comment = document.createElement("div");
             comment.classList.add("comment");
@@ -3074,7 +3058,7 @@
                 <div class="pairant d-flex">
                   <div class="image">
                     <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                      <img src="/backEnd/assets/img/patients/${
+                      <img src="${
                         data[0].postCommentUser.image.split("--")[0]
                       }" alt="">
                       <span><span></span></span>
@@ -3089,8 +3073,8 @@
                       }</a>
                       <span>${data[0].comment}</span>
                       <span class="number">
-                        <span>0</span>  
-                        <span></span>  
+                        <span>0</span>
+                        <span></span>
                       </span>
                     </div>
                     <div class="commentPhoto">`;
@@ -3108,7 +3092,7 @@
             myComment += `</div>
                     <div class="controllers mackAction">
                       <button class="">
-                          <i class="fa fa-thumbs-up" aria-hidden="true"></i> 
+                          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                           <span class="emojiName" onclick="removeOrAddLike(event , '${data[0].id}' , 'bottom')">اعجبني</span>
                           <div class="emoji">
                             <span onclick="addLikes(event , 'thumbsup'  , '${data[0].id}' , 'bottom')" title="اعجبني">👍 </span>
@@ -3118,7 +3102,7 @@
                             <span onclick="addLikes(event , 'hushed' , '${data[0].id}' , 'bottom')" title="واو">😯</span>
                             <span onclick="addLikes(event , 'cry' , '${data[0].id}' , 'bottom')" title="احزنني">😢</span>
                             <span onclick="addLikes(event , 'joy' , '${data[0].id}' , 'bottom')" title="هاهاها">😂</span>
-                          </div> 
+                          </div>
                         </button>
                       <button onclick="showInputReplayComment(event)">رد</button>
                       <span><span></span> <i class="fa fa-clock-o" aria-hidden="true"></i> ${data[1]}</span>
@@ -3142,7 +3126,7 @@
                 <div class="writeComment">
                   <div class="left">
                     <a href="/userProfile/<%= UserCookie.id %>" class="online ID<%= UserCookie.id %>">
-                      <img src="/backEnd/assets/img/patients/<%=UserCookie.image.split("--")[0] %>" alt="">`;
+                      <img src="<%=UserCookie.image.split("--")[0] %>" alt="">`;
             if ("<%= UserCookie.onLine %>" == "true") {
               myComment += `<span><span></span></span>`;
             }
@@ -3203,7 +3187,7 @@
                               <i class="fa fa-chevron-left" onclick="goBack(event)" aria-hidden="true"></i>
                             </div>
                             <ul class="list-unstyled">
-                            
+
                             </ul>
                           </div>
                           <div class="over">
@@ -3239,10 +3223,13 @@
               myComments.insertBefore(comment, myComments.firstElementChild);
             }
             sockit.emit("activeUser", { userId: "<%=  UserCookie.id %>" });
-
+            overFlow[0].classList.remove("active");
+            e.target.parentElement.parentElement.firstElementChild.innerHTML =
+              "...";
             e.target.value = "";
             e.target.parentElement.parentElement.nextElementSibling.innerHTML =
               "";
+
             alert2.classList.add("active");
             alert2.querySelector("div").innerHTML = "تم اضافه الكومنت بنجاح";
             setTimeout(() => {
@@ -3365,7 +3352,7 @@
             if (ele.trim() != "") {
               popUp.firstElementChild.querySelector(
                 ".assets"
-              ).innerHTML += `<div data_number="${i}"><i class="fa fa-times" onclick="removeAssetComment(event , 'old')"></i><img src="/backEnd/assets/img/comment_photo/${ele}" /></div>`;
+              ).innerHTML += `<div data_number="${i}"><i class="fa fa-times" onclick="removeAssetComment(event , 'old')"></i><img src="${ele}" /></div>`;
             }
           });
         }
@@ -3682,13 +3669,13 @@
         if (search != "") {
           data.forEach((ele) => {
             ul.innerHTML += `<li>
-                    <a href="/userProfile/${ele.id}" class="d-flex"> 
+                    <a href="/userProfile/${ele.id}" class="d-flex">
                       <div class="online ID${ele.id}">
-                        <img src="/backEnd/assets/img/patients/${
+                        <img src="${
                           ele.image ? ele.image.split("--")[0] : "avatar.png"
-                        }" /> 
+                        }" />
                         <span><span></span></span>
-                      </div> 
+                      </div>
                       <p>${ele.fName} ${ele.lName}</p>
                     </a>
                   </li>`;
@@ -3769,9 +3756,7 @@
       var asideBox = document.querySelector(".asideBox");
       var element = `
         <a onclick="openChate(event , ${frindId} , 'ID${frindId}')" class="online ID${frindId}">
-          <img src="/backEnd/assets/img/patients/${
-            image.split("--")[0]
-          }" alt="">
+          <img src="${image.split("--")[0]}" alt="">
           <span style="width:12px !important;height:12px !important">
             <span></span>
           </span>

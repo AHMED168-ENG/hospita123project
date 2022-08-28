@@ -88,17 +88,14 @@ Router.post(
   userAuthonticat,
   DoctorAuthonticat,
   DoctorAuthonticat,
-  uploade_img_multi_fild(
-    [
-      {
-        name: "doctorImage",
-      },
-      {
-        name: "clinicImage",
-      },
-    ],
-    "public/backEnd/assets/img/doctors"
-  ),
+  uploade_img_multi_fild([
+    {
+      name: "doctorImage",
+    },
+    {
+      name: "clinicImage",
+    },
+  ]),
   DoctorSeting(),
   editDoctor_post
 );

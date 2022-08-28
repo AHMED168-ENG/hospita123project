@@ -5,7 +5,8 @@ module.exports = {
     return queryInterface.bulkInsert("specialists", [
       {
         name: "armes",
-        image: "0.152561613935393585.png--",
+        image:
+          "https://res.cloudinary.com/ahmed-zakys/image/upload/v1661690374/hospitalProject/specialty/4_u0x4zp.png",
         description: "this is very good",
         active: true,
         createdAt: new Date(),

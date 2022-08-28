@@ -78,20 +78,20 @@ const editDoctor_post = async (req, res, next) => {
       return;
     }
 
-    var files = Rename_uploade_img_multiFild([
-      req.files.clinicImage,
-      req.files.doctorImage,
-    ]);
+    var files = await Rename_uploade_img_multiFild(
+      [req.files.clinicImage, req.files.doctorImage],
+      "hospitalProject/Doctor"
+    );
 
     var doctorData = req.body;
 
     if (files.clinicImage) {
       if (req.body.OldclinicImage)
-        removeImg(req, "doctors/", req.body.OldclinicImage);
+        await removeImg(req, req.body.OldclinicImage);
     }
     if (files.doctorImage) {
       if (req.body.OlddoctorImage)
-        removeImg(req, "doctors/", req.body.OlddoctorImage);
+        await removeImg(req, req.body.OlddoctorImage);
     }
     console.log(req.body);
     doctorData.doctorImage = files.doctorImage

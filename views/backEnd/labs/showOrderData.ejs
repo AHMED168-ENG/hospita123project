@@ -92,7 +92,7 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>order image <span class="text-danger">*</span></label>
-													<img style="height:500px" src="/backEnd/assets/img/pharmacyOrderImage/<%= order.image ? order.image.split("--")[0] : "avatar.png"  %>" name="province" type="text" class="form-control">  
+													<img style="height:500px" src="<%= order.image ? order.image.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png"  %>" name="province" type="text" class="form-control">  
 												</div>
 											</div>
 										</div>

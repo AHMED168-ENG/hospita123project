@@ -38,7 +38,7 @@ Router.post(
   userAuthonticat,
   isAuthonticate,
 
-  uploade_img("public/backEnd/assets/img/pharmacyImage", "image"),
+  uploade_img("image"),
   pharmacy_validate(),
   addPharmacyControllerPost
 );
@@ -48,7 +48,7 @@ Router.post(
   userAuthonticat,
   isAuthonticate,
 
-  uploade_img("public/backEnd/assets/img/pharmacyImage", "image"),
+  uploade_img("image"),
   pharmacy_validate(),
   editPharmasyControllerPost
 );

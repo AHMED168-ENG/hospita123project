@@ -31,11 +31,11 @@ const signUp_controller_post = async (req, res, next) => {
   try {
     var errors = validationResult(req).errors;
     if (errors.length > 0) {
-      removeImg(req, "image/");
+      await removeImg(req);
       handel_validation_errors(req, res, errors, "signUp");
       return;
     }
-    var image = Rename_uploade_img(req);
+    var image = await Rename_uploade_img(req, "hospitalProject/patients");
     var user_data = req.body;
     var hashPassword = bcrypt.hashSync(user_data.password, 10);
     user_data.password = hashPassword;

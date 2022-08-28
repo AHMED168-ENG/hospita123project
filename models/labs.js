@@ -14,14 +14,14 @@ module.exports = (sequelize, DataTypes) => {
   labs.init(
     {
       name: DataTypes.STRING,
-      image: DataTypes.STRING,
+      image: DataTypes.TEXT,
       province: DataTypes.STRING,
       village: DataTypes.STRING,
       phone: DataTypes.INTEGER,
       start: DataTypes.STRING,
       end: DataTypes.STRING,
       userId: DataTypes.INTEGER,
-      confirmImage: DataTypes.STRING,
+      confirmImage: DataTypes.TEXT,
       isActive: DataTypes.BOOLEAN,
     },
     {

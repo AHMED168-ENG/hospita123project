@@ -38,7 +38,7 @@
 									<div class="appointment-list">
 										<div class="profile-info-widget">
 											<a href="/userProfile/<%= element.ApointmentPationt.id %>" class="booking-doc-img">
-												<img src="/backEnd/assets/img/patients/<%= element.ApointmentPationt.image.split("--")[0] %>" alt="User Image">
+												<img src="<%= element.ApointmentPationt.image.split("--")[0] %>" alt="User Image">
 											</a>
 											<div class="profile-det-info">
 												<h3><a href="patient-profile.html"><%= element.ApointmentPationt.fName + " " + element.ApointmentPationt.lName %></a></h3>

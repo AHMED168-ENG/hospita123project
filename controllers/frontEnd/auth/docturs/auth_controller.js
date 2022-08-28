@@ -38,10 +38,10 @@ const signUp_controller_post = async (req, res, next) => {
       handel_validation_errors(req, res, errors, "signUp");
       return;
     }
-    var files = Rename_uploade_img_multiFild([
-      req.files.Graduation,
-      req.files.birthImage,
-    ]);
+    var files = await Rename_uploade_img_multiFild(
+      [req.files.Graduation, req.files.birthImage],
+      "hospitalProject/Doctor"
+    );
     var doctor_data = req.body;
     var hashPassword = bcrypt.hashSync(doctor_data.password, 10);
     doctor_data.password = hashPassword;

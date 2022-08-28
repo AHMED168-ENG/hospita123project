@@ -143,7 +143,7 @@
                                     <a href="/All_Doctors?select_specialist=<%= element.id %>">
                                     <div class="speicality-item text-center">
                                         <div class="speicality-img">
-                                            <img src="/backEnd/assets/img/specialities/<%= element.image.split("--")[0] %>" class="img-fluid" alt="Speciality">
+                                            <img src="<%= element.image.split("--")[0] %>" class="img-fluid" alt="Speciality">
                                             <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                                         </div>
                                         <p><%= element.name %></p>
@@ -184,7 +184,7 @@
                                     <div class="profile-widget">
                                         <div class="doc-img">
                                             <a href="/userProfile/<%= element.id %>">
-                                                <img class="img-fluid" style="height:170px" alt="User Image" src="/backEnd/assets/img/doctors/<%= element.userDoctorData.doctorImage ? element.userDoctorData.doctorImage.split("--")[0] : "avatar.png" %>">
+                                                <img class="img-fluid" style="height:170px" alt="User Image" src="/backEnd/assets/img/doctors/<%= element.userDoctorData.doctorImage ? element.userDoctorData.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>">
                                             </a>
                                             <a href="javascript:void(0)" class="fav-btn">
                                                 <i class="far fa-bookmark"></i>
@@ -247,7 +247,7 @@
                         <div class="profile-widget">
                             <div class="doc-img">
                                 <a href="/userProfile/<%= element.DoctorUser.id %>">
-                                    <img class="img-fluid" style="height:170px" alt="User Image" src="/backEnd/assets/img/doctors/<%= element.doctorImage ? element.doctorImage.split("--")[0] : "avatar.png" %>">
+                                    <img class="img-fluid" style="height:170px" alt="User Image" src="<%= element.doctorImage ? element.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>">
                                 </a>
                                 <a href="javascript:void(0)" class="fav-btn">
                                     <i class="far fa-bookmark"></i>
@@ -312,13 +312,13 @@
                                 <!-- Blog Post -->
                                 <div class="blog grid-blog">
                                     <div class="blog-image">
-                                        <a href="#"><img style="height:200px" class="img-fluid" src="/backEnd/assets/img/posts_image/<%= element.userDoctorData.doctorPosts[0].image ? element.userDoctorData.doctorPosts[0].image.split("--")[0] : "15.jpg" %>" alt="Post Image"></a>
+                                        <a href="#"><img style="height:200px" class="img-fluid" src="<%= element.userDoctorData.doctorPosts[0].image ? element.userDoctorData.doctorPosts[0].image.split("--")[0] : "/backEnd/assets/img/carousel/15.jpg" %>" alt="Post Image"></a>
                                     </div>
                                     <div class="blog-content">
                                         <ul class="entry-meta meta-item">
                                             <li>
                                                 <div class="post-author">
-                                                    <a href="/userProfile/<%= element.id %>"><img src="/backEnd/assets/img/doctors/<%= element.userDoctorData.doctorImage ? element.userDoctorData.doctorImage.split("--")[0] : "avatar.png" %>" alt="Post Author"> <span>Dr. <%= element.userDoctorData.fName + " " + element.userDoctorData.lName %></span></a>
+                                                    <a href="/userProfile/<%= element.id %>"><img src="<%= element.userDoctorData.doctorImage ? element.userDoctorData.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="Post Author"> <span>Dr. <%= element.userDoctorData.fName + " " + element.userDoctorData.lName %></span></a>
                                                 </div>
                                             </li>
                                             <li><i class="far fa-clock"></i> <%= formateDate(element.userDoctorData.doctorPosts.createAt , "date") %></li>
@@ -359,8 +359,8 @@
                         ul.innerHTML += `<li>
                                 <a href="/userProfile/${ele.DoctorUser.id}" class="d-flex"> 
                                 <div class="online ID${ele.id}">
-                                    <img src="/backEnd/assets/img/doctors/${
-                                    ele.doctorImage ? ele.doctorImage.split("--")[0] : "avatar.png"
+                                    <img src="${
+                                    ele.doctorImage ? ele.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png"
                                     }" /> 
                                 </div> 
                                 <p>${ele.fName} ${ele.lName}</p>

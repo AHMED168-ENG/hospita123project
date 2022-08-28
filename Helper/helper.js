@@ -3,6 +3,7 @@
 const multer = require("multer");
 const fs = require("fs");
 const db = require("../models");
+const cloudinary = require("cloudinary");
 const { Op, Sequelize, DataTypes } = require("sequelize");
 
 /*----------------- start try error -------------------*/
@@ -65,48 +66,49 @@ var handel_validation_errors = (req, res, errors, path, errorOnly) => {
 };
 /*------------------------------------ end handel validation errors -------------------------------*/
 
-/*------------------------------------ start uploade image -------------------------------*/
-const uploade_img = (path, image) => {
-  return multer({ dest: path }).array(image);
+const uploade_img = (image) => {
+  return multer({ dest: "uploads" }).array(image);
 };
-const uploade_img_multi_fild = (array, dest) => {
-  return multer({ dest: dest }).fields(array);
+const uploade_img_multi_fild = (array) => {
+  return multer({ dest: "uploads" }).fields(array);
 };
+
 /*--------------------------------------------------*/
 
-const Rename_uploade_img_multiFild = (fields) => {
+const Rename_uploade_img_multiFild = async (fields, folder) => {
   var fileds_img = {};
   var image = "";
-  fields.forEach((element) => {
-    if (element) {
-      element.forEach((element, i) => {
-        var randomNumber = Math.random(1000, 9000);
-        var newPath =
-          element.destination + "/" + randomNumber + element.originalname;
-        fs.renameSync(element.path, newPath);
-        image += randomNumber + element.originalname + "--";
-      });
-      fileds_img[element[0].fieldname] = image;
+  for (var x = 0; x < fields.length; x++) {
+    if (fields[x] && fields[x].length > 0) {
+      for (c = 0; c < fields[x].length; c++) {
+        var file = "";
+        file = await cloudinary.v2.uploader.upload(fields[x][c].path, {
+          folder: folder,
+        });
+        fs.unlinkSync(fields[x][c].path);
+        image += file.secure_url + "--";
+      }
+      fileds_img[fields[x][0].fieldname] = image;
       image = "";
     }
-  });
+  }
+
   return fileds_img;
 };
 /*--------------------------------------------------*/
 
 /*--------------------------------------------------*/
 
-const Rename_uploade_img = (req) => {
+const Rename_uploade_img = async (req, folder) => {
   var image = "";
-  console.log(req.files);
-  console.log("*".repeat(20));
-  req.files.forEach((element) => {
-    var randomNumber = Math.random(1000, 9000);
-    var newPath =
-      element.destination + "/" + randomNumber + element.originalname;
-    fs.renameSync(element.path, newPath);
-    image += randomNumber + element.originalname + "--";
-  });
+  for (x = 0; x < req.files.length; x++) {
+    var file = "";
+    file = await cloudinary.v2.uploader.upload(req.files[x].path, {
+      folder: folder,
+    });
+    fs.unlinkSync(req.files[x].path);
+    image += file.secure_url + "--";
+  }
   return image;
 };
 /*--------------------------------------------------*/
@@ -124,20 +126,21 @@ const removeImgFiled = (fields) => {
 
 /*--------------------------------------------------*/
 
-const removeImg = (req, folder, imgname = "") => {
-  try {
-    if (!imgname) {
-      req.files.forEach((element) => {
-        fs.unlinkSync(element.path);
-      });
-    } else {
-      var imgname = imgname.split("--");
-      for (var i = 0; i < imgname.length - 1; i++) {
-        fs.unlinkSync("public/backEnd/assets/img/" + folder + imgname[i]);
-      }
+const removeImg = async (req, imgname = "") => {
+  if (!imgname) {
+    if (!req.files) return;
+    req.files.forEach((element) => {
+      fs.unlinkSync(element.path);
+    });
+  } else {
+    var imgname = imgname.split("--");
+    for (var i = 0; i < imgname.length - 1; i++) {
+      var image = imgname[i].split("/");
+      var uploadIndex = image.indexOf("upload");
+      image = image.slice(uploadIndex + 2);
+      image = image.join("/").split(".")[0];
+      await cloudinary.v2.uploader.destroy(image);
     }
-  } catch (error) {
-    console.log(error);
   }
 };
 /*------------------------------------ end uploade image -------------------------------*/
