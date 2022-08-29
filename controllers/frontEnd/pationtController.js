@@ -110,7 +110,7 @@ const pationt_setings = async (req, res, next) => {
         userId: req.cookies.User.id,
       },
     });
-    res.render("frontEnd/userPages/pationt/userProfile_seting", {
+    res.render("frontEnd/userPages/pationt/userProfile_seting", {  
       usernotification2NotSeen: await usernotification2NotSeen(req),
       myPharmacy,
       myPharmacyOrder,
