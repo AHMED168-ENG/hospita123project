@@ -6,7 +6,7 @@
     <div class="widget-profile pro-widget-content">
       <div class="profile-info-widget">
         <a href="#" class="booking-doc-img">
-						<img src="<%= doctor.doctorImage ? "/backEnd/assets/img/doctors/" + doctor.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image">
+						<img src="<%= doctor.doctorImage ?  doctor.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>" alt="User Image">
         </a>
         <div class="profile-det-info">
           <h3>Dr. <%= doctor.fName + " " + doctor.lName %></h3>
