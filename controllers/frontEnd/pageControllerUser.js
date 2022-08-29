@@ -2909,7 +2909,7 @@ const mackOrderController = async (req, res, next) => {
       myLab: lab,
     });
   } catch (error) {
-    tryError(res);
+    tryError(res, error);
   }
 };
 
