@@ -366,11 +366,11 @@
                 <h5><%= element.post%></h5>
               <% } %>
               <% if (element.image) { %>
-                <img src="/backEnd/assets/img/posts_image/<%= element.image.split("--")[0] %>" alt="">
+                <img src="<%= element.image.split("--")[0] %>" alt="">
               <% } %>
               
               <% if (element.video) { %>
-                <video controls src="/backEnd/assets/img/posts_image/<%= element.video.split("--")[0] %>" alt=""></video>
+                <video controls src="<%= element.video.split("--")[0] %>" alt=""></video>
               <% } %>
               
             </div>

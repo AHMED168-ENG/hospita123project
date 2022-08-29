@@ -184,7 +184,7 @@
                                     <div class="profile-widget">
                                         <div class="doc-img">
                                             <a href="/userProfile/<%= element.id %>">
-                                                <img class="img-fluid" style="height:170px" alt="User Image" src="/backEnd/assets/img/doctors/<%= element.userDoctorData.doctorImage ? element.userDoctorData.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>">
+                                                <img class="img-fluid" style="height:170px" alt="User Image" src="<%= element.userDoctorData.doctorImage ? element.userDoctorData.doctorImage.split("--")[0] : "/backEnd/assets/img/doctors/avatar.png" %>">
                                             </a>
                                             <a href="javascript:void(0)" class="fav-btn">
                                                 <i class="far fa-bookmark"></i>
