@@ -13,7 +13,7 @@ const db = require("../../models");
 const LabsController = async (req, res, next) => {
   try {
     allLabs = await db.labs.findAll();
-    res.render("backEnd/Labs/allLabs", {
+    res.render("backEnd/labs/allLabs", {
       title: "allLabs",
       notification: req.flash("notification")[0],
       user: req.cookies.User,
