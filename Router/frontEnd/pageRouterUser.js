@@ -128,7 +128,7 @@ Router.get("/mackOrder/:id", mackOrderController);
 Router.post(
   "/mackOrder/:id",
   userAuthonticat,
-  uploade_img("public/backEnd/assets/img/pharmacyOrderImage", "image"),
+  uploade_img("image"),
   pharmacyOrderValidate(),
   mackOrderControllerPost
 );
