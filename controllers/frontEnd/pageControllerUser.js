@@ -3374,7 +3374,7 @@ const editLabsController = async (req, res, next) => {
       });
     }
     console.log(myLab);
-    res.render("frontEnd/userPages/Labs/editLabs", {
+    res.render("frontEnd/userPages/labs/editLabs", {
       title: "edit Labs",
       notification: req.flash("notification")[0],
       user: req.cookies.User,

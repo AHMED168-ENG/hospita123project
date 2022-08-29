@@ -128,6 +128,7 @@ const pationt_setings = async (req, res, next) => {
   }
 };
 /*------------------------------ start home Page ------------------------*/
+
 /*------------------------------ start home Page ------------------------*/
 const pationt_setings_post = async (req, res, next) => {
   try {
@@ -166,6 +167,7 @@ const pationt_setings_post = async (req, res, next) => {
   }
 };
 /*------------------------------ start home Page ------------------------*/
+
 /*------------------------------ start home Page ------------------------*/
 const resetPassword = async (req, res, next) => {
   try {
