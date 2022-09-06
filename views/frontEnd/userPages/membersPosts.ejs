@@ -435,7 +435,7 @@
                             <% element2.images.split("--").forEach(element => { %>
                               <% if (element.trim()) { %>
                                   <div>
-                                      <img src="/backEnd/assets/img/comment_photo/<%= element %>" alt="">
+                                      <img src="<%= element %>" alt="">
                                   </div>
                               <% } %> 
                             <% }) %>
@@ -548,7 +548,7 @@
                               <% element3.images.split("--").forEach(element => { %>
                                 <% if (element.trim()) { %>
                                     <div>
-                                        <img src="/backEnd/assets/img/comment_photo/<%= element %>" alt="">
+                                        <img src="<%= element %>" alt="">
                                     </div>
                                 <% } %> 
                               <% }) %>
